@@ -1,4 +1,6 @@
 # ========ECLIPSE IDE========
+.project
+.classpath
 .metadata
 bin/
 tmp/
