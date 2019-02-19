@@ -18,7 +18,7 @@ Welcome to the COMP3053 - Software Development Workshop III course. This course 
 **Clone this repository**
 
 ```shell
-git clone https://github.com/comp3053/[your-group-name]
+git clone https://github.com/comp3053/[Atanasoff]
 ```
 
 **Fetch new changes**
