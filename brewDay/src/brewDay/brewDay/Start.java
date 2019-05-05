@@ -50,7 +50,7 @@ public class Start {
 		System.out.println("Input the quantity of the recipe: ");
 		int quantity = input.nextInt();
 		System.out.println("Input the unit of the recipe: ");
-		char unit = input.next().charAt(0);
+		String unit = input.next();
 		Recipe r = new Recipe(name, quantity, unit);
 		r.addRecipeToDB();
 		System.out.println();
@@ -189,7 +189,6 @@ public class Start {
 			}
 			else 
 			{
-				//必须把brew换成能输入batchsize
 				System.out.println("The following recipes are recommend:");
 				Brew.recommend(batchsize);
 				
