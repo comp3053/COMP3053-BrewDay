@@ -49,7 +49,7 @@ public class Start {
 		Scanner input = new Scanner(System.in);
 		String name = input.nextLine();
 		System.out.println("Input the quantity of the recipe: ");
-		int quantity = input.nextInt();
+		int quantity = readIntCommand();
 		System.out.println("Input the unit of the recipe: ");
 		String unit = input.next();
 		Recipe r = new Recipe(name, quantity, unit);
@@ -80,7 +80,7 @@ public class Start {
 				
 				System.out.println("Input the amount of the ingredient: ");
 				Scanner s2 = new Scanner(System.in);
-				int iamount = s2.nextInt();
+				int iamount = readIntCommand();
 				
 				System.out.println("Input the unit of the ingredient: ");
 				Scanner s3 = new Scanner(System.in);
@@ -151,7 +151,7 @@ public class Start {
 				System.out.println("Input the name of the ingredient: ");
 				String name = input.nextLine();
 				System.out.println("Input the amount of the ingredient: ");
-				int amount = input.nextInt();
+				int amount = readIntCommand();
 				System.out.println("Input the unit of the ingredient: ");
 				String unit = input.nextLine();
 				RecipeIngredient ri = new RecipeIngredient(name, amount, unit);
