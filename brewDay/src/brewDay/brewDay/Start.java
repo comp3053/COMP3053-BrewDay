@@ -174,6 +174,7 @@ public class Start {
 	}
 
 	private static void recommend() throws SQLException{
+		boolean flag = false;
 		while(true)
 		{
 			System.out.println("Input the number of bitchsize that you want to brew:");
@@ -189,18 +190,24 @@ public class Start {
 			}
 			else 
 			{
-				System.out.println("The following recipes are recommend:");
-				Brew.recommend(batchsize);
 				
-				Scanner sc = new Scanner(System.in);
-				System.out.println("Which recipe do you want to brew? Please input the recipe name:");
-				String s = sc.nextLine();
-				Recipe r = new Recipe(s);
-				
-				Brew b = new Brew(batchsize, r);
-				b.implement(r);
-				System.out.println("Brew Finished");
-				break;
+				flag = Brew.recommend(batchsize);
+				if (flag == false)
+				{
+					break;
+				}
+				else {
+					System.out.println("The following recipes are recommend:");
+					Scanner sc = new Scanner(System.in);
+					System.out.println("Which recipe do you want to brew? Please input the recipe name:");
+					String s = sc.nextLine();
+					Recipe r = new Recipe(s);
+					
+					Brew b = new Brew(batchsize, r);
+					b.implement(r);
+					System.out.println("Brew Finished");
+					break;
+				}
 				
 			}
 		}

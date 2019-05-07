@@ -93,10 +93,11 @@ public class Brew {
 	}
 	
 	//gr
-	public static void recommend(float batchsize) throws SQLException {//under developing
+	public static boolean recommend(float batchsize) throws SQLException {//under developing
 		//System.out.println("This function is not finished yet.");
 		//get the number of line
 		int getline = 0;
+		boolean flag = false;
 		//to be continue
 		int[] arr = new int[100];
 		//ResultSet getStorageIngredient = Database.Select(")
@@ -125,6 +126,7 @@ public class Brew {
 			else
 			{
 				arr[getRID]++;
+				
 			}
 			
 			//System.out.println("***"+(float)temp);
@@ -147,10 +149,12 @@ public class Brew {
 					System.out.print(recommendID);
 					System.out.print(" "+recommendName);
 					System.out.println();
+					flag = true;
 				}
 			}
 			
 		}
+		return flag;
 			
 	}
 	//gr

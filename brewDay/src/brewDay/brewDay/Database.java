@@ -20,7 +20,7 @@ public class Database {
 		ResultSet rs = null;
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Database connecting...");
+			//System.out.println("Database connecting...");
 			conn = DriverManager.getConnection(DB_URL,USER,PASS);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -29,7 +29,7 @@ public class Database {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		System.out.println("The End, Goodbye!");
+		//System.out.println("The End, Goodbye!");
 		return rs;
 
 	}
@@ -41,7 +41,7 @@ public class Database {
 		Statement stmt = null;
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Database connecting...");
+			//System.out.println("Database connecting...");
 			conn = DriverManager.getConnection(DB_URL,USER,PASS);
 			stmt = conn.createStatement();
 			stmt.execute(sql);
@@ -71,7 +71,7 @@ public class Database {
 		Statement stmt = null;
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Database connecting...");
+			//System.out.println("Database connecting...");
 			conn = DriverManager.getConnection(DB_URL,USER,PASS);
 			stmt = conn.createStatement();
 			stmt.execute(sql);
@@ -101,7 +101,7 @@ public class Database {
 		Statement stmt = null;
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Database connecting...");
+			//System.out.println("Database connecting...");
 			conn = DriverManager.getConnection(DB_URL,USER,PASS);
 			stmt = conn.createStatement();
 			stmt.execute(sql);
@@ -132,7 +132,7 @@ public class Database {
 		Statement stmt = null;
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Database connecting...");
+			//System.out.println("Database connecting...");
 			conn = DriverManager.getConnection(DB_URL,USER,PASS);
 			stmt = conn.createStatement();
 			stmt.execute(sql);
