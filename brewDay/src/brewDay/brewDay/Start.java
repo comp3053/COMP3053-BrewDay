@@ -75,9 +75,9 @@ public class Start {
 				}
 
 				System.out.println("Input the name of the ingredient: ");
-				
 				Scanner s1 = new Scanner(System.in);
 				String iname = s1.nextLine();
+				
 				System.out.println("Input the amount of the ingredient: ");
 				Scanner s2 = new Scanner(System.in);
 				int iamount = s2.nextInt();
