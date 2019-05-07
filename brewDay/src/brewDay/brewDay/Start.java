@@ -197,7 +197,7 @@ public class Start {
 					break;
 				}
 				else {
-					System.out.println("The following recipes are recommend:");
+					//System.out.println("The following recipes are recommend:");
 					Scanner sc = new Scanner(System.in);
 					System.out.println("Which recipe do you want to brew? Please input the recipe name:");
 					String s = sc.nextLine();

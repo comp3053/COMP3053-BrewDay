@@ -140,7 +140,8 @@ public class Brew {
 //			System.out.println();
 			if(arr[getRID] == getline)
 			{
-				//System.out.println("This is recommend of recipeID:"+getRID);
+				flag = true;
+				System.out.println("The following recipes are recommend: ");
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
 				while(getRecommend.next())
 				{
@@ -149,7 +150,7 @@ public class Brew {
 					System.out.print(recommendID);
 					System.out.print(" "+recommendName);
 					System.out.println();
-					flag = true;
+					
 				}
 			}
 			
