@@ -44,6 +44,7 @@ public class Start {
 	}
 
 	public static void addRecipe() {
+		
 		System.out.println("Input the name of the recipe (No space in bewteen):");
 		Scanner input = new Scanner(System.in);
 		String name = input.nextLine();
@@ -53,8 +54,55 @@ public class Start {
 		String unit = input.next();
 		Recipe r = new Recipe(name, quantity, unit);
 		r.addRecipeToDB();
-		System.out.println();
+		System.out.println("Do you want to add ingredients for "+name+" ?");
+		while(true)
+		{
+			System.out.println("Input [Y] to add ingredients, otherwise, input [N]");
+			Scanner sc = new Scanner(System.in);
+			String command = sc.nextLine();
+			
+			if(command.equals("Y") || command.equals("y")){
+				
+				String sqlGetId = "SELECT RecipeID FROM Recipe WHERE Name = '" + name + "' ";
+				ResultSet rs = Database.Select(sqlGetId);
+				int recipeId = -1;
+				try {
+					while(rs.next()) {
+						recipeId = rs.getInt("RecipeID");
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+
+				System.out.println("Input the name of the ingredient: ");
+				
+				Scanner s1 = new Scanner(System.in);
+				String iname = s1.nextLine();
+				System.out.println("Input the amount of the ingredient: ");
+				Scanner s2 = new Scanner(System.in);
+				int iamount = s2.nextInt();
+				
+				System.out.println("Input the unit of the ingredient: ");
+				Scanner s3 = new Scanner(System.in);
+				String iunit = s3.nextLine();
+				RecipeIngredient ri = new RecipeIngredient(iname, iamount, iunit);
+				try {
+					ri.addIngredientToRecipe(recipeId, name);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			}
+			else if(command.equals("N") || command.equals("n")) {
+				break;
+			}
+			else {
+				System.out.println("You must input Y or N");
+				continue;
+			}
+		
 	}
+}
 
 	public static void addIngredient() {
 		while(true) {
@@ -72,7 +120,7 @@ public class Start {
 				System.out.println("Input the amount of the ingredient: ");
 				int amount = readIntCommand();
 				System.out.println("Input the unit of the ingredient: ");
-				char unit = input.next().charAt(0);
+				String unit = input.nextLine();
 				StorageIngredient i = new StorageIngredient(name, amount, unit);
 				try {
 					i.addIngredient(name, amount, unit);
@@ -105,7 +153,7 @@ public class Start {
 				System.out.println("Input the amount of the ingredient: ");
 				int amount = input.nextInt();
 				System.out.println("Input the unit of the ingredient: ");
-				char unit = input.next().charAt(0);
+				String unit = input.nextLine();
 				RecipeIngredient ri = new RecipeIngredient(name, amount, unit);
 				try {
 					ri.addIngredientToRecipe(recipeId, rName);

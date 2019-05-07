@@ -52,7 +52,7 @@ public class Recipe {
 	public void addRecipeIngredients(RecipeIngredient recipeIngredient) throws SQLException {
 		String name = recipeIngredient.getNameOfIngredient();
 		float amount = recipeIngredient.getAmountOfRecipeIngredient();
-		char unit = recipeIngredient.getUnitOfIngredient();
+		String unit = recipeIngredient.getUnitOfIngredient();
 		int recipeID = getRecipeId();
 		int flag = 0;
 
@@ -143,7 +143,7 @@ public class Recipe {
 		{
 			String Name = rs.getString("Name");
 			float Amount = rs.getFloat("Amount");
-			char Unit = rs.getString("Unit").charAt(0);
+			String Unit = rs.getString("Unit");
 			RecipeIngredient ri = new RecipeIngredient(Name, Amount, Unit);
 			this.recipeIngredients.add(ri);
 			System.out.println(ri.getNameOfIngredient()+ " " + ri.getAmountOfIngredient()+ " " + ri.getUnitOfIngredient());
