@@ -141,7 +141,7 @@ public class Brew {
 			if(arr[getRID] == getline)
 			{
 				flag = true;
-				System.out.println("The following recipes are recommend: ");
+				//System.out.println("The following recipes are recommend: ");
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
 				while(getRecommend.next())
 				{

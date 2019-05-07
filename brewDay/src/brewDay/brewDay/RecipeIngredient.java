@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class RecipeIngredient extends Ingredient {
 
-	public RecipeIngredient(String nameOfIngredient, float amountOfIngredient, char unitOfIngredient) {
+	public RecipeIngredient(String nameOfIngredient, float amountOfIngredient, String unitOfIngredient) {
 		super(nameOfIngredient, amountOfIngredient, unitOfIngredient);
 	}
 
@@ -18,7 +18,7 @@ public class RecipeIngredient extends Ingredient {
 	public void addIngredientToRecipe(int recipeID, String rName) throws SQLException {
 		String name = this.getNameOfIngredient();
 		float amount = this.getAmountOfRecipeIngredient();
-		char unit = this.getUnitOfIngredient();
+		String unit = this.getUnitOfIngredient();
 		int flag = 0;
 
 		ResultSet rs = Database.Select("SELECT Name FROM RecipeIngredient Where RecipeID = " + recipeID);

@@ -15,7 +15,7 @@ public class ShoppingList {
 		this.ingredients = new ArrayList<Ingredient>();
 	}
 //add ingredient to the shopping list but not the storage
-	public void addIngredient(String nameOfIngredient, float amountOfIngredient, char unitOfIngredient) {
+	public void addIngredient(String nameOfIngredient, float amountOfIngredient, String unitOfIngredient) {
 		Ingredient i = new Ingredient(nameOfIngredient, amountOfIngredient, unitOfIngredient);
 		this.ingredients.add(i);
 		Database.Insert("Insert Into Ingredient Values (NULL,'" + nameOfIngredient + "','" + amountOfIngredient + "','" + unitOfIngredient + "')");

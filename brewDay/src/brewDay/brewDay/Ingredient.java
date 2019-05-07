@@ -6,9 +6,9 @@ import java.sql.SQLException;
 public class Ingredient {
 	private String nameOfIngredient;
 	private float amountOfIngredient;
-	private char unitOfIngredient;
+	private String unitOfIngredient;
 
-	public Ingredient(String nameOfIngredient, float amountOfIngredient, char unitOfIngredient) {
+	public Ingredient(String nameOfIngredient, float amountOfIngredient, String unitOfIngredient) {
 		this.nameOfIngredient = nameOfIngredient;
 		this.amountOfIngredient = amountOfIngredient;
 		this.unitOfIngredient = unitOfIngredient;
@@ -33,11 +33,11 @@ public class Ingredient {
 		this.nameOfIngredient = nameOfIngredient;
 	}
 
-	public char getUnitOfIngredient() {
+	public String getUnitOfIngredient() {
 		return unitOfIngredient;
 	}
 
-	public void setUnitOfIngredient(char unitOfIngredient) {
+	public void setUnitOfIngredient(String unitOfIngredient) {
 		this.unitOfIngredient = unitOfIngredient;
 	}
 

@@ -7,12 +7,12 @@ public class StorageIngredient extends Ingredient {
 	private Brew brew;
 
 	public StorageIngredient(String nameOfIngredient, float amountOfIngredient,
-		char unitOfIngredient) {
+		String unitOfIngredient) {
 		super(nameOfIngredient, amountOfIngredient, unitOfIngredient);
 	}
 
 	//function 1 add ingredient to the storage	
-	public void addIngredient(String nameOfIngredient, float amountOfIngredient, char unitOfIngredient) throws SQLException {
+	public void addIngredient(String nameOfIngredient, float amountOfIngredient, String unitOfIngredient) throws SQLException {
 		String name = "a";
 		float amount = (float) 0.0;
 		String unit = "a";
@@ -26,7 +26,7 @@ public class StorageIngredient extends Ingredient {
 			unit = rs.getString("Unit");
 			id = rs.getInt("StorageIngredientID");
 		}
-		if(nameOfIngredient.equals(name) && unitOfIngredient == unit.charAt(0)) {
+		if(nameOfIngredient.equals(name) && unitOfIngredient == unit) {
 			amount += amountOfIngredient;
 			String sqlAdd = "UPDATE StorageIngredient SET Amount = " + amount + " WHERE StorageIngredientID = " + id;
 			Database.Update(sqlAdd);
