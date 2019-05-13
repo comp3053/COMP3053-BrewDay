@@ -49,7 +49,7 @@ public class MaintainRecipePage extends JFrame {
 		btnNewButton.setOpaque(false);
 		btnNewButton.setBackground(new Color(30, 144, 255));
 		btnNewButton.setForeground(new Color(30, 144, 255));
-		btnNewButton.setBounds(94, 139, 75, 31);
+		btnNewButton.setBounds(23, 148, 75, 31);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Update");
@@ -58,16 +58,35 @@ public class MaintainRecipePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(166, 139, 88, 31);
+		btnNewButton_1.setBounds(95, 148, 88, 31);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Delete");
 		btnNewButton_2.setForeground(new Color(255, 0, 0));
-		btnNewButton_2.setBounds(251, 139, 88, 31);
+		btnNewButton_2.setBounds(180, 148, 88, 31);
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel = new JLabel("*press the buttons!*");
-		lblNewLabel.setBounds(145, 77, 133, 16);
+		lblNewLabel.setBounds(35, 111, 133, 16);
 		contentPane.add(lblNewLabel);
-	}
+		
+		JLabel lblHelloWhatWould = new JLabel("Hello! What would you like to do today?");
+		lblHelloWhatWould.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		lblHelloWhatWould.setBounds(35, 48, 341, 21);
+		contentPane.add(lblHelloWhatWould);
+		btnNewButton.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	setVisible(false);
+
+        	JFrame addRE = new AddRecipePage();
+        	addRE.setLocation(100,50);
+        	addRE.setSize(600, 500);
+        	addRE.setVisible(true);
+        	}
+
+        	});
+
+    }
+	
+    
 }
