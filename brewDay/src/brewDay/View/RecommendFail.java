@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class RecommendFail extends JFrame {
 
@@ -46,7 +47,7 @@ public class RecommendFail extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lbltheTableBelow = new JLabel("<html>Sorry, the system cannot recommend any recipe. You can click the recipe name to check the missing ingredient and add them to your shopping list.</html>");
+		JLabel lbltheTableBelow = new JLabel("<html>Sorry, the system cannot recommend any recipes to you. You can click the recipe name to check the missing ingredient and add them to your shopping list.</html>");
 		lbltheTableBelow.setBounds(53, 35, 332, 58);
 		contentPane.add(lbltheTableBelow);
 		
@@ -78,8 +79,9 @@ public class RecommendFail extends JFrame {
 		contentPane.add(scrollPane);
 		
 		btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnBack.setForeground(new Color(30, 144, 255));
-		btnBack.setBounds(0, 6, 94, 29);
+		btnBack.setBounds(25, 6, 80, 29);
 		contentPane.add(btnBack);
 	}
 

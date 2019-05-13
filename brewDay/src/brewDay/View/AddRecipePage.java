@@ -20,6 +20,7 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import brewDay.Recipe;
+import java.awt.Font;
 
 public class AddRecipePage extends JFrame {
 
@@ -51,21 +52,23 @@ public class AddRecipePage extends JFrame {
 		setResizable(false);
 		setTitle("Add Recipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 369);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel label = new JLabel(
-				"<html>Please complete the table with your new recipe information then press \"Finish\" button to submit it.</html>");
-		label.setBackground(Color.GREEN);
-		label.setBounds(82, 7, 350, 36);
-		contentPane.add(label);
+		JLabel lblpleaseFillIn = new JLabel(
+				"<html>Please fill in the blank with your new recipe information then press \"Finish\" button to submit it.</html>");
+		lblpleaseFillIn.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblpleaseFillIn.setBackground(Color.GREEN);
+		lblpleaseFillIn.setBounds(70, 55, 303, 63);
+		contentPane.add(lblpleaseFillIn);
 
 		JButton button = new JButton("Back");
-		button.setForeground(Color.BLUE);
-		button.setBounds(6, 6, 75, 36);
+		button.setFont(new Font("Dialog", Font.BOLD, 14));
+		button.setForeground(new Color(30, 144, 255));
+		button.setBounds(18, 7, 75, 36);
 		contentPane.add(button);
 
 		button.addActionListener(new ActionListener(){
@@ -82,34 +85,38 @@ public class AddRecipePage extends JFrame {
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(123, 53, 165, 26);
+		textField_1.setBounds(194, 133, 165, 26);
 		contentPane.add(textField_1);
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(123, 83, 165, 26);
+		textField_2.setBounds(194, 163, 165, 26);
 		contentPane.add(textField_2);
 
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(123, 113, 165, 26);
+		textField.setBounds(194, 193, 165, 26);
 		contentPane.add(textField);
 
 		JLabel label_1 = new JLabel("Recipe name:");
-		label_1.setBounds(42, 58, 83, 16);
+		label_1.setFont(new Font("Dialog", Font.BOLD, 14));
+		label_1.setBounds(81, 136, 109, 16);
 		contentPane.add(label_1);
 
 		JLabel label_2 = new JLabel("Quantity:");
-		label_2.setBounds(42, 88, 83, 16);
+		label_2.setFont(new Font("Dialog", Font.BOLD, 14));
+		label_2.setBounds(81, 166, 83, 16);
 		contentPane.add(label_2);
 
 		JLabel label_3 = new JLabel("Unit:");
-		label_3.setBounds(42, 118, 83, 16);
+		label_3.setFont(new Font("Dialog", Font.BOLD, 14));
+		label_3.setBounds(81, 196, 83, 16);
 		contentPane.add(label_3);
 
 		JButton btnNewButton_1 = new JButton("Finish");
+		btnNewButton_1.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnNewButton_1.setForeground(new Color(255, 105, 180));
-		btnNewButton_1.setBounds(6, 196, 81, 36);
+		btnNewButton_1.setBounds(164, 253, 81, 36);
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 

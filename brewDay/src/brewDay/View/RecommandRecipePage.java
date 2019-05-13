@@ -60,15 +60,16 @@ public class RecommandRecipePage extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Recommend");
+		JButton btnNewButton = new JButton("Recommend!");
 		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		btnNewButton.setForeground(new Color(50, 205, 50));
-		btnNewButton.setBounds(120, 141, 144, 42);
+		btnNewButton.setBounds(110, 171, 170, 42);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Back to home page");
-		btnNewButton_1.setForeground(new Color(30, 144, 255));
-		btnNewButton_1.setBounds(6, 6, 152, 29);
-		contentPane.add(btnNewButton_1);
+		JButton button = new JButton("Back");
+		button.setForeground(new Color(30, 144, 255));
+		button.setFont(new Font("Dialog", Font.BOLD, 14));
+		button.setBounds(20, 16, 75, 36);
+		contentPane.add(button);
 	}
 }

@@ -45,14 +45,6 @@ public class MaintainEquipmentInfoPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Add");
-		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
-		btnNewButton.setOpaque(false);
-		btnNewButton.setBackground(new Color(30, 144, 255));
-		btnNewButton.setForeground(new Color(30, 144, 255));
-		btnNewButton.setBounds(61, 42, 316, 76);
-		contentPane.add(btnNewButton);
-		
 		JButton btnNewButton_1 = new JButton("Update");
 		btnNewButton_1.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		btnNewButton_1.setForeground(new Color(50, 205, 50));
@@ -73,5 +65,11 @@ public class MaintainEquipmentInfoPage extends JFrame {
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblNewLabel.setBounds(117, 0, 202, 48);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnAdd = new JButton("Add");
+		btnAdd.setForeground(new Color(30, 144, 255));
+		btnAdd.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		btnAdd.setBounds(61, 42, 316, 76);
+		contentPane.add(btnAdd);
 	}
 }

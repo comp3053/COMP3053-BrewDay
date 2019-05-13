@@ -41,7 +41,7 @@ public class UpdateRecipePage extends JFrame {
 	public UpdateRecipePage() {
 		setTitle("Update Recipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 390, 397);
+		setBounds(100, 100, 402, 419);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -100,7 +100,7 @@ public class UpdateRecipePage extends JFrame {
 		
 		JButton btnFinish = new JButton("Finish");
 		btnFinish.setForeground(new Color(250, 128, 114));
-		btnFinish.setBounds(28, 340, 62, 29);
+		btnFinish.setBounds(28, 340, 78, 29);
 		contentPane.add(btnFinish);
 	}
 }

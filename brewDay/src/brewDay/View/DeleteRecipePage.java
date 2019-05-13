@@ -43,7 +43,7 @@ public class DeleteRecipePage extends JFrame {
 	public DeleteRecipePage() {
 		setTitle("Delete Recipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 390, 397);
+		setBounds(100, 100, 526, 451);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -59,19 +59,19 @@ public class DeleteRecipePage extends JFrame {
 		contentPane.add(btnBack);
 		
 		JLabel lblSelectRecipe = new JLabel("Select recipe:");
-		lblSelectRecipe.setBounds(28, 76, 91, 16);
+		lblSelectRecipe.setBounds(28, 83, 91, 16);
 		contentPane.add(lblSelectRecipe);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(116, 72, 204, 27);
+		comboBox.setBounds(116, 78, 204, 27);
 		contentPane.add(comboBox);
 		
 		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the ingredient of your recipe:</html>");
-		lbltheTableBelow.setBounds(28, 98, 340, 16);
+		lbltheTableBelow.setBounds(28, 112, 340, 16);
 		contentPane.add(lbltheTableBelow);
 		
 		JScrollPane scrollPane = new JScrollPane();            
-		scrollPane.setBounds(28, 126, 332, 177);
+		scrollPane.setBounds(28, 140, 436, 189);
 		contentPane.add(scrollPane);
 		
 		Object[] columnNames =	{"Ingredient", "Amount", "Unit"};
@@ -102,7 +102,7 @@ public class DeleteRecipePage extends JFrame {
 			}
 		});
 		btnFinish.setForeground(new Color(250, 128, 114));
-		btnFinish.setBounds(28, 305, 68, 40);
+		btnFinish.setBounds(28, 360, 91, 40);
 		contentPane.add(btnFinish);
 	}
 }
