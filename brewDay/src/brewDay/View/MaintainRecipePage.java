@@ -85,6 +85,28 @@ public class MaintainRecipePage extends JFrame {
         	}
 
         	});
+		btnNewButton_1.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	setVisible(false);
+
+        	JFrame upRE = new UpdateRecipePage();
+        	upRE.setLocation(100,50);
+        	upRE.setSize(600, 500);
+        	upRE.setVisible(true);
+        	}
+
+        	});
+		btnNewButton_2.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	setVisible(false);
+
+        	JFrame deRE = new DeleteRecipePage();
+        	deRE.setLocation(100,50);
+        	deRE.setSize(600, 500);
+        	deRE.setVisible(true);
+        	}
+
+        	});
 
     }
 	
