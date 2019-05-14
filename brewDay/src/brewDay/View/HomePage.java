@@ -46,6 +46,17 @@ public class HomePage extends JFrame {
 		JButton btnViewAllRecipes = new JButton("RECIPES");
 		btnViewAllRecipes.setBounds(101, 27, 188, 29);
 		contentPane.add(btnViewAllRecipes);
+		btnViewAllRecipes.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	setVisible(false);
+
+        	JFrame MaintainR = new MaintainRecipePage();
+        	MaintainR.setLocation(100,50);
+        	MaintainR.setSize(600, 500);
+        	MaintainR.setVisible(true);
+        	}
+
+        	});
 		
 		JButton btnFeelingGood = new JButton("Recommend");
 		btnFeelingGood.addActionListener(new ActionListener() {

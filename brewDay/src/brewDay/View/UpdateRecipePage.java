@@ -1,6 +1,8 @@
 package View;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -55,6 +57,18 @@ public class UpdateRecipePage extends JFrame {
 		btnBack.setForeground(new Color(0, 0, 205));
 		btnBack.setBounds(27, 46, 68, 29);
 		contentPane.add(btnBack);
+		
+		btnBack.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	setVisible(false);
+
+        	JFrame MaintainR = new MaintainRecipePage();
+        	MaintainR.setLocation(100,50);
+        	MaintainR.setSize(600, 500);
+        	MaintainR.setVisible(true);
+        	}
+
+        	});
 		
 		JLabel lblSelectRecipe = new JLabel("Select recipe:");
 		lblSelectRecipe.setBounds(28, 76, 91, 16);

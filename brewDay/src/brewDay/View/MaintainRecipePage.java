@@ -75,6 +75,17 @@ public class MaintainRecipePage extends JFrame {
 		btnAdd.setForeground(new Color(30, 144, 255));
 		btnAdd.setBounds(148, 58, 133, 45);
 		contentPane.add(btnAdd);
+		btnAdd.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	setVisible(false);
+
+        	JFrame addRE = new AddRecipePage();
+        	addRE.setLocation(100,50);
+        	addRE.setSize(600, 500);
+        	addRE.setVisible(true);
+        	}
+
+        	});
 		btnNewButton_1.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e) {
         	setVisible(false);

@@ -58,6 +58,18 @@ public class DeleteRecipePage extends JFrame {
 		btnBack.setBounds(27, 46, 68, 29);
 		contentPane.add(btnBack);
 		
+		btnBack.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	setVisible(false);
+
+        	JFrame MaintainR = new MaintainRecipePage();
+        	MaintainR.setLocation(100,50);
+        	MaintainR.setSize(600, 500);
+        	MaintainR.setVisible(true);
+        	}
+
+        	});
+		
 		JLabel lblSelectRecipe = new JLabel("Select recipe:");
 		lblSelectRecipe.setBounds(28, 83, 91, 16);
 		contentPane.add(lblSelectRecipe);
