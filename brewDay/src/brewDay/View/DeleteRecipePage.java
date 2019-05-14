@@ -15,6 +15,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class DeleteRecipePage extends JFrame {
 
@@ -54,7 +55,8 @@ public class DeleteRecipePage extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnBack = new JButton("Back");
-		btnBack.setForeground(new Color(0, 0, 205));
+		btnBack.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnBack.setForeground(new Color(30, 144, 255));
 		btnBack.setBounds(27, 46, 68, 29);
 		contentPane.add(btnBack);
 		
@@ -109,6 +111,7 @@ public class DeleteRecipePage extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnFinish = new JButton("Finish");
+		btnFinish.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnFinish.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
