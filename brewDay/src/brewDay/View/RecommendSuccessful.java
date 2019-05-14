@@ -84,7 +84,7 @@ public class RecommendSuccessful extends JFrame {
 		btnBack = new JButton("Back");
 		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		btnBack.setForeground(new Color(30, 144, 255));
-		btnBack.setBounds(16, 6, 81, 29);
+		btnBack.setBounds(12, 12, 81, 29);
 		contentPane.add(btnBack);
 		
 		lblNewLabel = new JLabel("<html>Please click recipe name to brew the exact recipe</html>");

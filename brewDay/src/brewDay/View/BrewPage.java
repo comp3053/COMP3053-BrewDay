@@ -65,7 +65,7 @@ public class BrewPage extends JFrame {
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.setForeground(new Color(30, 144, 255));
 		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		btnNewButton.setBounds(16, 17, 117, 29);
+		btnNewButton.setBounds(16, 17, 76, 29);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("Enter the recipe name:");

@@ -55,7 +55,7 @@ public class NoteWritingPage extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnBack = new JButton("Back");
-		btnBack.setForeground(new Color(0, 0, 255));
+		btnBack.setForeground(new Color(30, 144, 255));
 		btnBack.setBounds(6, 6, 75, 36);
 		contentPane.add(btnBack);
 		

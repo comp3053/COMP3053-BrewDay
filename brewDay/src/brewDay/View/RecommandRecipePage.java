@@ -68,7 +68,7 @@ public class RecommandRecipePage extends JFrame {
 		
 		JButton button = new JButton("Back");
 		button.setForeground(new Color(30, 144, 255));
-		button.setFont(new Font("Dialog", Font.BOLD, 14));
+		button.setFont(new Font("Dialog", Font.PLAIN, 14));
 		button.setBounds(20, 16, 75, 36);
 		contentPane.add(button);
 	}

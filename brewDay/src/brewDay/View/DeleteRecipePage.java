@@ -55,7 +55,7 @@ public class DeleteRecipePage extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnBack = new JButton("Back");
-		btnBack.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBack.setForeground(new Color(30, 144, 255));
 		btnBack.setBounds(27, 46, 68, 29);
 		contentPane.add(btnBack);

@@ -54,7 +54,7 @@ public class UpdateRecipePage extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnBack = new JButton("Back");
-		btnBack.setForeground(new Color(0, 0, 205));
+		btnBack.setForeground(new Color(30, 144, 255));
 		btnBack.setBounds(27, 46, 68, 29);
 		contentPane.add(btnBack);
 		

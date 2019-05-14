@@ -48,11 +48,11 @@ public class RecommendFail extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lbltheTableBelow = new JLabel("<html>Sorry, the system cannot recommend any recipes to you. You can click the recipe name to check the missing ingredient and add them to your shopping list.</html>");
-		lbltheTableBelow.setBounds(53, 35, 332, 58);
+		lbltheTableBelow.setBounds(53, 49, 332, 58);
 		contentPane.add(lbltheTableBelow);
 		
 		JScrollPane scrollPane = new JScrollPane();            
-		scrollPane.setBounds(53, 105, 332, 131);
+		scrollPane.setBounds(53, 119, 332, 131);
 		contentPane.add(scrollPane);
 		
 		Object[] columnNames =	{"ID", "Rcipe name", "Date"};

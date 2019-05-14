@@ -52,13 +52,13 @@ public class MaintainRecipePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(148, 115, 133, 45);
+		btnNewButton_1.setBounds(148, 128, 133, 45);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Delete");
 		btnNewButton_2.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnNewButton_2.setForeground(new Color(255, 0, 0));
-		btnNewButton_2.setBounds(148, 172, 133, 45);
+		btnNewButton_2.setBounds(148, 185, 133, 45);
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel = new JLabel("*press the buttons!*");
@@ -67,14 +67,20 @@ public class MaintainRecipePage extends JFrame {
 		
 		JLabel lblHelloWhatWould = new JLabel("Hello! What would you like to do today?");
 		lblHelloWhatWould.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-		lblHelloWhatWould.setBounds(55, 6, 341, 21);
+		lblHelloWhatWould.setBounds(83, 8, 341, 21);
 		contentPane.add(lblHelloWhatWould);
 		
 		JButton btnAdd = new JButton("Add");
 		btnAdd.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnAdd.setForeground(new Color(30, 144, 255));
-		btnAdd.setBounds(148, 58, 133, 45);
+		btnAdd.setBounds(148, 71, 133, 45);
 		contentPane.add(btnAdd);
+		
+		JButton button = new JButton("Back");
+		button.setForeground(new Color(30, 144, 255));
+		button.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		button.setBounds(12, 6, 68, 29);
+		contentPane.add(button);
 		btnAdd.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e) {
         	setVisible(false);
@@ -110,6 +116,4 @@ public class MaintainRecipePage extends JFrame {
         	});
 
     }
-	
-    
 }

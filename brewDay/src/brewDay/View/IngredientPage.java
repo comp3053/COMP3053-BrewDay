@@ -58,7 +58,7 @@ public class IngredientPage extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnBack = new JButton("Back");
-		btnBack.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBack.setForeground(new Color(30, 144, 255));
 		btnBack.setBounds(28, 14, 68, 29);
 		contentPane.add(btnBack);
@@ -112,7 +112,7 @@ public class IngredientPage extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("OK");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton.setBounds(346, 65, 49, 29);
 		contentPane.add(btnNewButton);
     }
