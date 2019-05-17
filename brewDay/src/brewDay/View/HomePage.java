@@ -52,7 +52,7 @@ public class HomePage extends JFrame {
 
 		btnViewAllRecipes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				dispose();
 
 				JFrame allRecipe;
@@ -65,7 +65,7 @@ public class HomePage extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			}
 
 		});
@@ -89,24 +89,23 @@ public class HomePage extends JFrame {
 		JButton btnIngredients = new JButton("INGREDIENTS");
 		btnIngredients.setBounds(101, 64, 188, 29);
 		contentPane.add(btnIngredients);
-		
-		//Not finish...
-		btnIngredients.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			dispose();
 
-			JFrame recom = new RecommandRecipePage();
-			recom.setLocation(100, 50);
-			recom.setSize(600, 500);
-			recom.setVisible(true);
-		}
-	});
+		btnIngredients.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+				JFrame ingre = new IngredientPage();
+				ingre.setLocation(100, 50);
+				ingre.setSize(600, 500);
+				ingre.setVisible(true);
+			}
+		});
 
 		JButton btnBrew_1 = new JButton("BREW!");
 		btnBrew_1.setFont(new Font("Lucida Grande", Font.BOLD, 25));
 		btnBrew_1.setBounds(101, 105, 188, 57);
 		contentPane.add(btnBrew_1);
-		
+
 		btnBrew_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -121,7 +120,7 @@ public class HomePage extends JFrame {
 		JButton btnEquipment = new JButton("EQUIPMENT");
 		btnEquipment.setBounds(101, 229, 188, 29);
 		contentPane.add(btnEquipment);
-		
+
 		btnEquipment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -132,12 +131,11 @@ public class HomePage extends JFrame {
 				equip.setVisible(true);
 			}
 		});
-		
 
 		JButton btnStorage = new JButton("STORAGE");
 		btnStorage.setBounds(101, 270, 188, 29);
 		contentPane.add(btnStorage);
-		
+
 		btnStorage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -152,7 +150,7 @@ public class HomePage extends JFrame {
 		JButton btnNotes = new JButton("NOTES");
 		btnNotes.setBounds(101, 311, 188, 29);
 		contentPane.add(btnNotes);
-		
+
 		btnNotes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -167,16 +165,16 @@ public class HomePage extends JFrame {
 		JButton btnLog = new JButton("Log");
 		btnLog.setBounds(101, 352, 188, 29);
 		contentPane.add(btnLog);
-		
-		//there is no log yet...
+
+		// there is no log yet...
 		btnLog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
-				//JFrame logg = new logPage();
-				//logg.setLocation(100, 50);
-				//logg.setSize(600, 500);
-				//logg.setVisible(true);
+				JFrame logg = new Log();
+				logg.setLocation(100, 50);
+				logg.setSize(600, 500);
+				logg.setVisible(true);
 			}
 		});
 

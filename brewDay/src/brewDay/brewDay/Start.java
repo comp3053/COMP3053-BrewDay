@@ -233,6 +233,7 @@ public class Start {
 			while(true)
 			{
 				System.out.println("Input the number of bitchsize that you want to brew:");
+				@SuppressWarnings("resource")
 				Scanner getInput = new Scanner(System.in);
 				float batchsize = getInput.nextFloat();
 				//String recipeName = getInput.nextLine();

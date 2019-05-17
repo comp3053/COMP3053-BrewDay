@@ -1,6 +1,8 @@
 package View;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -58,6 +60,18 @@ public class NoteWritingPage extends JFrame {
 		btnBack.setForeground(new Color(30, 144, 255));
 		btnBack.setBounds(6, 6, 75, 36);
 		contentPane.add(btnBack);
+		
+		btnBack.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	dispose();
+
+        	JFrame home = new HomePage();
+        	home.setLocation(100,50);
+        	home.setSize(600, 500);
+        	home.setVisible(true);
+        	}
+
+        	});
 		
 		JButton btnFinish = new JButton("Add");
 		btnFinish.setForeground(new Color(255, 105, 180));

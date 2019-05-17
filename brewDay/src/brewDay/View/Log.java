@@ -8,20 +8,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Vector;
 
-import brewDay.Recipe;
-
-public class ViewAllRecipe extends JFrame {
+public class Log extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -32,7 +26,7 @@ public class ViewAllRecipe extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ViewAllRecipe frame = new ViewAllRecipe();
+					ViewAllStorageIngredient frame = new ViewAllStorageIngredient();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,10 +37,9 @@ public class ViewAllRecipe extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws SQLException 
 	 */
-	public ViewAllRecipe() throws SQLException {
-		setTitle("All Recipe Page");
+	public Log() {
+		setTitle("Storage Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -58,7 +51,7 @@ public class ViewAllRecipe extends JFrame {
 		scrollPane.setBounds(54, 53, 345, 183);
 		contentPane.add(scrollPane);
 		
-		/*Object[] columnNames =	{"Recipe Name", "Quantity", "Unit"};
+		Object[] columnNames =	{"Ingredient name", "Amount", "Unit"};
 		Object[][] rowData = {
 				{"beer", 1, 'l'},
 				{"dasd", 6, 'g'},
@@ -74,33 +67,11 @@ public class ViewAllRecipe extends JFrame {
         };
 		
 		table = new JTable(rowData, columnNames);
+		table.setBackground(Color.LIGHT_GRAY);
 		scrollPane.add(table.getTableHeader());
 		scrollPane.add(table);
 		
-		scrollPane.setViewportView(table);*/
-		
-		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
-		Vector<Vector<Object>> dataVector = new
-		Vector<Vector<Object>>();
-		columnName.add("name");
-		columnName.add("amount");
-		columnName.add("unit");
-		
-		ResultSet rs= Recipe.allRecipe();
-		
-		while(rs.next()){
-		Vector<Object> vec = new Vector<Object>();//single for big Vector
-		for(int i=2;i<=4;i++){
-		vec.add(rs.getObject(i));
-		}
-		dataVector.add(vec);
-		}
-		
-		table = new JTable(dataVector, columnName);
-		scrollPane.add(table.getTableHeader());
-		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
-		//DataBase.free(conn, stmt, rs);
 		
 		JButton button = new JButton("Back");
 		button.setForeground(new Color(30, 144, 255));

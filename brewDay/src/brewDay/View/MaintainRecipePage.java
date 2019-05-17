@@ -81,6 +81,18 @@ public class MaintainRecipePage extends JFrame {
 		button.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button.setBounds(12, 6, 68, 29);
 		contentPane.add(button);
+		
+		button.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	dispose();
+
+        	JFrame home = new HomePage();
+        	home.setLocation(100,50);
+        	home.setSize(600, 500);
+        	home.setVisible(true);
+        	}
+
+        	});
 		btnAdd.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e) {
         	setVisible(false);

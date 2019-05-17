@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ViewAllStorageIngredient extends JFrame {
 
@@ -76,5 +78,17 @@ public class ViewAllStorageIngredient extends JFrame {
 		button.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button.setBounds(12, 12, 68, 29);
 		contentPane.add(button);
+		
+		button.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	dispose();
+
+        	JFrame home = new HomePage();
+        	home.setLocation(100,50);
+        	home.setSize(600, 500);
+        	home.setVisible(true);
+        	}
+
+        	});
 	}
 }

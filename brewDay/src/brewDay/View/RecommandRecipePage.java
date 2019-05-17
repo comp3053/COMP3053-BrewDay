@@ -8,6 +8,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -71,5 +74,17 @@ public class RecommandRecipePage extends JFrame {
 		button.setFont(new Font("Dialog", Font.PLAIN, 14));
 		button.setBounds(20, 16, 75, 36);
 		contentPane.add(button);
+		
+		button.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	dispose();
+
+        	JFrame home = new HomePage();
+        	home.setLocation(100,50);
+        	home.setSize(600, 500);
+        	home.setVisible(true);
+        	}
+
+        	});
 	}
 }

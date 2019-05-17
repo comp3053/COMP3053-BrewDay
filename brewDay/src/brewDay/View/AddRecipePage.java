@@ -16,7 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.FlowLayout;
-import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import brewDay.Recipe;
@@ -73,7 +72,7 @@ public class AddRecipePage extends JFrame {
 
 		button.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e) {
-        	setVisible(false);
+        	dispose();
 
         	JFrame MaintainR = new MaintainRecipePage();
         	MaintainR.setLocation(100,50);

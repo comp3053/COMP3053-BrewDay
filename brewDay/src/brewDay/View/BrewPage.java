@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BrewPage extends JFrame {
 
@@ -67,6 +69,18 @@ public class BrewPage extends JFrame {
 		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		btnNewButton.setBounds(16, 17, 76, 29);
 		contentPane.add(btnNewButton);
+		
+		btnNewButton.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	dispose();
+
+        	JFrame home = new HomePage();
+        	home.setLocation(100,50);
+        	home.setSize(600, 500);
+        	home.setVisible(true);
+        	}
+
+        	});
 		
 		JLabel lblNewLabel = new JLabel("Enter the recipe name:");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));

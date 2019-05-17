@@ -71,5 +71,23 @@ public class MaintainEquipmentInfoPage extends JFrame {
 		btnAdd.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		btnAdd.setBounds(61, 42, 316, 76);
 		contentPane.add(btnAdd);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnBack.setForeground(new Color(30, 144, 255));
+		btnBack.setBounds(28, 14, 68, 29);
+		contentPane.add(btnBack);
+		
+		btnBack.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	dispose();
+
+        	JFrame home = new HomePage();
+        	home.setLocation(100,50);
+        	home.setSize(600, 500);
+        	home.setVisible(true);
+        	}
+
+        	});
 	}
 }
