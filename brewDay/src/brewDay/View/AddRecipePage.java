@@ -128,6 +128,7 @@ public class AddRecipePage extends JFrame {
 				Recipe r = new Recipe(name, quantity, unit);
 				r.addRecipeToDB();
 				setVisible(false);
+				
 
 				JFrame addRE = new AddRecipePage();
 				addRE.setLocation(100, 50);
