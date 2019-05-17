@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class HomePage extends JFrame {
@@ -54,10 +55,17 @@ public class HomePage extends JFrame {
 				
 				dispose();
 
-				JFrame allRecipe = new ViewAllRecipe();
-				allRecipe.setLocation(100, 50);
-				allRecipe.setSize(600, 500);
-				allRecipe.setVisible(true);
+				JFrame allRecipe;
+				try {
+					allRecipe = new ViewAllRecipe();
+					allRecipe.setLocation(100, 50);
+					allRecipe.setSize(600, 500);
+					allRecipe.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 
 		});

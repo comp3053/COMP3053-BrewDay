@@ -215,5 +215,12 @@ public class Recipe {
 		}
 		System.out.println();
 	}
+	
+	public static ResultSet allRecipe() throws SQLException{
+		String sql = " SELECT * FROM Recipe";
+		ResultSet rs = Database.Select(sql);
+		return rs;
+		
+	}
 	//gr
 }
