@@ -5,10 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import brewDay.Recipe;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -42,8 +48,9 @@ public class IngredientPage extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public IngredientPage() {
+	public IngredientPage() throws SQLException {
 		setTitle("Ingredient page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 525, 367);
@@ -84,26 +91,26 @@ public class IngredientPage extends JFrame {
 		scrollPane.setBounds(41, 105, 436, 185);
 		contentPane.add(scrollPane);
 		
-		Object[] columnNames =	{"Recipe name", "Amount", "Unit"};
-		Object[][] rowData = {
-				{"beer", 1, 'l'},
-				{"dasd", 6, 'g'},
-				{"asd", 6, 'g'},
-				{"asd", 6, 'g'},
-				{"asd", 6, 'g'},
-				{"fsdght", 6, 'g'},
-				{"yfgfst", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'}
-        };
+		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
+		Vector<Vector<Object>> dataVector = new
+		Vector<Vector<Object>>();
+		columnName.add("name");
+		columnName.add("amount");
+		columnName.add("unit");
 		
-		table = new JTable(rowData, columnNames);
-		table.setBackground(new Color(255, 182, 193));
+		ResultSet rs= Recipe.allRecipe();
+		
+		while(rs.next()){
+		Vector<Object> vec = new Vector<Object>();//single for big Vector
+		for(int i=2;i<=4;i++){
+		vec.add(rs.getObject(i));
+		}
+		dataVector.add(vec);
+		}
+		
+		table = new JTable(dataVector, columnName);
 		scrollPane.add(table.getTableHeader());
-		scrollPane.add(table);
-		
+		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
 		
 		textField = new JTextField();
@@ -111,9 +118,9 @@ public class IngredientPage extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("OK");
+		JButton btnNewButton = new JButton("Choose");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton.setBounds(346, 65, 49, 29);
+		btnNewButton.setBounds(346, 65, 99, 29);
 		contentPane.add(btnNewButton);
     }
 }

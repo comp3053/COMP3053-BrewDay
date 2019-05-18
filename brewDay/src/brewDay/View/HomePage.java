@@ -94,10 +94,17 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
-				JFrame ingre = new IngredientPage();
-				ingre.setLocation(100, 50);
-				ingre.setSize(600, 500);
-				ingre.setVisible(true);
+				JFrame ingre;
+				try {
+					ingre = new IngredientPage();
+					ingre.setLocation(100, 50);
+					ingre.setSize(600, 500);
+					ingre.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 

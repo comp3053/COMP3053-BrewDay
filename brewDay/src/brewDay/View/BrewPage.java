@@ -50,20 +50,6 @@ public class BrewPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Object[] columnNames =	{"ID", "Rcipe name", "Date"};
-		Object[][] rowData = {
-				{"1", 1, 'l'},
-				{"2", 6, 'g'},
-				{"3", 6, 'g'},
-				{"4", 6, 'g'},
-				{"2", 6, 'g'},
-				{"3", 6, 'g'},
-				{"4", 6, 'g'},
-				{"2", 6, 'g'},
-				{"3", 6, 'g'},
-				{"4", 6, 'g'},
-        };
-		
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.setForeground(new Color(30, 144, 255));
 		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
