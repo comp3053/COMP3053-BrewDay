@@ -173,7 +173,16 @@ public class Brew {
 			System.out.println();
 	}
 	
-}
+	}
+	public int getNewestBrewID(Brew b) throws SQLException {
+		int getID = -1;
+		ResultSet getBrewID = Database.Select("SELECT BrewID FROM Brew ORDER BY BrewID DESC LIMIT 1");
+		while (getBrewID.next()) { 
+			getID = getBrewID.getInt("BrewID");
+			break;
+	}
+		return getID;
+	}
 }
 	
 

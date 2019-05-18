@@ -262,6 +262,29 @@ public class Start {
 						Brew b = new Brew(batchsize, r);
 						b.implement(r);
 						System.out.println("Brew Finished");
+						System.out.println("Do you want to write note for this recipe?");
+						System.out.println("Input [Y] for Yes, [N] for No");
+						Scanner ssc = new Scanner(System.in);
+						String cmd = ssc.nextLine();
+						if(cmd.equals("N") || cmd.equals("n")) {
+							break;
+						}
+						else if(cmd.equals("Y") || cmd.equals("y")){
+							System.out.println("Please input content: ");
+							Scanner sc2 = new Scanner(System.in);
+							String note = sc2.nextLine();
+							Note n = new Note();
+							boolean bb = false;
+							bb = n.addNote(note, b.getNewestBrewID(b));
+							if(bb = true)
+								System.out.println("Add note successful!");
+							else
+								System.out.println("Add note fail!");
+						}
+						else {
+							System.out.println("Please input Input [Y] for Yes, [N] for No");
+							continue;
+						}
 						break;
 					}
 
@@ -361,7 +384,7 @@ public class Start {
 					//gr
 				case 10:
 					Note n = new Note();
-					System.out.println("1.Add note 2.Delete note 3.Edit note");
+					System.out.println("1.Add note 2.Delete note 3.Edit note 4.Show all notes");
 					int op= readIntCommand();
 					if(op == 1)
 					{
@@ -405,6 +428,10 @@ public class Start {
 							System.out.println("Edit note fail!");
 						}
 						break;
+					}
+					else if(op == 4)
+					{
+						Note.showAllNote();
 					}
 
 
