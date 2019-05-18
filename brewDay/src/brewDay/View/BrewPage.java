@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import brewDay.Equipment;
+import brewDay.Recipe;
+
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,6 +19,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class BrewPage extends JFrame {
 
@@ -99,5 +104,61 @@ public class BrewPage extends JFrame {
 		button.setFont(new Font("Lucida Grande", Font.BOLD, 25));
 		button.setBounds(116, 177, 188, 57);
 		contentPane.add(button);
+		
+		button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				int mark1 = 0;
+				int mark2 = 0;
+				int mark3 = 0;
+				String name = textField.getText();
+				String size = textField_1.getText();
+				int getSize = Integer.parseInt(size);
+				if(getSize < 0)
+				{
+					System.out.println("You must brew more than 0");
+				}
+				else {
+					mark1 = 1;
+				}
+				float getCapacity;
+				try {
+					getCapacity = Equipment.Capacity();
+				
+				//System.out.println(getCapacity);
+				if(getSize > getCapacity)
+				{
+					System.out.println("The current capacity is not enough, "+ getCapacity + " is less than "+getSize);
+				}
+				else {
+					mark2 = 1;
+				}
+				}catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				Recipe r = new Recipe(name);
+				if(r.whetherInDB() == false) {
+					System.out.println("No such recipe fount in database.");
+				}
+				else {
+					System.out.println("Recipe " + name +" is found in database.");
+					mark3 = 1;
+
+				}
+				
+				
+
+				//Not finish, useless code here.
+				if(mark1 == 1 &mark2 == 1) {
+				JFrame addRE = new AddRecipePage();
+				addRE.setLocation(100, 50);
+				addRE.setSize(600, 500);
+				addRE.setVisible(true);
+				}
+			}
+
+		});
 	}
 }
