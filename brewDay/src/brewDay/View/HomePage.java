@@ -46,7 +46,7 @@ public class HomePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnViewAllRecipes = new JButton("ALL RECIPES");
+		/*JButton btnViewAllRecipes = new JButton("ALL RECIPES");
 		btnViewAllRecipes.setBounds(101, 27, 188, 29);
 		contentPane.add(btnViewAllRecipes);
 
@@ -68,7 +68,7 @@ public class HomePage extends JFrame {
 
 			}
 
-		});
+		});*/
 
 		JButton btnFeelingGood = new JButton("Recommend");
 		btnFeelingGood.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
@@ -86,7 +86,7 @@ public class HomePage extends JFrame {
 			}
 		});
 
-		JButton btnIngredients = new JButton("INGREDIENTS");
+		JButton btnIngredients = new JButton("Recipe List");
 		btnIngredients.setBounds(101, 64, 188, 29);
 		contentPane.add(btnIngredients);
 
