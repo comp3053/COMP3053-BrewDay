@@ -5,11 +5,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import brewDay.Brew;
+import brewDay.Equipment;
+import brewDay.Recipe;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -79,6 +85,38 @@ public class RecommandRecipePage extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	dispose();
 
+        	
+        	/*float getCapacity = Equipment.Capacity();
+			//System.out.println(getCapacity);
+			if(batchsize > getCapacity)
+			{
+				System.out.println("The current capacity is not enough, "+ getCapacity + " is less than "+batchsize);
+				break;
+			}
+			else 
+			{
+
+				flag = Brew.recommend(batchsize);
+				if (flag == false)
+				{
+					break;
+				}
+				else {
+					//System.out.println("The following recipes are recommend:");
+					Scanner sc = new Scanner(System.in);
+					System.out.println("Which recipe do you want to brew? Please input the recipe name:");
+					String s = sc.nextLine();
+					Recipe r = new Recipe(s);
+
+					Brew b = new Brew(batchsize, r);
+					b.implement(r);
+					System.out.println("Brew Finished");
+					break;
+				}
+
+			}*/
+        	
+			
         	JFrame home = new HomePage();
         	home.setLocation(100,50);
         	home.setSize(600, 500);

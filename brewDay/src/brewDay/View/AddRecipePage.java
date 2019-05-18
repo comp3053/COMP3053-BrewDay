@@ -125,6 +125,9 @@ public class AddRecipePage extends JFrame {
 				float quantity = Float.parseFloat(quan);
 				String unit = textField.getText();
 				Recipe r = new Recipe(name, quantity, unit);
+				if(r.whetherInDB() == true) {
+					System.out.println("Recipe " + name + "has already been put into database.");
+				}else {
 				r.addRecipeToDB();
 				setVisible(false);
 				
@@ -133,6 +136,7 @@ public class AddRecipePage extends JFrame {
 				addRE.setLocation(100, 50);
 				addRE.setSize(600, 500);
 				addRE.setVisible(true);
+				}
 			}
 
 		});
