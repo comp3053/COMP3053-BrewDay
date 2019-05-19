@@ -10,16 +10,12 @@ public class Note {
 	private String content;
 	private String createdDate;
 	private int idOfNote;
-	//private Brew brew;
 	private int idOfBrew;
 	
 	public Note() {
-		this.content = null;
-		//this.idOfBrew = null;		
+		this.content = null;	
 		this.createdDate = null;
-		//this.brew = brew;
 	}
-	//gr
 	public boolean addNote(String content, int BrewID) {
 		if(content == null)
 			return false;
@@ -44,7 +40,6 @@ public class Note {
 			this.content = input;
 			SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");		
 			this.createdDate = date.format(new Date());
-			//System.out.println("UPDATE Note Set Note = '" + this.content +"' Where NoteID ="+this.idOfNote);
 			Database.Update("UPDATE Note Set Content = '" + this.content +"' Where NoteID ="+ this.idOfNote);
 			return true;
 		}
