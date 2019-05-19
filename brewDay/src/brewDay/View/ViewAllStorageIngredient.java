@@ -8,12 +8,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+
+import brewDay.Recipe;
+import brewDay.StorageIngredient;
+
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 
 public class ViewAllStorageIngredient extends JFrame {
 
@@ -37,8 +44,9 @@ public class ViewAllStorageIngredient extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public ViewAllStorageIngredient() {
+	public ViewAllStorageIngredient() throws SQLException {
 		setTitle("Storage Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -51,27 +59,28 @@ public class ViewAllStorageIngredient extends JFrame {
 		scrollPane.setBounds(54, 53, 345, 183);
 		contentPane.add(scrollPane);
 		
-		Object[] columnNames =	{"Ingredient name", "Amount", "Unit"};
-		Object[][] rowData = {
-				{"beer", 1, 'l'},
-				{"dasd", 6, 'g'},
-				{"asd", 6, 'g'},
-				{"asd", 6, 'g'},
-				{"asd", 6, 'g'},
-				{"fsdght", 6, 'g'},
-				{"yfgfst", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'}
-        };
+		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
+		Vector<Vector<Object>> dataVector = new
+		Vector<Vector<Object>>();
+		columnName.add("name");
+		columnName.add("amount");
+		columnName.add("unit");
 		
-		table = new JTable(rowData, columnNames);
-		table.setBackground(Color.LIGHT_GRAY);
+		ResultSet rs= StorageIngredient.AllStorageIngredient();
+		
+		while(rs.next()){
+		Vector<Object> vec = new Vector<Object>();//single for big Vector
+		for(int i=2;i<=4;i++){
+		vec.add(rs.getObject(i));
+		}
+		dataVector.add(vec);
+		}
+		
+		table = new JTable(dataVector, columnName);
 		scrollPane.add(table.getTableHeader());
-		scrollPane.add(table);
-		
+		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
+		//DataBase.free(conn, stmt, rs);
 		
 		JButton button = new JButton("Back");
 		button.setForeground(new Color(30, 144, 255));

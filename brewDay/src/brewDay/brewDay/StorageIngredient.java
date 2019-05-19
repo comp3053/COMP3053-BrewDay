@@ -69,4 +69,10 @@ public class StorageIngredient extends Ingredient {
 		System.out.println();
 	}
 	
+	public static ResultSet AllStorageIngredient() throws SQLException {
+		String sql = " SELECT * FROM StorageIngredient";
+		ResultSet rs = Database.Select(sql);
+		return rs;
+	}
+	
 }

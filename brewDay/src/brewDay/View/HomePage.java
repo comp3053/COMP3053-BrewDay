@@ -131,10 +131,17 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
-				JFrame stor = new ViewAllStorageIngredient();
+				JFrame stor;
+				try {
+					stor = new ViewAllStorageIngredient();
+				
 				stor.setLocation(100, 50);
 				stor.setSize(600, 500);
 				stor.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
