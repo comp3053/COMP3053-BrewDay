@@ -1,10 +1,18 @@
 package brewDay;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class Brew {
 	private float batchSize;
@@ -75,6 +83,8 @@ public class Brew {
 	
 	public static boolean recommend(float batchsize) throws SQLException {
 		//get the number of line
+		List list = new ArrayList(); // list for recipes recommend
+		List<String> l = new LinkedList<String>(); // l for missing ingredients
 		int getline = 0;
 		boolean flag = false;
 		int[] arr = new int[100];
@@ -94,10 +104,16 @@ public class Brew {
 			{
 				getline = getLine.getInt("count");
 			}
+<<<<<<< HEAD
+			
+			// **************to be continue
+=======
+>>>>>>> branch 'master' of https://github.com/comp3053/Atanasoff.git
 			if(getA < tempgetAmount)
 			{
 				float need = (float)getA - (float)tempgetAmount;
-				System.out.println("For recipe <"+getName+"> Storage of "+getIngredientName +" not enough"+", you should buy "+ (-need));
+				l.add("Recipe <"+getName+"> Storage of "+getIngredientName +" are not enough"+", you should buy "+ (-need));
+				//System.out.println("For recipe <"+getName+"> Storage of "+getIngredientName +" not enough"+", you should buy "+ (-need));
 			}
 			else
 			{
@@ -109,25 +125,34 @@ public class Brew {
 			{
 				flag = true;
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
+				ResultSetMetaData rsmd = getRecommend.getMetaData();
 				while(getRecommend.next())
 				{
-					int recommendID = getRecommend.getInt("RecipeID");
-					String recommendName = getRecommend.getString("Name");
-					System.out.print(recommendID);
-					System.out.print(" "+recommendName);
-					System.out.println();
+					Map m = new HashMap();
+					int columnCount = rsmd.getColumnCount();
+					for(int i=0;i<columnCount;i++) {
+						String columnName = rsmd.getColumnName(i+1);
+						m.put(columnName,getRecommend.getObject(i+1));
+					}
+					list.add(m);
 					
 				}
 			}
 			
 		}
+		//System.out.println(l);
+		for (String str : l) {
+	        System.out.println(str);
+	    }
+		System.out.println(list);
 		return flag;
 			
 	}
 	
-	public static ResultSet recommendForUI(float batchsize) throws SQLException {
+	public static List recommendForUI(float batchsize) throws SQLException {
 		//this function used for RecommendSuccess
-		ResultSet insertRecommand = null;
+		List list = new ArrayList();
+		List<String> l = new LinkedList<String>();
 		int getline = 0;
 		int[] arr = new int[100];
 		ResultSet getRecipe = Database.Select("SELECT Recipe.RecipeID, Recipe.Name, Quantity, RecipeIngredient.Name, RecipeIngredient.Amount, StorageIngredient.Amount FROM Recipe INNER JOIN RecipeIngredient INNER JOIN StorageIngredient ON Recipe.RecipeID = RecipeIngredient.RecipeID and RecipeIngredient.Name = StorageIngredient.Name");
@@ -146,10 +171,12 @@ public class Brew {
 			{
 				getline = getLine.getInt("count");
 			}
+			
 			if(getA < tempgetAmount)
 			{
 				float need = (float)getA - (float)tempgetAmount;
-				System.out.println("For recipe <"+getName+"> Storage of "+getIngredientName +" not enough"+", you should buy "+ (-need));
+				l.add("Recipe <"+getName+"> Storage of "+getIngredientName +" are not enough"+", you should buy "+ (-need));
+				//System.out.println("For recipe <"+getName+"> Storage of "+getIngredientName +" not enough"+", you should buy "+ (-need));
 			}
 			else
 			{
@@ -158,15 +185,29 @@ public class Brew {
 			}
 			if(arr[getRID] == getline)
 			{
-
+				//System.out.println("The following recipes are recommend: ");
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
-				insertRecommand = getRecommend;
-				
+				ResultSetMetaData rsmd = getRecommend.getMetaData();
+				while(getRecommend.next())
+				{
+					Map m = new HashMap();
+					int columnCount = rsmd.getColumnCount();
+					for(int i=0;i<columnCount;i++) {
+						String columnName = rsmd.getColumnName(i+1);
+						m.put(columnName,getRecommend.getObject(i+1));
+					}
+					list.add(m);
+				}
 			}
 			
 		}
-		return insertRecommand;
-			
+		// list l is for missing ingredients
+		for (String str : l) {
+	        System.out.println(str);
+	    }
+		// list list is for recommend recipes
+		//System.out.println(list);	
+		return list;	
 	}
 	
 	public static void BrewRecord() throws SQLException {
