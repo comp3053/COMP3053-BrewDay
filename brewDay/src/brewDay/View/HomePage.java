@@ -75,7 +75,7 @@ public class HomePage extends JFrame {
 			}
 		});
 
-		JButton btnIngredients = new JButton("Recipe List");
+		JButton btnIngredients = new JButton("Ingredient");
 		btnIngredients.setBounds(101, 64, 188, 29);
 		contentPane.add(btnIngredients);
 
@@ -84,15 +84,10 @@ public class HomePage extends JFrame {
 				dispose();
 
 				JFrame ingre;
-				try {
-					ingre = new IngredientPage();
-					ingre.setLocation(100, 50);
-					ingre.setSize(600, 500);
-					ingre.setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				ingre = new MainIngredient();
+				ingre.setLocation(100, 50);
+				ingre.setSize(600, 500);
+				ingre.setVisible(true);
 
 			}
 		});

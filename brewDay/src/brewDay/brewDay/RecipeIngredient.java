@@ -13,11 +13,13 @@ public class RecipeIngredient extends Ingredient {
 		String name = this.getNameOfIngredient();
 		float amount = this.getAmountOfRecipeIngredient();
 		String unit = this.getUnitOfIngredient();
+		int rID = -1;
 		int flag = 0;
 
-		ResultSet rs = Database.Select("SELECT Name FROM RecipeIngredient Where RecipeID = " + recipeID);
+		ResultSet rs = Database.Select("SELECT Name, RecipeIngredientID FROM RecipeIngredient Where RecipeID = " + recipeID);
 		while(rs.next()) {
 			String ingredientName = rs.getString("Name");
+			rID = rs.getInt("RecipeIngredientID");
 			if(name.equals(ingredientName)) {
 				flag = 1;
 				break;
@@ -33,7 +35,9 @@ public class RecipeIngredient extends Ingredient {
 			System.out.println("Ingredient " + name + " has been successfully added to recipe " + rName);
 		}
 		else {
-			System.out.println("Ingredient " + name +" has already been put into the recipe.");
+			String sqlUpdate = "UPDATE RecipeIngredient SET Amount = " + amount + " WHERE RecipeIngredientID = " + rID;
+			Database.Update(sqlUpdate);
+			System.out.println("Amount of ingredient " + name +" has been updated.");
 		}
 	}
 	

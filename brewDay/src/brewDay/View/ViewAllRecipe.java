@@ -58,27 +58,6 @@ public class ViewAllRecipe extends JFrame {
 		scrollPane.setBounds(54, 53, 345, 183);
 		contentPane.add(scrollPane);
 		
-		/*Object[] columnNames =	{"Recipe Name", "Quantity", "Unit"};
-		Object[][] rowData = {
-				{"beer", 1, 'l'},
-				{"dasd", 6, 'g'},
-				{"asd", 6, 'g'},
-				{"asd", 6, 'g'},
-				{"asd", 6, 'g'},
-				{"fsdght", 6, 'g'},
-				{"yfgfst", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'}
-        };
-		
-		table = new JTable(rowData, columnNames);
-		scrollPane.add(table.getTableHeader());
-		scrollPane.add(table);
-		
-		scrollPane.setViewportView(table);*/
-		
 		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
 		Vector<Vector<Object>> dataVector = new
 		Vector<Vector<Object>>();
