@@ -155,10 +155,11 @@ public class BrewPage extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					JFrame success = new BrewSuccess();
-					success.setLocation(100, 50);
-					success.setSize(600, 500);
-					success.setVisible(true);
+					String messege="You brew success.";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
 				}
 			}
 
