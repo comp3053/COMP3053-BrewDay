@@ -121,16 +121,11 @@ public class NoteMain extends JFrame {
         	setVisible(false);
 
         	JFrame deRE;
-			try {
-				deRE = new DeleteRecipePage();
-			
-        	deRE.setLocation(100,50);
-        	deRE.setSize(600, 500);
-        	deRE.setVisible(true);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			deRE = new DeleteRecipePage();
+
+     	deRE.setLocation(100,50);
+     	deRE.setSize(600, 500);
+     	deRE.setVisible(true);
         	}
 
         	});
