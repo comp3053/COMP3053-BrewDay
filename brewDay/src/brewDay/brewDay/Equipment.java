@@ -8,9 +8,6 @@ public class Equipment {
 	private float capacity;
 	
 	public Equipment() throws SQLException {
-			//gr
-			//Database.Update("Update Equipment Set Capacity = capacity");
-			//gr
 			this.capacity = this.getCapacity();
 		}
 	

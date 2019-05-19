@@ -24,13 +24,7 @@ public class Brew {
 			this.recipe = recipe; 
 		}
 	}
-	/*
-	public Brew(float batchsize) {
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");		
-		this.date = date.format(new Date());
-		this.batchSize = batchSize;
-	}
-	*/
+
 	public void implement(Recipe recipe) throws SQLException { //implement the recipe that use select
 		int flag = 0; //a mark
 		int Rid; //recipe ID, for searching use
@@ -39,16 +33,8 @@ public class Brew {
 		while (getRI.next()) { //get amount from the class RecipeIngredient
 			String nameOfRI = getRI.getString("Name");
 			float amountOfRI = getRI.getFloat("Amount");
-			//System.out.println("**Name of Ingredient: " + nameOfRI);
-			//System.out.println("**Amount of Ingredient: "+amountOfRI);
-			//gr
-			
 			temp = (float)batchSize / recipe.getQuantityOfRecipe(); 
-			//System.out.println("temp = " +temp);
-			//gr
 			amountOfRI = (float)temp * (float)amountOfRI;
-			//System.out.println("**Temp number: "+temp);
-			//System.out.println("**Total amount: "+amountOfRI);
 			ResultSet getAmountOfIngredient = Database.Select("SELECT Name, Amount FROM StorageIngredient WHERE Name = '" + nameOfRI + "'");
 			while(getAmountOfIngredient.next()) {//get amount from the class Ingredient
 				String nameOfIngredient = getAmountOfIngredient.getString("Name");
@@ -69,12 +55,7 @@ public class Brew {
 			while (getRI1.next()) {//get amount from the class RecipeIngredient
 				String nameOfRI1 = getRI1.getString("Name");
 				float amountOfRI1 = getRI1.getFloat("Amount");
-				//System.out.println("Name of Ingredient: " + nameOfRI1);
-				//System.out.println("Amount of Ingredient: "+amountOfRI1);
-				//gr
 				amountOfRI1 = (float)temp * (float)amountOfRI1;
-				//System.out.println("Temp number: "+temp);
-				//System.out.println("Total amount: "+amountOfRI1);
 				ResultSet getAmountOfIngredient = Database.Select("SELECT Name, Amount FROM StorageIngredient WHERE Name = '" + nameOfRI1 + "'");
 				while(getAmountOfIngredient.next()) {//get amount from the class Ingredient
 					float amountOfIngredient = getAmountOfIngredient.getFloat("Amount");
@@ -92,15 +73,11 @@ public class Brew {
 		}
 	}
 	
-	//gr
-	public static boolean recommend(float batchsize) throws SQLException {//under developing
-		//System.out.println("This function is not finished yet.");
+	public static boolean recommend(float batchsize) throws SQLException {
 		//get the number of line
 		int getline = 0;
 		boolean flag = false;
-		//to be continue
 		int[] arr = new int[100];
-		//ResultSet getStorageIngredient = Database.Select(")
 		ResultSet getRecipe = Database.Select("SELECT Recipe.RecipeID, Recipe.Name, Quantity, RecipeIngredient.Name, RecipeIngredient.Amount, StorageIngredient.Amount FROM Recipe INNER JOIN RecipeIngredient INNER JOIN StorageIngredient ON Recipe.RecipeID = RecipeIngredient.RecipeID and RecipeIngredient.Name = StorageIngredient.Name");
 		while (getRecipe.next()) { 
 			int getRID = getRecipe.getInt("RecipeID");
@@ -117,7 +94,6 @@ public class Brew {
 			{
 				getline = getLine.getInt("count");
 			}
-			// **************to be continue
 			if(getA < tempgetAmount)
 			{
 				float need = (float)getA - (float)tempgetAmount;
@@ -129,19 +105,9 @@ public class Brew {
 				
 			}
 			
-			//System.out.println("***"+(float)temp);
-//			System.out.print(getRID);
-//			System.out.print(" "+getName);
-//			System.out.print(" "+getQuantity);
-//			System.out.print(" "+getIngredientName);
-//			System.out.print(" "+getAmount);
-//			System.out.print(" **"+getA);
-//			System.out.print(" **"+tempgetAmount);
-//			System.out.println();
 			if(arr[getRID] == getline)
 			{
 				flag = true;
-				//System.out.println("The following recipes are recommend: ");
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
 				while(getRecommend.next())
 				{
