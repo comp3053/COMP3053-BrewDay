@@ -158,7 +158,51 @@ public class Brew {
 		return flag;
 			
 	}
-	//gr
+	
+	public static ResultSet recommendForUI(float batchsize) throws SQLException {
+		//this function used for RecommendSuccess
+		ResultSet insertRecommand = null;
+		int getline = 0;
+		int[] arr = new int[100];
+		ResultSet getRecipe = Database.Select("SELECT Recipe.RecipeID, Recipe.Name, Quantity, RecipeIngredient.Name, RecipeIngredient.Amount, StorageIngredient.Amount FROM Recipe INNER JOIN RecipeIngredient INNER JOIN StorageIngredient ON Recipe.RecipeID = RecipeIngredient.RecipeID and RecipeIngredient.Name = StorageIngredient.Name");
+		while (getRecipe.next()) { 
+			int getRID = getRecipe.getInt("RecipeID");
+			String getName = getRecipe.getString("Name");
+			float getQuantity = getRecipe.getFloat("Quantity");
+			float temp = (float)batchsize/(float)getQuantity;	// multiply
+			String getIngredientName = getRecipe.getString("RecipeIngredient.Name");
+			float getAmount = getRecipe.getFloat("RecipeIngredient.Amount");
+			float getA = getRecipe.getFloat("StorageIngredient.Amount");
+			float tempgetAmount = (float)temp * (float)getAmount;
+			//get the number of line
+			ResultSet getLine = Database.Select("SELECT COUNT(*) as count FROM RecipeIngredient Where RecipeID="+ getRID);
+			while(getLine.next())
+			{
+				getline = getLine.getInt("count");
+			}
+			if(getA < tempgetAmount)
+			{
+				float need = (float)getA - (float)tempgetAmount;
+				System.out.println("For recipe <"+getName+"> Storage of "+getIngredientName +" not enough"+", you should buy "+ (-need));
+			}
+			else
+			{
+				arr[getRID]++;
+				
+			}
+			if(arr[getRID] == getline)
+			{
+
+				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
+				insertRecommand = getRecommend;
+				
+			}
+			
+		}
+		return insertRecommand;
+			
+	}
+	
 	public static void BrewRecord() throws SQLException {
 		ResultSet getRecord = Database.Select("SELECT * FROM Brew");
 		while (getRecord.next()) { 
