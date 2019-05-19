@@ -23,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JTextField;
 
 public class RecommendSuccessful extends JFrame {
 
@@ -30,6 +31,7 @@ public class RecommendSuccessful extends JFrame {
 	private JTable table;
 	private JButton btnBack;
 	private JLabel lblNewLabel;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -53,9 +55,9 @@ public class RecommendSuccessful extends JFrame {
 	 */
 	public RecommendSuccessful(float batchsize) throws SQLException {
 		
-		setTitle("Recommend succes");
+		setTitle("Recommend succeed");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 351);
+		setBounds(100, 100, 450, 367);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -63,11 +65,11 @@ public class RecommendSuccessful extends JFrame {
 				
 		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the recipe list:</html>");
 		lbltheTableBelow.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lbltheTableBelow.setBounds(81, 47, 286, 29);
+		lbltheTableBelow.setBounds(111, 12, 286, 29);
 		contentPane.add(lbltheTableBelow);
 		
 		JScrollPane scrollPane = new JScrollPane();            
-		scrollPane.setBounds(53, 89, 332, 131);
+		scrollPane.setBounds(65, 53, 332, 164);
 		contentPane.add(scrollPane);
 		
 		
@@ -111,9 +113,21 @@ public class RecommendSuccessful extends JFrame {
 
 		});
 		
-		lblNewLabel = new JLabel("<html>Please click recipe name to brew the exact recipe</html>");
+		lblNewLabel = new JLabel("<html>Please input the recipe name that you want to brew right now:</html>");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNewLabel.setBounds(81, 246, 332, 29);
+		lblNewLabel.setBounds(65, 229, 363, 40);
 		contentPane.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Dialog", Font.PLAIN, 14));
+		textField.setBounds(92, 281, 145, 29);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnBrew = new JButton("Brew!");
+		btnBrew.setForeground(new Color(50, 205, 50));
+		btnBrew.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnBrew.setBounds(249, 283, 92, 25);
+		contentPane.add(btnBrew);
 	}
 }
