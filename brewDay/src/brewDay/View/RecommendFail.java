@@ -12,6 +12,8 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class RecommendFail extends JFrame {
 
@@ -83,6 +85,17 @@ public class RecommendFail extends JFrame {
 		btnBack.setForeground(new Color(30, 144, 255));
 		btnBack.setBounds(25, 6, 80, 29);
 		contentPane.add(btnBack);
+		
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrame recomain = new RecommandRecipePage();
+				recomain.setLocation(100, 50);
+				recomain.setSize(600, 500);
+				recomain.setVisible(true);
+			}
+
+		});
 	}
 
 }

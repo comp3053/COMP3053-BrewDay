@@ -8,10 +8,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import brewDay.Brew;
+import brewDay.Database;
+import brewDay.Recipe;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 
 public class RecommendSuccessful extends JFrame {
 
@@ -27,7 +37,7 @@ public class RecommendSuccessful extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RecommendSuccessful frame = new RecommendSuccessful();
+					RecommendSuccessful frame = new RecommendSuccessful(0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,8 +48,10 @@ public class RecommendSuccessful extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public RecommendSuccessful() {
+	public RecommendSuccessful(float batchsize) throws SQLException {
+		
 		setTitle("Recommend succes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 351);
@@ -47,8 +59,7 @@ public class RecommendSuccessful extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
+				
 		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the recipe list:</html>");
 		lbltheTableBelow.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lbltheTableBelow.setBounds(81, 47, 286, 29);
@@ -58,34 +69,46 @@ public class RecommendSuccessful extends JFrame {
 		scrollPane.setBounds(53, 89, 332, 131);
 		contentPane.add(scrollPane);
 		
-		Object[] columnNames =	{"ID", "Rcipe name", "Date"};
-		Object[][] rowData = {
-				{"1", 1, 'l'},
-				{"2", 6, 'g'},
-				{"3", 6, 'g'},
-				{"4", 6, 'g'},
-				{"2", 6, 'g'},
-				{"3", 6, 'g'},
-				{"4", 6, 'g'},
-				{"2", 6, 'g'},
-				{"3", 6, 'g'},
-				{"4", 6, 'g'},
-        };
 		
-		table = new JTable(rowData, columnNames);
-		table.setBackground(new Color(255, 182, 193));
+		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
+		Vector<Vector<Object>> dataVector = new
+		Vector<Vector<Object>>();
+		columnName.add("name");
+		columnName.add("amount");
+		columnName.add("unit");
+	
+		ResultSet rs= Brew.recommendForUI(batchsize);
+		while(rs.next()){
+		Vector<Object> vec = new Vector<Object>();//single for big Vector
+		for(int i=2;i<=4;i++){
+		vec.add(rs.getObject(i));
+		}
+		dataVector.add(vec);
+		}
+		table = new JTable(dataVector, columnName);
 		scrollPane.add(table.getTableHeader());
-		scrollPane.add(table);
-		
+		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
-		
+		scrollPane.setViewportView(table);
 		contentPane.add(scrollPane);
+		
 		
 		btnBack = new JButton("Back");
 		btnBack.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		btnBack.setForeground(new Color(30, 144, 255));
 		btnBack.setBounds(12, 12, 81, 29);
 		contentPane.add(btnBack);
+		
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrame recomain = new RecommandRecipePage();
+				recomain.setLocation(100, 50);
+				recomain.setSize(600, 500);
+				recomain.setVisible(true);
+			}
+
+		});
 		
 		lblNewLabel = new JLabel("<html>Please click recipe name to brew the exact recipe</html>");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
