@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Vector;
 
 public class RecommendSuccessful extends JFrame {
@@ -70,14 +71,14 @@ public class RecommendSuccessful extends JFrame {
 		contentPane.add(scrollPane);
 		
 		
-		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
+		Vector<String> columnName = new Vector<String>();
 		Vector<Vector<Object>> dataVector = new
 		Vector<Vector<Object>>();
 		columnName.add("name");
 		columnName.add("amount");
 		columnName.add("unit");
 	
-		ResultSet rs= Brew.recommendForUI(batchsize);
+		/*List rs= Brew.recommendForUI(batchsize);
 		while(rs.next()){
 		Vector<Object> vec = new Vector<Object>();//single for big Vector
 		for(int i=2;i<=4;i++){
@@ -90,7 +91,7 @@ public class RecommendSuccessful extends JFrame {
 		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
 		scrollPane.setViewportView(table);
-		contentPane.add(scrollPane);
+		contentPane.add(scrollPane);*/
 		
 		
 		btnBack = new JButton("Back");

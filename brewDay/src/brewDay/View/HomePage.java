@@ -46,7 +46,7 @@ public class HomePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		/*JButton btnViewAllRecipes = new JButton("ALL RECIPES");
+		JButton btnViewAllRecipes = new JButton("RECIPES");
 		btnViewAllRecipes.setBounds(101, 27, 188, 29);
 		contentPane.add(btnViewAllRecipes);
 
@@ -55,20 +55,15 @@ public class HomePage extends JFrame {
 
 				dispose();
 
-				JFrame allRecipe;
-				try {
-					allRecipe = new ViewAllRecipe();
-					allRecipe.setLocation(100, 50);
-					allRecipe.setSize(600, 500);
-					allRecipe.setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				JFrame re;
+				re = new MaintainRecipePage();
+				re.setLocation(100, 50);
+				re.setSize(600, 500);
+				re.setVisible(true);
 
 			}
 
-		});*/
+		});
 
 		JButton btnFeelingGood = new JButton("Recommend");
 		btnFeelingGood.setFont(new Font("Lucida Grande", Font.PLAIN, 18));

@@ -147,9 +147,9 @@ public class Brew {
 			
 	}
 	
-	public static List recommendForUI(float batchsize) throws SQLException {
+	public static List<Map<String, Object>> recommendForUI(float batchsize) throws SQLException {
 		//this function used for RecommendSuccess
-		List list = new ArrayList();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		List<String> l = new LinkedList<String>();
 		int getline = 0;
 		int[] arr = new int[100];
@@ -188,7 +188,7 @@ public class Brew {
 				ResultSetMetaData rsmd = getRecommend.getMetaData();
 				while(getRecommend.next())
 				{
-					Map m = new HashMap();
+					Map<String, Object> m = new HashMap();
 					int columnCount = rsmd.getColumnCount();
 					for(int i=0;i<columnCount;i++) {
 						String columnName = rsmd.getColumnName(i+1);
