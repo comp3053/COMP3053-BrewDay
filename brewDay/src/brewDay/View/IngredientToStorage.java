@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import brewDay.Brew;
 import brewDay.Database;
 import brewDay.Recipe;
+import brewDay.RecipeIngredient;
 import brewDay.StorageIngredient;
 
 import javax.swing.JScrollPane;
@@ -70,7 +71,7 @@ public class IngredientToStorage extends JFrame {
 		scrollPane.setBounds(54, 53, 345, 183);
 		contentPane.add(scrollPane);
 		
-		Vector<String> columnName = new Vector<String>();//�ֶ���
+		Vector<String> columnName = new Vector<String>();
 		Vector<Vector<Object>> dataVector = new
 		Vector<Vector<Object>>();
 		columnName.add("name");
@@ -91,13 +92,25 @@ public class IngredientToStorage extends JFrame {
 		scrollPane.add(table.getTableHeader());
 		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
-		//DataBase.free(conn, stmt, rs);
 		
 		JButton button = new JButton("Back");
 		button.setForeground(new Color(30, 144, 255));
 		button.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		button.setBounds(12, 12, 68, 29);
 		contentPane.add(button);
+		
+		button.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	dispose();
+
+        	JFrame home = new HomePage();
+        	home.setLocation(100,50);
+        	home.setSize(600, 500);
+        	home.setVisible(true);
+        	}
+
+        	});
+	
 		
 		textField = new JTextField();
 		textField.setBounds(200, 274, 130, 26);
@@ -126,26 +139,47 @@ public class IngredientToStorage extends JFrame {
 		textField_2.setBounds(200, 329, 130, 26);
 		contentPane.add(textField_2);
 		
-		JButton btnSubmit = new JButton("Submit");
+		JButton btnSubmit = new JButton("Add");
 		btnSubmit.setForeground(new Color(50, 205, 50));
 		btnSubmit.setBackground(new Color(255, 255, 255));
 		btnSubmit.setBounds(170, 371, 117, 29);
 		contentPane.add(btnSubmit);
 		
+		btnSubmit.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        		String name = textField.getText();
+				String quan = textField_1.getText();
+				float quantity = Float.parseFloat(quan);
+				String unit = textField_2.getText();
+				StorageIngredient stin = new StorageIngredient(name,quantity,unit);
+				try {
+					stin.addIngredient(name, quantity, unit);
+					dispose();
+					JFrame main;
+					main = new MainIngredient();
+					
+		        	main.setLocation(100,50);
+		        	main.setSize(600, 500);
+		        	main.setVisible(true);
+					String messege="Success.";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+					
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	}
+
+        	});
+	
+		
 		JLabel lblNewLabel_1 = new JLabel("<html>Fill in the blank for the ingredient that you want to add</html>");
 		lblNewLabel_1.setBounds(64, 243, 335, 29);
 		contentPane.add(lblNewLabel_1);
 		
-		button.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent e) {
-        	dispose();
-
-        	JFrame home = new HomePage();
-        	home.setLocation(100,50);
-        	home.setSize(600, 500);
-        	home.setVisible(true);
-        	}
-
-        	});
 	}
 }

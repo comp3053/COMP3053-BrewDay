@@ -1,12 +1,17 @@
 package View;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import brewDay.Equipment;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -35,59 +40,63 @@ public class MaintainEquipmentInfoPage extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public MaintainEquipmentInfoPage() {
-		setTitle("Maintain Equipment infomation");
+	public MaintainEquipmentInfoPage() throws SQLException {
+		setTitle("Equipment InfoPage");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 450, 318);
+		setBounds(200, 200, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		Equipment e = new Equipment();
+		float cap = e.getCapacity();
 		
-		JButton btnNewButton_1 = new JButton("Update");
-		btnNewButton_1.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
-		btnNewButton_1.setForeground(new Color(50, 205, 50));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.setBounds(61, 119, 316, 76);
-		contentPane.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("Delete");
-		btnNewButton_2.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
-		btnNewButton_2.setForeground(new Color(255, 0, 0));
-		btnNewButton_2.setBounds(61, 196, 316, 76);
-		contentPane.add(btnNewButton_2);
-		
-		JLabel lblNewLabel = new JLabel("*press the buttons!*");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblNewLabel.setBounds(117, 0, 202, 48);
+		JLabel lblNewLabel = new JLabel("*The Capacity of your equipment is "+cap+" L.");
+		lblNewLabel.setBounds(148, 39, 400, 16);
 		contentPane.add(lblNewLabel);
-		
-		JButton btnAdd = new JButton("Add");
+
+		JLabel lblHelloWhatWould = new JLabel("Hello! What would you like to do today?");
+		lblHelloWhatWould.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		lblHelloWhatWould.setBounds(83, 8, 341, 21);
+		contentPane.add(lblHelloWhatWould);
+
+		JButton btnAdd = new JButton("Update");
+		btnAdd.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnAdd.setForeground(new Color(30, 144, 255));
-		btnAdd.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
-		btnAdd.setBounds(61, 42, 316, 76);
+		btnAdd.setBounds(148, 71, 133, 45);
 		contentPane.add(btnAdd);
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnBack.setForeground(new Color(30, 144, 255));
-		btnBack.setBounds(28, 14, 68, 29);
-		contentPane.add(btnBack);
+		JButton button = new JButton("Back");
+		button.setForeground(new Color(30, 144, 255));
+		button.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		button.setBounds(12, 6, 68, 29);
+		contentPane.add(button);
+
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+				JFrame home = new HomePage();
+				home.setLocation(100, 50);
+				home.setSize(600, 500);
+				home.setVisible(true);
+			}
+
+		});
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrame upe = new UpdateEquipCapacity();
+				upe.setLocation(100, 50);
+				upe.setSize(600, 500);
+				upe.setVisible(true);
+			}
+
+		});
 		
-		btnBack.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent e) {
-        	dispose();
 
-        	JFrame home = new HomePage();
-        	home.setLocation(100,50);
-        	home.setSize(600, 500);
-        	home.setVisible(true);
-        	}
-
-        	});
 	}
 }

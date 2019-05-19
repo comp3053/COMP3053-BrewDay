@@ -116,10 +116,17 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
-				JFrame equip = new MaintainEquipmentInfoPage();
+				JFrame equip;
+				try {
+					equip = new MaintainEquipmentInfoPage();
+				
 				equip.setLocation(100, 50);
 				equip.setSize(600, 500);
 				equip.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
