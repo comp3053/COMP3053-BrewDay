@@ -91,9 +91,8 @@ public class IngredientPage extends JFrame {
 		scrollPane.setBounds(41, 105, 436, 185);
 		contentPane.add(scrollPane);
 		
-		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
-		Vector<Vector<Object>> dataVector = new
-		Vector<Vector<Object>>();
+		Vector<String> columnName = new Vector<String>();//ï¿½Ö¶ï¿½ï¿½ï¿½
+		Vector<Vector<Object>> dataVector = new Vector<Vector<Object>>();
 		columnName.add("name");
 		columnName.add("amount");
 		columnName.add("unit");
@@ -101,11 +100,11 @@ public class IngredientPage extends JFrame {
 		ResultSet rs= Recipe.allRecipe();
 		
 		while(rs.next()){
-		Vector<Object> vec = new Vector<Object>();//single for big Vector
-		for(int i=2;i<=4;i++){
-		vec.add(rs.getObject(i));
-		}
-		dataVector.add(vec);
+			Vector<Object> vec = new Vector<Object>();//single for big Vector
+			for(int i=2;i<=4;i++){
+				vec.add(rs.getObject(i));
+			}
+			dataVector.add(vec);
 		}
 		
 		table = new JTable(dataVector, columnName);

@@ -123,6 +123,7 @@ public class Brew {
 			{
 				flag = true;
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
+				
 				ResultSetMetaData rsmd = getRecommend.getMetaData();
 				while(getRecommend.next())
 				{
@@ -133,8 +134,9 @@ public class Brew {
 						m.put(columnName,getRecommend.getObject(i+1));
 					}
 					list.add(m);
-					
 				}
+				
+				
 			}
 			
 		}
