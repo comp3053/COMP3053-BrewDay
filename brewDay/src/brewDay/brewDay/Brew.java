@@ -241,6 +241,12 @@ public class Brew {
 	
 	}
 	
+	public static ResultSet Record() throws SQLException {
+		ResultSet getRecord = Database.Select("SELECT * FROM Brew");
+		return getRecord;
+	
+	}
+	
 	public static Vector<Vector<Object>> BrewRecord1() throws SQLException {
 		ResultSet getRecord = Database.Select("SELECT * FROM Brew");
 		Vector<Vector<Object>> dataVector = new Vector<Vector<Object>>();

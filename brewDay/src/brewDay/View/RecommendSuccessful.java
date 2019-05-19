@@ -129,5 +129,16 @@ public class RecommendSuccessful extends JFrame {
 		btnBrew.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnBrew.setBounds(249, 283, 92, 25);
 		contentPane.add(btnBrew);
+		btnBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				String a = textField.getText();
+				JFrame brews = new BrewPage(a);
+				brews.setLocation(100, 50);
+				brews.setSize(600, 500);
+				brews.setVisible(true);
+			}
+
+		});
 	}
 }

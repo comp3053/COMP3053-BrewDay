@@ -35,7 +35,7 @@ public class BrewPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BrewPage frame = new BrewPage();
+					BrewPage frame = new BrewPage("Input");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class BrewPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BrewPage() {
+	public BrewPage(String aname) {
 		setTitle("Brew");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 361);
@@ -80,6 +80,7 @@ public class BrewPage extends JFrame {
 		contentPane.add(lblNewLabel);
 
 		textField = new JTextField();
+		textField.setText(aname);
 		textField.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		textField.setBounds(240, 95, 130, 26);
 		contentPane.add(textField);

@@ -101,7 +101,7 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
-				JFrame bre = new BrewPage();
+				JFrame bre = new BrewPage(null);
 				bre.setLocation(100, 50);
 				bre.setSize(600, 500);
 				bre.setVisible(true);

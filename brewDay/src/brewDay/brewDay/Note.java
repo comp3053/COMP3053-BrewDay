@@ -67,4 +67,8 @@ public class Note {
 			System.out.println();
 	}
 }
+	public static ResultSet AllNote() throws SQLException {
+		ResultSet getNote = Database.Select("SELECT * FROM Note");
+		return getNote;
+}
 }
