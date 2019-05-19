@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -109,10 +110,17 @@ public class MaintainRecipePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
-				JFrame upRE = new UpdateRecipePage();
+				JFrame upRE;
+				try {
+					upRE = new UpdateRecipePage();
+				
 				upRE.setLocation(100, 50);
 				upRE.setSize(600, 500);
 				upRE.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 
 		});
@@ -120,10 +128,17 @@ public class MaintainRecipePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
-				JFrame deRE = new DeleteRecipePage();
+				JFrame deRE;
+				try {
+					deRE = new DeleteRecipePage();
+				
 				deRE.setLocation(100, 50);
 				deRE.setSize(600, 500);
-				deRE.setVisible(true);
+				deRE.setVisible(true);}
+				 catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 
 		});

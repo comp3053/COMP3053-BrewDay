@@ -17,15 +17,17 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+
+import brewDay.Database;
 import brewDay.Recipe;
 import java.awt.Font;
 
-public class AddRecipePage extends JFrame {
+public class UpdateEditPage extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+
 	private JTextField textField_2;
 
 	/**
@@ -47,9 +49,9 @@ public class AddRecipePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddRecipePage() {
+	public UpdateEditPage(String name) {
 		setResizable(false);
-		setTitle("Add Recipe");
+		setTitle("Edit and update Recipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 369);
 		contentPane = new JPanel();
@@ -58,7 +60,7 @@ public class AddRecipePage extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblpleaseFillIn = new JLabel(
-				"<html>Please fill in the blank with your new recipe information then press \"Finish\" button to submit it.</html>");
+				"<html>Please edit in the blank with your selected recipe information then press \"Finish\" button to submit it.</html>");
 		lblpleaseFillIn.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblpleaseFillIn.setBackground(Color.GREEN);
 		lblpleaseFillIn.setBounds(70, 55, 303, 63);
@@ -74,29 +76,37 @@ public class AddRecipePage extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	dispose();
 
-        	JFrame MaintainR = new MaintainRecipePage();
-        	MaintainR.setLocation(100,50);
-        	MaintainR.setSize(600, 500);
-        	MaintainR.setVisible(true);
+        	JFrame upmain;
+			try {
+				upmain = new UpdateRecipePage();
+			
+        	upmain.setLocation(100,50);
+        	upmain.setSize(600, 500);
+        	upmain.setVisible(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         	}
 
         	});
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(194, 133, 165, 26);
-		contentPane.add(textField_1);
+		JLabel nameme = new JLabel(name);
+		nameme.setFont(new Font("Dialog", Font.BOLD, 14));
+		nameme.setBounds(194, 133, 165, 26);
+		contentPane.add(nameme);
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(194, 163, 165, 26);
 		contentPane.add(textField_2);
 
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(194, 193, 165, 26);
-		contentPane.add(textField);
+		JLabel ququ = new JLabel("L");
+		ququ.setFont(new Font("Dialog", Font.BOLD, 14));
+		ququ.setBounds(194, 133, 165, 26);
+		contentPane.add(ququ);
 
+		
 		JLabel label_1 = new JLabel("Recipe name:");
 		label_1.setFont(new Font("Dialog", Font.BOLD, 14));
 		label_1.setBounds(81, 136, 109, 16);
@@ -120,27 +130,24 @@ public class AddRecipePage extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				String name = textField_1.getText();
 				String quan = textField_2.getText();
 				float quantity = Float.parseFloat(quan);
-				String unit = textField.getText();
+				String unit = "L";
 				Recipe r = new Recipe(name, quantity, unit);
-				if(r.whetherInDB() == false) {
-					String messege="Your recipe name is already EXIST!";
+				if(quantity > 0) {
+					try {
+						r.updateQuantity(quantity);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					String messege="You must input a positive number.";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
-					
-				}else {
-					String messege="Recipe " + name + "has already been added.";
-					JFrame win = new PromptWindow(messege);
-					win.setLocation(500, 80);
-					win.setSize(400, 200);
-					win.setVisible(true);
-					r.addRecipeToDB();
-				
-				
 				}
 			}
 

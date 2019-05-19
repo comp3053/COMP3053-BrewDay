@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import brewDay.Database;
+import brewDay.Recipe;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -14,6 +18,9 @@ import javax.swing.JTable;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
@@ -21,6 +28,7 @@ public class DeleteRecipePage extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -40,8 +48,9 @@ public class DeleteRecipePage extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public DeleteRecipePage() {
+	public DeleteRecipePage() throws SQLException {
 		setTitle("Delete Recipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 526, 451);
@@ -62,7 +71,7 @@ public class DeleteRecipePage extends JFrame {
 		
 		btnBack.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e) {
-        	setVisible(false);
+        	dispose();
 
         	JFrame MaintainR = new MaintainRecipePage();
         	MaintainR.setLocation(100,50);
@@ -72,13 +81,7 @@ public class DeleteRecipePage extends JFrame {
 
         	});
 		
-		JLabel lblSelectRecipe = new JLabel("Select recipe:");
-		lblSelectRecipe.setBounds(28, 83, 91, 16);
-		contentPane.add(lblSelectRecipe);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(116, 78, 204, 27);
-		contentPane.add(comboBox);
 		
 		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the ingredient of your recipe:</html>");
 		lbltheTableBelow.setBounds(28, 112, 340, 16);
@@ -88,37 +91,66 @@ public class DeleteRecipePage extends JFrame {
 		scrollPane.setBounds(28, 140, 436, 189);
 		contentPane.add(scrollPane);
 		
-		Object[] columnNames =	{"Ingredient", "Amount", "Unit"};
-		Object[][] rowData = {
-				{"water", 1, 'l'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'}
-        };
+		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
+		Vector<Vector<Object>> dataVector = new
+		Vector<Vector<Object>>();
+		columnName.add("name");
+		columnName.add("amount");
+		columnName.add("unit");
 		
-		table = new JTable(rowData, columnNames);
-		table.setBackground(new Color(255, 182, 193));
+		ResultSet rs= Recipe.allRecipe();
+		
+		while(rs.next()){
+		Vector<Object> vec = new Vector<Object>();//single for big Vector
+		for(int i=2;i<=4;i++){
+		vec.add(rs.getObject(i));
+		}
+		dataVector.add(vec);
+		}
+		
+		table = new JTable(dataVector, columnName);
 		scrollPane.add(table.getTableHeader());
-		scrollPane.add(table);
-		
+		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
+		
+		JLabel lblSelectRecipe = new JLabel("Select recipe:");
+		lblSelectRecipe.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblSelectRecipe.setBounds(73, 335, 91, 16);
+		contentPane.add(lblSelectRecipe);
+		
+		textField = new JTextField();
+		textField.setBounds(176, 330, 166, 29);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
 		
 		JButton btnFinish = new JButton("Finish");
 		btnFinish.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnFinish.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		btnFinish.setForeground(new Color(250, 128, 114));
 		btnFinish.setBounds(28, 360, 91, 40);
 		contentPane.add(btnFinish);
+		btnFinish.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				String name = textField.getText();
+				String sqlDelete = "DELETE FROM Recipe WHERE Name = '" + name +"'";
+				Database.Delete(sqlDelete);
+					String messege="Recipe " + name + " has been successfully removed from the database.";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				dispose();
+				JFrame MaintainR = new MaintainRecipePage();
+	        	MaintainR.setLocation(100,50);
+	        	MaintainR.setSize(600, 500);
+	        	MaintainR.setVisible(true);
+				
+				
+			}
+
+		});
 	}
 }
 

@@ -97,11 +97,6 @@ public class NoteMain extends JFrame {
 		btnAdd.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e) {
         	setVisible(false);
-
-        	JFrame addRE = new AddRecipePage();
-        	addRE.setLocation(100,50);
-        	addRE.setSize(600, 500);
-        	addRE.setVisible(true);
         	}
 
         	});
@@ -109,10 +104,6 @@ public class NoteMain extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	setVisible(false);
 
-        	JFrame upRE = new UpdateRecipePage();
-        	upRE.setLocation(100,50);
-        	upRE.setSize(600, 500);
-        	upRE.setVisible(true);
         	}
 
         	});
@@ -120,12 +111,7 @@ public class NoteMain extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	setVisible(false);
 
-        	JFrame deRE;
-			deRE = new DeleteRecipePage();
-
-     	deRE.setLocation(100,50);
-     	deRE.setSize(600, 500);
-     	deRE.setVisible(true);
+			
         	}
 
         	});
