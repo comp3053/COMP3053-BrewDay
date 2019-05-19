@@ -9,12 +9,6 @@ public class RecipeIngredient extends Ingredient {
 		super(nameOfIngredient, amountOfIngredient, unitOfIngredient);
 	}
 
-	//function 1 add ingredient to the specific recipe, but not add into storage	
-//	public void addIngredient(String nameOfIngredient, float amountOfIngredient, char unitOfIngredient, int recipeId) throws SQLException {
-//		String sql = "INSERT INTO RecipeIngredient VALUES (NULL, '" + nameOfIngredient + "','" + amountOfIngredient +"','" + unitOfIngredient +"'," + recipeId + ")";
-//		Database.Insert(sql);
-//		System.out.println("Ingredient " + nameOfIngredient + " has been successfully added into recipe ");
-//	}
 	public void addIngredientToRecipe(int recipeID, String rName) throws SQLException {
 		String name = this.getNameOfIngredient();
 		float amount = this.getAmountOfRecipeIngredient();
@@ -36,7 +30,6 @@ public class RecipeIngredient extends Ingredient {
 		if(flag == 0) {
 			String sqlInsert = "INSERT INTO RecipeIngredient Values (NULL,'" + name +"','" + amount + "','"+ unit +"','"+ recipeID + "')";
 			Database.Insert(sqlInsert);
-//			this.recipeIngredients.add(recipeIngredient);
 			System.out.println("Ingredient " + name + " has been successfully added to recipe " + rName);
 		}
 		else {

@@ -121,3 +121,4 @@ public class DeleteRecipePage extends JFrame {
 		contentPane.add(btnFinish);
 	}
 }
+

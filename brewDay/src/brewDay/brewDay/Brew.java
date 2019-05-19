@@ -1,18 +1,10 @@
 package brewDay;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Map.Entry;
 
 public class Brew {
 	private float batchSize;
@@ -32,13 +24,7 @@ public class Brew {
 			this.recipe = recipe; 
 		}
 	}
-	/*
-	public Brew(float batchsize) {
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");		
-		this.date = date.format(new Date());
-		this.batchSize = batchSize;
-	}
-	*/
+
 	public void implement(Recipe recipe) throws SQLException { //implement the recipe that use select
 		int flag = 0; //a mark
 		int Rid; //recipe ID, for searching use
@@ -47,16 +33,8 @@ public class Brew {
 		while (getRI.next()) { //get amount from the class RecipeIngredient
 			String nameOfRI = getRI.getString("Name");
 			float amountOfRI = getRI.getFloat("Amount");
-			//System.out.println("**Name of Ingredient: " + nameOfRI);
-			//System.out.println("**Amount of Ingredient: "+amountOfRI);
-			//gr
-			
 			temp = (float)batchSize / recipe.getQuantityOfRecipe(); 
-			//System.out.println("temp = " +temp);
-			//gr
 			amountOfRI = (float)temp * (float)amountOfRI;
-			//System.out.println("**Temp number: "+temp);
-			//System.out.println("**Total amount: "+amountOfRI);
 			ResultSet getAmountOfIngredient = Database.Select("SELECT Name, Amount FROM StorageIngredient WHERE Name = '" + nameOfRI + "'");
 			while(getAmountOfIngredient.next()) {//get amount from the class Ingredient
 				String nameOfIngredient = getAmountOfIngredient.getString("Name");
@@ -77,12 +55,7 @@ public class Brew {
 			while (getRI1.next()) {//get amount from the class RecipeIngredient
 				String nameOfRI1 = getRI1.getString("Name");
 				float amountOfRI1 = getRI1.getFloat("Amount");
-				//System.out.println("Name of Ingredient: " + nameOfRI1);
-				//System.out.println("Amount of Ingredient: "+amountOfRI1);
-				//gr
 				amountOfRI1 = (float)temp * (float)amountOfRI1;
-				//System.out.println("Temp number: "+temp);
-				//System.out.println("Total amount: "+amountOfRI1);
 				ResultSet getAmountOfIngredient = Database.Select("SELECT Name, Amount FROM StorageIngredient WHERE Name = '" + nameOfRI1 + "'");
 				while(getAmountOfIngredient.next()) {//get amount from the class Ingredient
 					float amountOfIngredient = getAmountOfIngredient.getFloat("Amount");
@@ -100,17 +73,11 @@ public class Brew {
 		}
 	}
 	
-	//gr
-	public static boolean recommend(float batchsize) throws SQLException {//under developing
-		//System.out.println("This function is not finished yet.");
+	public static boolean recommend(float batchsize) throws SQLException {
 		//get the number of line
-		List list = new ArrayList(); // list for recipes recommend
-		List<String> l = new LinkedList<String>(); // l for missing ingredients
 		int getline = 0;
 		boolean flag = false;
-		//to be continue
 		int[] arr = new int[100];
-		//ResultSet getStorageIngredient = Database.Select(")
 		ResultSet getRecipe = Database.Select("SELECT Recipe.RecipeID, Recipe.Name, Quantity, RecipeIngredient.Name, RecipeIngredient.Amount, StorageIngredient.Amount FROM Recipe INNER JOIN RecipeIngredient INNER JOIN StorageIngredient ON Recipe.RecipeID = RecipeIngredient.RecipeID and RecipeIngredient.Name = StorageIngredient.Name");
 		while (getRecipe.next()) { 
 			int getRID = getRecipe.getInt("RecipeID");
@@ -127,13 +94,10 @@ public class Brew {
 			{
 				getline = getLine.getInt("count");
 			}
-			
-			// **************to be continue
 			if(getA < tempgetAmount)
 			{
 				float need = (float)getA - (float)tempgetAmount;
-				l.add("Recipe <"+getName+"> Storage of "+getIngredientName +" are not enough"+", you should buy "+ (-need));
-				//System.out.println("For recipe <"+getName+"> Storage of "+getIngredientName +" not enough"+", you should buy "+ (-need));
+				System.out.println("For recipe <"+getName+"> Storage of "+getIngredientName +" not enough"+", you should buy "+ (-need));
 			}
 			else
 			{
@@ -144,36 +108,26 @@ public class Brew {
 			if(arr[getRID] == getline)
 			{
 				flag = true;
-				//System.out.println("The following recipes are recommend: ");
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
-				ResultSetMetaData rsmd = getRecommend.getMetaData();
 				while(getRecommend.next())
 				{
-					Map m = new HashMap();
-					int columnCount = rsmd.getColumnCount();
-					for(int i=0;i<columnCount;i++) {
-						String columnName = rsmd.getColumnName(i+1);
-						m.put(columnName,getRecommend.getObject(i+1));
-					}
-					list.add(m);
+					int recommendID = getRecommend.getInt("RecipeID");
+					String recommendName = getRecommend.getString("Name");
+					System.out.print(recommendID);
+					System.out.print(" "+recommendName);
+					System.out.println();
 					
 				}
 			}
 			
 		}
-		//System.out.println(l);
-		for (String str : l) {
-	        System.out.println(str);
-	    }
-		System.out.println(list);
 		return flag;
 			
 	}
 	
-	public static List recommendForUI(float batchsize) throws SQLException {
+	public static ResultSet recommendForUI(float batchsize) throws SQLException {
 		//this function used for RecommendSuccess
-		List list = new ArrayList();
-		List<String> l = new LinkedList<String>();
+		ResultSet insertRecommand = null;
 		int getline = 0;
 		int[] arr = new int[100];
 		ResultSet getRecipe = Database.Select("SELECT Recipe.RecipeID, Recipe.Name, Quantity, RecipeIngredient.Name, RecipeIngredient.Amount, StorageIngredient.Amount FROM Recipe INNER JOIN RecipeIngredient INNER JOIN StorageIngredient ON Recipe.RecipeID = RecipeIngredient.RecipeID and RecipeIngredient.Name = StorageIngredient.Name");
@@ -192,12 +146,10 @@ public class Brew {
 			{
 				getline = getLine.getInt("count");
 			}
-			
 			if(getA < tempgetAmount)
 			{
 				float need = (float)getA - (float)tempgetAmount;
-				l.add("Recipe <"+getName+"> Storage of "+getIngredientName +" are not enough"+", you should buy "+ (-need));
-				//System.out.println("For recipe <"+getName+"> Storage of "+getIngredientName +" not enough"+", you should buy "+ (-need));
+				System.out.println("For recipe <"+getName+"> Storage of "+getIngredientName +" not enough"+", you should buy "+ (-need));
 			}
 			else
 			{
@@ -206,29 +158,15 @@ public class Brew {
 			}
 			if(arr[getRID] == getline)
 			{
-				//System.out.println("The following recipes are recommend: ");
+
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
-				ResultSetMetaData rsmd = getRecommend.getMetaData();
-				while(getRecommend.next())
-				{
-					Map m = new HashMap();
-					int columnCount = rsmd.getColumnCount();
-					for(int i=0;i<columnCount;i++) {
-						String columnName = rsmd.getColumnName(i+1);
-						m.put(columnName,getRecommend.getObject(i+1));
-					}
-					list.add(m);
-				}
+				insertRecommand = getRecommend;
+				
 			}
 			
 		}
-		// list l is for missing ingredients
-		for (String str : l) {
-	        System.out.println(str);
-	    }
-		// list list is for recommend recipes
-		//System.out.println(list);	
-		return list;	
+		return insertRecommand;
+			
 	}
 	
 	public static void BrewRecord() throws SQLException {

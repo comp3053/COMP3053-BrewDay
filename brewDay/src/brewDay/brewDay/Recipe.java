@@ -48,7 +48,7 @@ public class Recipe {
 		System.out.println();
 	}
 
-	//function 1	maybe put into class:RI
+	//function 1
 	public void addRecipeIngredients(RecipeIngredient recipeIngredient) throws SQLException {
 		String name = recipeIngredient.getNameOfIngredient();
 		float amount = recipeIngredient.getAmountOfRecipeIngredient();
@@ -108,7 +108,6 @@ public class Recipe {
 		while(rs.next()) {
 			recipeID = rs.getInt("RecipeID");
 			quantity = rs.getInt("Quantity");
-//			System.out.println(recipeId);
 		}
 		if(quantity == -1) {
 			return -1;
