@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import brewDay.Recipe;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -14,6 +17,9 @@ import javax.swing.JTable;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
@@ -21,6 +27,7 @@ public class DeleteRecipePage extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -40,8 +47,9 @@ public class DeleteRecipePage extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public DeleteRecipePage() {
+	public DeleteRecipePage() throws SQLException {
 		setTitle("Delete Recipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 526, 451);
@@ -72,43 +80,46 @@ public class DeleteRecipePage extends JFrame {
 
         	});
 		
-		JLabel lblSelectRecipe = new JLabel("Select recipe:");
-		lblSelectRecipe.setBounds(28, 83, 91, 16);
+		JLabel lblSelectRecipe = new JLabel("Input the recipe name you want to delete:");
+		lblSelectRecipe.setBounds(28, 83, 241, 16);
 		contentPane.add(lblSelectRecipe);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(116, 78, 204, 27);
-		contentPane.add(comboBox);
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(28, 108, 204, 27);
+		contentPane.add(textField_1);
+		
 		
 		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the ingredient of your recipe:</html>");
-		lbltheTableBelow.setBounds(28, 112, 340, 16);
+		lbltheTableBelow.setBounds(28, 142, 340, 16);
 		contentPane.add(lbltheTableBelow);
 		
 		JScrollPane scrollPane = new JScrollPane();            
-		scrollPane.setBounds(28, 140, 436, 189);
+		scrollPane.setBounds(28, 170, 436, 189);
 		contentPane.add(scrollPane);
 		
-		Object[] columnNames =	{"Ingredient", "Amount", "Unit"};
-		Object[][] rowData = {
-				{"water", 1, 'l'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'},
-				{"yeast", 6, 'g'}
-        };
+		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
+		Vector<Vector<Object>> dataVector = new
+		Vector<Vector<Object>>();
+		columnName.add("name");
+		columnName.add("amount");
+		columnName.add("unit");
 		
-		table = new JTable(rowData, columnNames);
-		table.setBackground(new Color(255, 182, 193));
+		ResultSet rs= Recipe.allRecipe();
+		
+		while(rs.next()){
+		Vector<Object> vec = new Vector<Object>();//single for big Vector
+		for(int i=2;i<=4;i++){
+		vec.add(rs.getObject(i));
+		}
+		dataVector.add(vec);
+		}
+		
+		table = new JTable(dataVector, columnName);
 		scrollPane.add(table.getTableHeader());
-		scrollPane.add(table);
-		
+		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
+		
 		
 		JButton btnFinish = new JButton("Finish");
 		btnFinish.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -117,7 +128,20 @@ public class DeleteRecipePage extends JFrame {
 			}
 		});
 		btnFinish.setForeground(new Color(250, 128, 114));
-		btnFinish.setBounds(28, 360, 91, 40);
+		btnFinish.setBounds(28, 370, 91, 40);
 		contentPane.add(btnFinish);
+		
+		btnFinish.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        	String rename=textField_1.getText();
+        		dispose();
+
+        	JFrame MaintainR = new MaintainRecipePage();
+        	MaintainR.setLocation(100,50);
+        	MaintainR.setSize(600, 500);
+        	MaintainR.setVisible(true);
+        	}
+
+        	});
 	}
 }
