@@ -132,15 +132,30 @@ public class UpdateEditPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String quan = textField_2.getText();
 				float quantity = Float.parseFloat(quan);
-				String unit = "L";
-				Recipe r = new Recipe(name, quantity, unit);
+				Recipe r = new Recipe(name);
 				if(quantity > 0) {
 					try {
-						r.updateQuantity(quantity);
+					r.updateQuantity(quantity, name);
+					dispose();
+					
+					String messege="Success.";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+					dispose();
+
+					JFrame upRE = new UpdateRecipePage();
+					
+					
+					upRE.setLocation(100, 50);
+					upRE.setSize(600, 500);
+					upRE.setVisible(true);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					
 				}
 				else {
 					String messege="You must input a positive number.";

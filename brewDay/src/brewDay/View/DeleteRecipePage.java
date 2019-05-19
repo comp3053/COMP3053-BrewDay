@@ -134,8 +134,8 @@ public class DeleteRecipePage extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				String name = textField.getText();
-				String sqlDelete = "DELETE FROM Recipe WHERE Name = '" + name +"'";
-				Database.Delete(sqlDelete);
+				Recipe r = new Recipe(name);
+				r.deleteRecipe(name);
 					String messege="Recipe " + name + " has been successfully removed from the database.";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);

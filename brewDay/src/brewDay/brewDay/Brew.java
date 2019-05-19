@@ -90,7 +90,7 @@ public class Brew {
 		
 		int getline = 0;
 		boolean flag = false;
-		int[] arr = new int[100];
+		int[] arr = new int[5000];
 		ResultSet getRecipe = Database.Select("SELECT Recipe.RecipeID, Recipe.Name, Quantity, RecipeIngredient.Name, RecipeIngredient.Amount, StorageIngredient.Amount FROM Recipe INNER JOIN RecipeIngredient INNER JOIN StorageIngredient ON Recipe.RecipeID = RecipeIngredient.RecipeID and RecipeIngredient.Name = StorageIngredient.Name");
 		while (getRecipe.next()) { 
 			int getRID = getRecipe.getInt("RecipeID");
@@ -160,7 +160,7 @@ public class Brew {
 		Vector<Vector<Object>> dataVector = new Vector<Vector<Object>>();
 		
 		int getline = 0;
-		int[] arr = new int[100];
+		int[] arr = new int[5000];
 		ResultSet getRecipe = Database.Select("SELECT Recipe.RecipeID, Recipe.Name, Quantity, RecipeIngredient.Name, RecipeIngredient.Amount, StorageIngredient.Amount FROM Recipe INNER JOIN RecipeIngredient INNER JOIN StorageIngredient ON Recipe.RecipeID = RecipeIngredient.RecipeID and RecipeIngredient.Name = StorageIngredient.Name");
 		while (getRecipe.next()) { 
 			int getRID = getRecipe.getInt("RecipeID");
@@ -194,7 +194,7 @@ public class Brew {
 				//System.out.println("The following recipes are recommend: ");
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
 				ResultSetMetaData rsmd = getRecommend.getMetaData();
-				while(getRecommend.next())
+				/*while(getRecommend.next())
 				{
 					Map<String, Object> m = new HashMap();
 					int columnCount = rsmd.getColumnCount();
@@ -203,7 +203,7 @@ public class Brew {
 						m.put(columnName,getRecommend.getObject(i+1));
 					}
 					list.add(m);
-				}
+				}*/
 
 				
 				while(getRecommend.next()){
@@ -240,6 +240,29 @@ public class Brew {
 	}
 	
 	}
+	
+	public static Vector<Vector<Object>> BrewRecord1() throws SQLException {
+		ResultSet getRecord = Database.Select("SELECT * FROM Brew");
+		Vector<Vector<Object>> dataVector = new Vector<Vector<Object>>();
+		while (getRecord.next()) { 
+			int getID = getRecord.getInt("BrewID");
+			float getSize = getRecord.getFloat("BatchSize");
+			String getDate = getRecord.getString("Date");
+			int getRecipeID = getRecord.getInt("RecipeID");
+			System.out.print(getID);
+			System.out.print(" "+getSize);
+			System.out.print(" "+getDate);
+			System.out.print(" "+getRecipeID);
+			System.out.println();
+			Vector<Object> vec = new Vector<Object>();//single for big Vector
+			for(int i=1;i<=4;i++){
+				vec.add(getRecord.getObject(i));
+			}
+			dataVector.add(vec);
+	}
+	return dataVector;
+	}
+	
 	public int getNewestBrewID(Brew b) throws SQLException {
 		int getID = -1;
 		ResultSet getBrewID = Database.Select("SELECT BrewID FROM Brew ORDER BY BrewID DESC LIMIT 1");

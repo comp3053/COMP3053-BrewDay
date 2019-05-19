@@ -72,26 +72,26 @@ public class RecommendSuccessful extends JFrame {
 		
 		
 		Vector<String> columnName = new Vector<String>();
-		Vector<Vector<Object>> dataVector = new
-		Vector<Vector<Object>>();
+
+
 		columnName.add("name");
 		columnName.add("amount");
 		columnName.add("unit");
 	
-		/*List rs= Brew.recommendForUI(batchsize);
-		while(rs.next()){
+		Vector<Vector<Object>> dataVector= Brew.recommendForUI(batchsize);
+		/*while(rs.next()){
 		Vector<Object> vec = new Vector<Object>();//single for big Vector
 		for(int i=2;i<=4;i++){
 		vec.add(rs.getObject(i));
 		}
 		dataVector.add(vec);
-		}
+		}*/
 		table = new JTable(dataVector, columnName);
 		scrollPane.add(table.getTableHeader());
 		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
 		scrollPane.setViewportView(table);
-		contentPane.add(scrollPane);*/
+		contentPane.add(scrollPane);
 		
 		
 		btnBack = new JButton("Back");

@@ -50,10 +50,7 @@ public class MaintainRecipePage extends JFrame {
 		JButton btnNewButton_1 = new JButton("Update");
 		btnNewButton_1.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnNewButton_1.setForeground(new Color(50, 205, 50));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		btnNewButton_1.setBounds(148, 128, 133, 45);
 		contentPane.add(btnNewButton_1);
 

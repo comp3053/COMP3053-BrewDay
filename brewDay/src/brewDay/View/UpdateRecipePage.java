@@ -51,7 +51,7 @@ public class UpdateRecipePage extends JFrame {
 	 * @throws SQLException 
 	 */
 	public UpdateRecipePage() throws SQLException {
-		setTitle("Delete Recipe");
+		setTitle("Update Recipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 526, 451);
 		contentPane = new JPanel();
@@ -134,18 +134,13 @@ public class UpdateRecipePage extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				String name = textField.getText();
-				String sqlDelete = "DELETE FROM Recipe WHERE Name = '" + name +"'";
-				Database.Delete(sqlDelete);
-					String messege="Recipe " + name + " has been successfully removed from the database.";
-					JFrame win = new PromptWindow(messege);
-					win.setLocation(500, 80);
-					win.setSize(400, 200);
-					win.setVisible(true);
+				
+					
 				dispose();
-				JFrame MaintainR = new MaintainRecipePage();
-	        	MaintainR.setLocation(100,50);
-	        	MaintainR.setSize(600, 500);
-	        	MaintainR.setVisible(true);
+				JFrame edit = new UpdateEditPage(name);
+	        	edit.setLocation(100,50);
+	        	edit.setSize(600, 500);
+	        	edit.setVisible(true);
 				
 				
 			}

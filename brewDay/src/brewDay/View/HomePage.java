@@ -46,29 +46,18 @@ public class HomePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnViewAllRecipes = new JButton("ALL RECIPES");
+		JButton btnViewAllRecipes = new JButton("My RECIPES");
 		btnViewAllRecipes.setBounds(101, 27, 188, 29);
 		contentPane.add(btnViewAllRecipes);
-
 		btnViewAllRecipes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				dispose();
-
-				JFrame allRecipe;
-				try {
-					allRecipe = new ViewAllRecipe();
-					allRecipe.setLocation(100, 50);
-					allRecipe.setSize(600, 500);
-					allRecipe.setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
+				JFrame mainRecipe = new MaintainRecipePage();
+				mainRecipe.setLocation(100, 50);
+				mainRecipe.setSize(600, 500);
+				mainRecipe.setVisible(true);
 			}
-
-		});	  
+		});
 
 		JButton btnFeelingGood = new JButton("Recommend");
 		btnFeelingGood.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
@@ -86,7 +75,7 @@ public class HomePage extends JFrame {
 			}
 		});
 
-		JButton btnIngredients = new JButton("INGREDIENTS");
+		JButton btnIngredients = new JButton("Recipe List");
 		btnIngredients.setBounds(101, 64, 188, 29);
 		contentPane.add(btnIngredients);
 
@@ -104,7 +93,7 @@ public class HomePage extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
 
@@ -178,11 +167,18 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
-				JFrame logg = new Log();
+				JFrame logg;
+				try {
+					logg = new Log();
+				
 				logg.setLocation(100, 50);
 				logg.setSize(600, 500);
 				logg.setVisible(true);
-			}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				}
 		});
 
 		JLabel label = new JLabel("Hello! What would you like to do today?");

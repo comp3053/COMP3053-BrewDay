@@ -80,24 +80,11 @@ public class Recipe {
 	}
 	// function 2	
 	public void deleteRecipe(String name) {
-		while(true) {
-			System.out.println("Are you sure to delete recipe " + name +" in the datase? Input [Y] for yes, [N] for no.");
-			Scanner input = new Scanner(System.in);
-			String c = input.nextLine();
-			if(c.equals("Y") || c.equals("y")) {
+		
 				String sqlDelete = "DELETE FROM Recipe WHERE Name = '" + name +"'";
 				Database.Delete(sqlDelete);
-				System.out.println("Recipe " + name + " has been successfully removed from the database.");
-				break;
-			}
-			else if(c.equals("N") || c.equals("n")) {
-				System.out.println("Delete process stopped.");
-				break;
-			}
-			else {
-				System.out.println("You must input Y or N.");
-			}
-		}	
+				
+		
 	}
 	//function 3 
 	public int getRecipeId() throws SQLException {
@@ -159,10 +146,10 @@ public class Recipe {
 
 	//useless functions, but may be used in the future	
 
-	public void updateQuantity(float quantity) throws SQLException {
+	public void updateQuantity(float quantity, String name) throws SQLException {
 		if(quantity > 0) {
 			this.setQuantityOfRecipe(quantity);
-			String sqlUpdate = "UPDATE Recipe SET Quantity = '" + quantity + "'";
+			String sqlUpdate = "UPDATE Recipe SET Quantity = '" + quantity + "'  WHERE Name = ' "+name+"'";
 			Database.Update(sqlUpdate);
 		}
 		else {

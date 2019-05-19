@@ -124,8 +124,8 @@ public class AddRecipePage extends JFrame {
 				String quan = textField_2.getText();
 				float quantity = Float.parseFloat(quan);
 				String unit = textField.getText();
-				Recipe r = new Recipe(name, quantity, unit);
-				if(r.whetherInDB() == false) {
+				Recipe rtemp = new Recipe(name);
+				if(rtemp.whetherInDB() == true) {
 					String messege="Your recipe name is already EXIST!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
@@ -133,6 +133,7 @@ public class AddRecipePage extends JFrame {
 					win.setVisible(true);
 					
 				}else {
+					Recipe r = new Recipe(name, quantity, unit);
 					String messege="Recipe " + name + "has already been added.";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);

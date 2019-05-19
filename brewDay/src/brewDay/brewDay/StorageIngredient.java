@@ -26,7 +26,7 @@ public class StorageIngredient extends Ingredient {
 			unit = rs.getString("Unit");
 			id = rs.getInt("StorageIngredientID");
 		}
-		if(nameOfIngredient.equals(name) && unitOfIngredient == unit) {
+		if(nameOfIngredient.equals(name) && unitOfIngredient.equals(unit)) {
 			amount += amountOfIngredient;
 			String sqlAdd = "UPDATE StorageIngredient SET Amount = " + amount + " WHERE StorageIngredientID = " + id;
 			Database.Update(sqlAdd);
