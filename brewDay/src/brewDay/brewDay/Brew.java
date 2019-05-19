@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -85,6 +86,8 @@ public class Brew {
 		//get the number of line
 		List list = new ArrayList(); // list for recipes recommend
 		List<String> l = new LinkedList<String>(); // l for missing ingredients
+		
+		
 		int getline = 0;
 		boolean flag = false;
 		int[] arr = new int[100];
@@ -136,7 +139,6 @@ public class Brew {
 					list.add(m);
 				}
 				
-				
 			}
 			
 		}
@@ -149,10 +151,14 @@ public class Brew {
 			
 	}
 	
-	public static List<Map<String, Object>> recommendForUI(float batchsize) throws SQLException {
+
+	
+	public static Vector<Vector<Object>> recommendForUI(float batchsize) throws SQLException {
 		//this function used for RecommendSuccess
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		List<String> l = new LinkedList<String>();
+		Vector<Vector<Object>> dataVector = new Vector<Vector<Object>>();
+		
 		int getline = 0;
 		int[] arr = new int[100];
 		ResultSet getRecipe = Database.Select("SELECT Recipe.RecipeID, Recipe.Name, Quantity, RecipeIngredient.Name, RecipeIngredient.Amount, StorageIngredient.Amount FROM Recipe INNER JOIN RecipeIngredient INNER JOIN StorageIngredient ON Recipe.RecipeID = RecipeIngredient.RecipeID and RecipeIngredient.Name = StorageIngredient.Name");
@@ -198,6 +204,15 @@ public class Brew {
 					}
 					list.add(m);
 				}
+
+				
+				while(getRecommend.next()){
+					Vector<Object> vec = new Vector<Object>();//single for big Vector
+					for(int i=2;i<=4;i++){
+						vec.add(getRecommend.getObject(i));
+					}
+					dataVector.add(vec);
+				}
 			}
 			
 		}
@@ -207,7 +222,7 @@ public class Brew {
 	    }
 		// list list is for recommend recipes
 		//System.out.println(list);	
-		return list;	
+		return dataVector;	
 	}
 	
 	public static void BrewRecord() throws SQLException {

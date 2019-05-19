@@ -93,6 +93,7 @@ public class IngredientPage extends JFrame {
 		
 		Vector<String> columnName = new Vector<String>();//�ֶ���
 		Vector<Vector<Object>> dataVector = new Vector<Vector<Object>>();
+		
 		columnName.add("name");
 		columnName.add("amount");
 		columnName.add("unit");
