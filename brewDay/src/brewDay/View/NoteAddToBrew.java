@@ -1,3 +1,4 @@
+
 package View;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -8,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 
 import brewDay.Brew;
 import brewDay.Database;
-import brewDay.Note;
 import brewDay.Recipe;
 
 import javax.swing.JLabel;
@@ -26,7 +26,7 @@ import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class NoteMain extends JFrame {
+public class NoteAddToBrew extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -39,7 +39,7 @@ public class NoteMain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NoteMain frame = new NoteMain();
+					DeleteRecipePage frame = new DeleteRecipePage();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +52,7 @@ public class NoteMain extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public NoteMain() throws SQLException {
+	public NoteAddToBrew() throws SQLException {
 		setTitle("Delete Recipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 526, 451);
@@ -75,22 +75,24 @@ public class NoteMain extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	dispose();
 
-        	JFrame home = new HomePage();
-        	home.setLocation(100,50);
-        	home.setSize(600, 500);
-        	home.setVisible(true);
+        	JFrame mainn;
+			try {
+				mainn = new NoteMain();
+			
+        	mainn.setLocation(100,50);
+        	mainn.setSize(600, 500);
+        	mainn.setVisible(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         	}
 
         	});
 		
-		JButton btnAdd = new JButton("Add Note");
-		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnAdd.setForeground(new Color(30, 144, 255));
-		btnAdd.setBounds(27, 83, 88, 29);
-		contentPane.add(btnAdd);
 		
 		
-		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the note record:</html>");
+		JLabel lbltheTableBelow = new JLabel("<html>The table below shows brew record:</html>");
 		lbltheTableBelow.setBounds(28, 112, 340, 16);
 		contentPane.add(lbltheTableBelow);
 		
@@ -101,16 +103,15 @@ public class NoteMain extends JFrame {
 		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
 		Vector<Vector<Object>> dataVector = new
 		Vector<Vector<Object>>();
-		columnName.add("Note Index");
-		columnName.add("Content");
-		columnName.add("Date");
-		columnName.add("BrewID");
+		columnName.add("name");
+		columnName.add("amount");
+		columnName.add("unit");
 		
-		ResultSet rs= Note.AllNote();
+		ResultSet rs= Brew.Record();
 		
 		while(rs.next()){
 		Vector<Object> vec = new Vector<Object>();//single for big Vector
-		for(int i=1;i<=4;i++){
+		for(int i=2;i<=4;i++){
 		vec.add(rs.getObject(i));
 		}
 		dataVector.add(vec);
@@ -121,34 +122,26 @@ public class NoteMain extends JFrame {
 		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
 		
-		JLabel lblSelectRecipe = new JLabel("Input NoteId:");
+		JLabel lblSelectRecipe = new JLabel("Select brewid:");
 		lblSelectRecipe.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSelectRecipe.setBounds(73, 335, 100, 16);
+		lblSelectRecipe.setBounds(73, 335, 91, 16);
 		contentPane.add(lblSelectRecipe);
 		
 		textField = new JTextField();
-		textField.setBounds(186, 330, 166, 29);
+		textField.setBounds(176, 330, 166, 29);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		
-		JButton btnedit = new JButton("edit");
-		btnedit.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
-		btnedit.setForeground(new Color(250, 128, 114));
-		btnedit.setBounds(190, 360, 61, 20);
-		contentPane.add(btnedit);
-		
-		JButton btnFinish = new JButton("delete");
+		JButton btnFinish = new JButton("Finish");
 		btnFinish.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		btnFinish.setForeground(new Color(250, 128, 114));
-		btnFinish.setBounds(260, 360, 91, 20);
+		btnFinish.setBounds(28, 360, 91, 40);
 		contentPane.add(btnFinish);
 		btnFinish.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
 				
 			}
 
