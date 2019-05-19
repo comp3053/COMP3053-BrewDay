@@ -104,11 +104,9 @@ public class Brew {
 			{
 				getline = getLine.getInt("count");
 			}
-<<<<<<< HEAD
+
 			
 			// **************to be continue
-=======
->>>>>>> branch 'master' of https://github.com/comp3053/Atanasoff.git
 			if(getA < tempgetAmount)
 			{
 				float need = (float)getA - (float)tempgetAmount;
