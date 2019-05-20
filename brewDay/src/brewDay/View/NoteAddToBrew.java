@@ -53,7 +53,7 @@ public class NoteAddToBrew extends JFrame {
 	 * @throws SQLException 
 	 */
 	public NoteAddToBrew() throws SQLException {
-		setTitle("Delete Recipe");
+		setTitle("Note");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 526, 451);
 		contentPane = new JPanel();
@@ -100,7 +100,7 @@ public class NoteAddToBrew extends JFrame {
 		scrollPane.setBounds(28, 140, 436, 189);
 		contentPane.add(scrollPane);
 		
-		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
+		Vector<String> columnName = new Vector<String>();//ï¿½Ö¶ï¿½ï¿½ï¿½
 		Vector<Vector<Object>> dataVector = new
 		Vector<Vector<Object>>();
 		columnName.add("Brew index");

@@ -53,7 +53,7 @@ public class NoteMain extends JFrame {
 	 * @throws SQLException 
 	 */
 	public NoteMain() throws SQLException {
-		setTitle("Delete Recipe");
+		setTitle("Note");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 526, 451);
 		contentPane = new JPanel();
@@ -98,7 +98,7 @@ public class NoteMain extends JFrame {
 		scrollPane.setBounds(28, 140, 436, 189);
 		contentPane.add(scrollPane);
 		
-		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
+		Vector<String> columnName = new Vector<String>();//ï¿½Ö¶ï¿½ï¿½ï¿½
 		Vector<Vector<Object>> dataVector = new
 		Vector<Vector<Object>>();
 		columnName.add("Note Index");
@@ -123,7 +123,7 @@ public class NoteMain extends JFrame {
 		
 		JLabel lblSelectRecipe = new JLabel("Input NoteId:");
 		lblSelectRecipe.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSelectRecipe.setBounds(73, 335, 100, 16);
+		lblSelectRecipe.setBounds(98, 336, 100, 16);
 		contentPane.add(lblSelectRecipe);
 		
 		textField = new JTextField();
@@ -136,14 +136,14 @@ public class NoteMain extends JFrame {
 		btnedit.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		btnedit.setForeground(new Color(250, 128, 114));
-		btnedit.setBounds(190, 360, 61, 20);
+		btnedit.setBounds(187, 370, 61, 29);
 		contentPane.add(btnedit);
 		
 		JButton btnFinish = new JButton("delete");
 		btnFinish.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		btnFinish.setForeground(new Color(250, 128, 114));
-		btnFinish.setBounds(260, 360, 91, 20);
+		btnFinish.setBounds(261, 370, 91, 29);
 		contentPane.add(btnFinish);
 		btnFinish.addActionListener(new ActionListener() {
 
