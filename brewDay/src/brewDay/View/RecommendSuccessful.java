@@ -133,7 +133,7 @@ public class RecommendSuccessful extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				String a = textField.getText();
-				JFrame brews = new BrewPage(a);
+				JFrame brews = new BrewPage(a, batchsize);
 				brews.setLocation(100, 50);
 				brews.setSize(600, 500);
 				brews.setVisible(true);

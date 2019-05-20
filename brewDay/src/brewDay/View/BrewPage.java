@@ -92,7 +92,9 @@ public class BrewPage extends JFrame {
 		lblTheNumberOf.setBounds(72, 128, 184, 30);
 		contentPane.add(lblTheNumberOf);
 
+		String size = batchsize+"";
 		textField_1 = new JTextField();
+		textField_1.setText(size);
 		textField_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		textField_1.setColumns(10);
 		textField_1.setBounds(240, 131, 130, 26);
