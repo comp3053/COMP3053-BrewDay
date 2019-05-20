@@ -19,6 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JList;
+import java.awt.Color;
 
 public class shoppingList extends JFrame {
 
@@ -48,13 +49,14 @@ public class shoppingList extends JFrame {
 	public shoppingList(float batchsize) throws SQLException {
 		setTitle("shopping list");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 566, 405);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setForeground(new Color(30, 144, 255));
 		btnBack.setBounds(6, 6, 75, 29);
 		contentPane.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
@@ -65,7 +67,7 @@ public class shoppingList extends JFrame {
 		});
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 47, 317, 175);
+		scrollPane.setBounds(26, 51, 513, 308);
 		contentPane.add(scrollPane);
 		
 		JPanel panel = new JPanel();
