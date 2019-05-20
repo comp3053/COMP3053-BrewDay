@@ -215,6 +215,64 @@ public class Brew {
 		return dataVector;	
 	}
 	
+	public static List<String> shoppingListForUI(float batchsize) throws SQLException {
+		//this function used for RecommendSuccess
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		List<String> l = new LinkedList<String>();
+		Vector<Vector<Object>> dataVector = new Vector<Vector<Object>>();
+		
+		int getline = 0;
+		int[] arr = new int[5000];
+		ResultSet getRecipe = Database.Select("SELECT Recipe.RecipeID, Recipe.Name, Quantity, RecipeIngredient.Name, RecipeIngredient.Amount, StorageIngredient.Amount FROM Recipe INNER JOIN RecipeIngredient INNER JOIN StorageIngredient ON Recipe.RecipeID = RecipeIngredient.RecipeID and RecipeIngredient.Name = StorageIngredient.Name");
+		while (getRecipe.next()) { 
+			int getRID = getRecipe.getInt("RecipeID");
+			String getName = getRecipe.getString("Name");
+			float getQuantity = getRecipe.getFloat("Quantity");
+			float temp = (float)batchsize/(float)getQuantity;	// multiply
+			String getIngredientName = getRecipe.getString("RecipeIngredient.Name");
+			float getAmount = getRecipe.getFloat("RecipeIngredient.Amount");
+			float getA = getRecipe.getFloat("StorageIngredient.Amount");
+			float tempgetAmount = (float)temp * (float)getAmount;
+			//get the number of line
+			ResultSet getLine = Database.Select("SELECT COUNT(*) as count FROM RecipeIngredient Where RecipeID="+ getRID);
+			while(getLine.next())
+			{
+				getline = getLine.getInt("count");
+			}
+			
+			if(getA < tempgetAmount)
+			{
+				float need = (float)getA - (float)tempgetAmount;
+				l.add("Recipe <"+getName+"> Storage of "+getIngredientName +" are not enough"+", you should buy "+ (-need));
+			}
+			else
+			{
+				arr[getRID]++;
+				
+			}
+			if(arr[getRID] == getline)
+			{
+				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
+				ResultSetMetaData rsmd = getRecommend.getMetaData();
+				while(getRecommend.next()){
+					Vector<Object> vec = new Vector<Object>();//single for big Vector
+					for(int i=2;i<=4;i++){
+						vec.add(getRecommend.getObject(i));
+					}
+					dataVector.add(vec);
+				}
+			}
+			
+		}
+		// list l is for missing ingredients
+		for (String str : l) {
+	        System.out.println(str);
+	    }
+		// list list is for recommend recipes
+		//System.out.println(list);	
+		return l;	
+	}
+	
 	public static void BrewRecord() throws SQLException {
 		ResultSet getRecord = Database.Select("SELECT * FROM Brew");
 		while (getRecord.next()) { 

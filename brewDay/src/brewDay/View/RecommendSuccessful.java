@@ -129,17 +129,6 @@ public class RecommendSuccessful extends JFrame {
 		btnBrew.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnBrew.setBounds(251, 366, 92, 25);
 		contentPane.add(btnBrew);
-		
-		JLabel lblshowTheShopping = new JLabel("<html>Show the shopping list:<html>");
-		lblshowTheShopping.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblshowTheShopping.setBounds(136, 229, 180, 40);
-		contentPane.add(lblshowTheShopping);
-		
-		JButton btnShoppingList = new JButton("Shopping list");
-		btnShoppingList.setForeground(new Color(255, 0, 0));
-		btnShoppingList.setFont(new Font("Dialog", Font.BOLD, 15));
-		btnShoppingList.setBounds(146, 271, 141, 25);
-		contentPane.add(btnShoppingList);
 		btnBrew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -151,5 +140,35 @@ public class RecommendSuccessful extends JFrame {
 			}
 
 		});
+		
+		JLabel lblshowTheShopping = new JLabel("<html>Show the shopping list:<html>");
+		lblshowTheShopping.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		lblshowTheShopping.setBounds(136, 229, 180, 40);
+		contentPane.add(lblshowTheShopping);
+		
+		JButton btnShoppingList = new JButton("Shopping list");
+		btnShoppingList.setForeground(new Color(255, 0, 0));
+		btnShoppingList.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnShoppingList.setBounds(146, 271, 141, 25);
+		contentPane.add(btnShoppingList);
+		btnShoppingList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				JFrame miss;
+				try {
+					miss = new shoppingList(batchsize);
+				
+				miss.setLocation(100, 50);
+				miss.setSize(600, 500);
+				miss.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+		});
+		
 	}
 }
