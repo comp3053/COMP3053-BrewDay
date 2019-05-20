@@ -59,15 +59,14 @@ public class Log extends JFrame {
 		
 		Vector<String> columnName = new Vector<String>();
 
-
-		columnName.add("BrewID");
+		columnName.add("BrewID"); 
 		columnName.add("BatchSize");
 		columnName.add("Date");
 		columnName.add("RecipeID");
 		Vector<Vector<Object>> dataVector= Brew.BrewRecord1();
 		table = new JTable(dataVector, columnName);
 		
-		table.getColumnModel().getColumn(0).setPreferredWidth(80);
+		table.getColumnModel().getColumn(0).setPreferredWidth(79);
 
 		table.getColumnModel().getColumn(1).setPreferredWidth(120);
 
