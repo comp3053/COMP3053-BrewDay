@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class MaintainEquipmentInfoPage extends JFrame {
 
@@ -43,9 +44,9 @@ public class MaintainEquipmentInfoPage extends JFrame {
 	 * @throws SQLException 
 	 */
 	public MaintainEquipmentInfoPage() throws SQLException {
-		setTitle("Equipment InfoPage");
+		setTitle("Equipment Infomation");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 450, 300);
+		setBounds(200, 200, 485, 338);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -54,15 +55,18 @@ public class MaintainEquipmentInfoPage extends JFrame {
 		Equipment e = new Equipment();
 		float cap = e.getCapacity();
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(18, 60, 444, 61);
+		contentPane.add(scrollPane);
+		
 		JLabel lblNewLabel = new JLabel("The Capacity of your equipment is "+cap+" L.");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
-		lblNewLabel.setBounds(18, 60, 500, 27);
-		contentPane.add(lblNewLabel);
+		scrollPane.setViewportView(lblNewLabel);
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 
 		JButton btnAdd = new JButton("Update");
 		btnAdd.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnAdd.setForeground(new Color(30, 144, 255));
-		btnAdd.setBounds(158, 150, 133, 45);
+		btnAdd.setBounds(182, 198, 133, 45);
 		contentPane.add(btnAdd);
 		
 		JButton button = new JButton("Back");
