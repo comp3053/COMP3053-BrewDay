@@ -81,10 +81,16 @@ public class RecommendSuccessful extends JFrame {
 		columnName.add("unit");
 	
 		Vector<Vector<Object>> dataVector= Brew.recommendForUI(batchsize);
-		new JTable(dataVector, columnName);
-		scrollPane.add(table);	
+		/*while(rs.next()){
+		Vector<Object> vec = new Vector<Object>();//single for big Vector
+		for(int i=2;i<=4;i++){
+		vec.add(rs.getObject(i));
+		}
+		dataVector.add(vec);
+		}*/
+		table = new JTable(dataVector, columnName);
 		scrollPane.add(table.getTableHeader());
-		
+		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
 		scrollPane.setViewportView(table);
 		contentPane.add(scrollPane);
@@ -127,7 +133,7 @@ public class RecommendSuccessful extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				String a = textField.getText();
-				JFrame brews = new BrewPage(a,batchsize);
+				JFrame brews = new BrewPage(a);
 				brews.setLocation(100, 50);
 				brews.setSize(600, 500);
 				brews.setVisible(true);
