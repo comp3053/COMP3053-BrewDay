@@ -142,7 +142,7 @@ public class DeleteRecipePage extends JFrame {
 					win.setSize(400, 200);
 					win.setVisible(true);
 				}
-				if(r.whetherInDB()==true) {
+				if(r.whetherInDB()==false) {
 					String messege="No such recipe!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
