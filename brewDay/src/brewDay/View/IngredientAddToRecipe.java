@@ -80,13 +80,13 @@ public class IngredientAddToRecipe extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	dispose();
 
-        	JFrame upmain;
+        	JFrame main;
 			try {
-				upmain = new UpdateRecipePage();
+				main = new IngredientPage();
 			
-        	upmain.setLocation(100,50);
-        	upmain.setSize(600, 500);
-        	upmain.setVisible(true);
+        	main.setLocation(100,50);
+        	main.setSize(600, 500);
+        	main.setVisible(true);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
