@@ -133,6 +133,13 @@ public class DeleteRecipePage extends JFrame {
 		btnFinish.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				if(textField.getText().trim().equals("")) {
+					String messege="You must input name!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				}else {
 				String name = textField.getText();
 				Recipe r = new Recipe(name);
 				r.deleteRecipe(name);
@@ -147,7 +154,7 @@ public class DeleteRecipePage extends JFrame {
 	        	MaintainR.setSize(600, 500);
 	        	MaintainR.setVisible(true);
 				
-				
+				}
 			}
 
 		});

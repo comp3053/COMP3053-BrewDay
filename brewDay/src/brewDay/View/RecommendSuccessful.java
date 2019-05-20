@@ -82,8 +82,9 @@ public class RecommendSuccessful extends JFrame {
 	
 		Vector<Vector<Object>> dataVector= Brew.recommendForUI(batchsize);
 		new JTable(dataVector, columnName);
-		scrollPane.add(table.getTableHeader());
 		scrollPane.add(table);	
+		scrollPane.add(table.getTableHeader());
+		
 		scrollPane.setViewportView(table);
 		scrollPane.setViewportView(table);
 		contentPane.add(scrollPane);

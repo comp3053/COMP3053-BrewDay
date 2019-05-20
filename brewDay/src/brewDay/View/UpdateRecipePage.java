@@ -133,6 +133,13 @@ public class UpdateRecipePage extends JFrame {
 		btnFinish.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				if(textField.getText().trim().equals("")) {
+					String messege="You must input name!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				}else {
 				String name = textField.getText();
 				
 					
@@ -141,7 +148,7 @@ public class UpdateRecipePage extends JFrame {
 	        	edit.setLocation(100,50);
 	        	edit.setSize(600, 500);
 	        	edit.setVisible(true);
-				
+				}
 				
 			}
 
