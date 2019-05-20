@@ -47,14 +47,14 @@ public class Log extends JFrame {
 	public Log() throws SQLException {
 		setTitle("Log Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 565, 404);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(54, 53, 345, 183);
+		scrollPane.setBounds(54, 53, 470, 262);
 		contentPane.add(scrollPane);
 		
 		Vector<String> columnName = new Vector<String>();
@@ -66,6 +66,15 @@ public class Log extends JFrame {
 		columnName.add("RecipeID");
 		Vector<Vector<Object>> dataVector= Brew.BrewRecord1();
 		table = new JTable(dataVector, columnName);
+		
+		table.getColumnModel().getColumn(0).setPreferredWidth(80);
+
+		table.getColumnModel().getColumn(1).setPreferredWidth(120);
+
+		table.getColumnModel().getColumn(2).setPreferredWidth(260);
+
+		table.getColumnModel().getColumn(3).setPreferredWidth(80);
+		
 		scrollPane.add(table.getTableHeader());
 		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
