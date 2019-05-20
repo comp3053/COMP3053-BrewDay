@@ -31,6 +31,7 @@ public class NoteMain extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -55,7 +56,7 @@ public class NoteMain extends JFrame {
 	public NoteMain() throws SQLException {
 		setTitle("Note");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 526, 451);
+		setBounds(100, 100, 526, 496);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -86,7 +87,7 @@ public class NoteMain extends JFrame {
 		JButton btnAdd = new JButton("Add Note");
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAdd.setForeground(new Color(30, 144, 255));
-		btnAdd.setBounds(27, 83, 88, 29);
+		btnAdd.setBounds(225, 343, 88, 29);
 		contentPane.add(btnAdd);
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -102,11 +103,11 @@ public class NoteMain extends JFrame {
 		});
 		
 		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the note record:</html>");
-		lbltheTableBelow.setBounds(28, 112, 340, 16);
+		lbltheTableBelow.setBounds(28, 77, 340, 16);
 		contentPane.add(lbltheTableBelow);
 		
 		JScrollPane scrollPane = new JScrollPane();            
-		scrollPane.setBounds(28, 140, 436, 189);
+		scrollPane.setBounds(28, 105, 436, 189);
 		contentPane.add(scrollPane);
 		
 		Vector<String> columnName = new Vector<String>();//�ֶ���
@@ -134,11 +135,11 @@ public class NoteMain extends JFrame {
 		
 		JLabel lblSelectRecipe = new JLabel("Input NoteId:");
 		lblSelectRecipe.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSelectRecipe.setBounds(98, 336, 100, 16);
+		lblSelectRecipe.setBounds(98, 390, 100, 16);
 		contentPane.add(lblSelectRecipe);
 		
 		textField = new JTextField();
-		textField.setBounds(186, 330, 166, 29);
+		textField.setBounds(186, 384, 166, 29);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -147,7 +148,7 @@ public class NoteMain extends JFrame {
 		btnedit.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		btnedit.setForeground(new Color(250, 128, 114));
-		btnedit.setBounds(187, 370, 61, 29);
+		btnedit.setBounds(196, 418, 61, 29);
 		contentPane.add(btnedit);
 		
 		btnedit.addActionListener(new ActionListener() {
@@ -169,8 +170,18 @@ public class NoteMain extends JFrame {
 		btndelete.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		btndelete.setForeground(new Color(250, 128, 114));
-		btndelete.setBounds(261, 370, 91, 29);
+		btndelete.setBounds(261, 418, 91, 29);
 		contentPane.add(btndelete);
+		
+		JLabel lblInputBrewIndex = new JLabel("<html>Input Brew index:</html>");
+		lblInputBrewIndex.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblInputBrewIndex.setBounds(80, 300, 151, 40);
+		contentPane.add(lblInputBrewIndex);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(186, 306, 166, 29);
+		contentPane.add(textField_1);
 		btndelete.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
