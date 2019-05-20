@@ -37,11 +37,14 @@ public class Brew {
 	public void implement(Recipe recipe) throws SQLException { //implement the recipe that use select
 		int flag = 0; //a mark
 		int Rid; //recipe ID, for searching use
+		int numberOfRI = 0;
+		int numberOfIngredient = 0;
 		Rid = recipe.getRecipeId();
 		ResultSet getRI = Database.Select("SELECT Name, Amount FROM RecipeIngredient Where RecipeID = " + Rid);
 		while (getRI.next()) { //get amount from the class RecipeIngredient
 			String nameOfRI = getRI.getString("Name");
 			float amountOfRI = getRI.getFloat("Amount");
+			numberOfRI += 1;
 			temp = (float)batchSize / recipe.getQuantityOfRecipe(); 
 			amountOfRI = (float)temp * (float)amountOfRI;
 			ResultSet getAmountOfIngredient = Database.Select("SELECT Name, Amount FROM StorageIngredient WHERE Name = '" + nameOfRI + "'");
@@ -49,6 +52,7 @@ public class Brew {
 				String nameOfIngredient = getAmountOfIngredient.getString("Name");
 				int amountOfIngredient = getAmountOfIngredient.getInt("Amount");
 				if(nameOfIngredient.equals(nameOfRI)) { //for the same ingredient in RI and ingredient
+					numberOfIngredient += 1;
 					if (amountOfIngredient >= amountOfRI) { //if the amount is enough for this operation, do other matching 
 						continue;
 					} else {// if no enough ingredient, the process stopped and give error message
@@ -58,7 +62,7 @@ public class Brew {
 				}
 			}
 		}
-		if (flag == 0) {//implement process
+		if (flag == 0 && numberOfRI == numberOfIngredient) {//implement process
 			
 			ResultSet getRI1 = Database.Select("SELECT Name, Amount FROM RecipeIngredient Where RecipeID = " + Rid);
 			while (getRI1.next()) {//get amount from the class RecipeIngredient
@@ -182,7 +186,6 @@ public class Brew {
 			{
 				float need = (float)getA - (float)tempgetAmount;
 				l.add("Recipe <"+getName+"> Storage of "+getIngredientName +" are not enough"+", you should buy "+ (-need));
-				//System.out.println("For recipe <"+getName+"> Storage of "+getIngredientName +" not enough"+", you should buy "+ (-need));
 			}
 			else
 			{
@@ -191,21 +194,8 @@ public class Brew {
 			}
 			if(arr[getRID] == getline)
 			{
-				//System.out.println("The following recipes are recommend: ");
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID="+ getRID);
 				ResultSetMetaData rsmd = getRecommend.getMetaData();
-				/*while(getRecommend.next())
-				{
-					Map<String, Object> m = new HashMap();
-					int columnCount = rsmd.getColumnCount();
-					for(int i=0;i<columnCount;i++) {
-						String columnName = rsmd.getColumnName(i+1);
-						m.put(columnName,getRecommend.getObject(i+1));
-					}
-					list.add(m);
-				}*/
-
-				
 				while(getRecommend.next()){
 					Vector<Object> vec = new Vector<Object>();//single for big Vector
 					for(int i=2;i<=4;i++){
