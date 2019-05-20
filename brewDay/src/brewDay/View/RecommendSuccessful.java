@@ -57,7 +57,7 @@ public class RecommendSuccessful extends JFrame {
 		
 		setTitle("Recommend succeed");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 367);
+		setBounds(100, 100, 468, 427);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -113,22 +113,33 @@ public class RecommendSuccessful extends JFrame {
 
 		});
 		
-		lblNewLabel = new JLabel("<html>Please input the recipe name that you want to brew right now:</html>");
+		lblNewLabel = new JLabel("<html>Please input the recipe name that you want to brew right now.</html>");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNewLabel.setBounds(65, 229, 363, 40);
+		lblNewLabel.setBounds(12, 308, 444, 40);
 		contentPane.add(lblNewLabel);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Dialog", Font.PLAIN, 14));
-		textField.setBounds(92, 281, 145, 29);
+		textField.setBounds(94, 364, 145, 29);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		JButton btnBrew = new JButton("Brew!");
 		btnBrew.setForeground(new Color(50, 205, 50));
 		btnBrew.setFont(new Font("Dialog", Font.BOLD, 15));
-		btnBrew.setBounds(249, 283, 92, 25);
+		btnBrew.setBounds(251, 366, 92, 25);
 		contentPane.add(btnBrew);
+		
+		JLabel lblshowTheShopping = new JLabel("<html>Show the shopping list:<html>");
+		lblshowTheShopping.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		lblshowTheShopping.setBounds(136, 229, 180, 40);
+		contentPane.add(lblshowTheShopping);
+		
+		JButton btnShoppingList = new JButton("Shopping list");
+		btnShoppingList.setForeground(new Color(255, 0, 0));
+		btnShoppingList.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnShoppingList.setBounds(146, 271, 141, 25);
+		contentPane.add(btnShoppingList);
 		btnBrew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
