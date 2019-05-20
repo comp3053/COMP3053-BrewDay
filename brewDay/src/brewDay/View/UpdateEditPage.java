@@ -103,7 +103,7 @@ public class UpdateEditPage extends JFrame {
 
 		JLabel ququ = new JLabel("L");
 		ququ.setFont(new Font("Dialog", Font.BOLD, 14));
-		ququ.setBounds(194, 133, 165, 26);
+		ququ.setBounds(194, 193, 165, 26);
 		contentPane.add(ququ);
 
 		
