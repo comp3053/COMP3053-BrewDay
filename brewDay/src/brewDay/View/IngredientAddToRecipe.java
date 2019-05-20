@@ -40,7 +40,7 @@ public class IngredientAddToRecipe extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddRecipePage frame = new AddRecipePage();
+					IngredientAddToRecipe frame = new IngredientAddToRecipe(0, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

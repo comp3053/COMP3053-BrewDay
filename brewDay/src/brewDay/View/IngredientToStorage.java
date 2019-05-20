@@ -104,16 +104,11 @@ public class IngredientToStorage extends JFrame {
         	dispose();
 
         	JFrame home;
-			try {
-				home = new IngredientPage();
-			
-        	home.setLocation(100,50);
-        	home.setSize(600, 500);
-        	home.setVisible(true);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			home = new MainIngredient();
+
+     	home.setLocation(100,50);
+     	home.setSize(600, 500);
+     	home.setVisible(true);
         	}
 
         	});

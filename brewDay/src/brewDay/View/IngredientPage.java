@@ -73,10 +73,12 @@ public class IngredientPage extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	dispose();
 
-        	JFrame MaintainR = new MaintainRecipePage();
-        	MaintainR.setLocation(100,50);
-        	MaintainR.setSize(600, 500);
-        	MaintainR.setVisible(true);
+        	JFrame home;
+			home = new MainIngredient();
+
+     	home.setLocation(100,50);
+     	home.setSize(600, 500);
+     	home.setVisible(true);
         	}
 
         	});

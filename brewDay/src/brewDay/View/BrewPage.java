@@ -35,7 +35,7 @@ public class BrewPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BrewPage frame = new BrewPage("Input");
+					BrewPage frame = new BrewPage("Input",0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,8 +46,9 @@ public class BrewPage extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param batchsize 
 	 */
-	public BrewPage(String aname) {
+	public BrewPage(String aname, float batchsize) {
 		setTitle("Brew");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 361);
