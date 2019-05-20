@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 public class Note {
 	//gr
@@ -44,6 +45,32 @@ public class Note {
 			return true;
 		}
 	}
+	public static void UIedit(String input,int noteID) {
+		
+			
+			Database.Update("UPDATE Note Set Content = '" + input +"' Where NoteID ="+ noteID);
+			
+	}
+	
+	public static String getText(int noteID) throws SQLException {
+		String text;
+		Vector<Vector<Object>> dataVector = new
+				Vector<Vector<Object>>();
+		ResultSet rs=Database.Select("SELECT * FROM Note WHERE NoteID ="+ noteID);
+		while(rs.next()){
+			Vector<Object> vec = new Vector<Object>();//single for big Vector
+			
+			vec.add(rs.getObject(2));
+			
+			dataVector.add(vec);
+		
+		}
+		text = dataVector.toString();
+		text = text.replace("[", "");
+		text = text.replace("]", "");
+		return text;
+		
+}
 	//gr
 	public boolean delete(int id) {
 			String sql = "Delete FROM Note Where NoteID =" +id;

@@ -28,7 +28,7 @@ public class NoteWritingPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NoteWritingPage frame = new NoteWritingPage(0);
+					NoteWritingPage frame = new NoteWritingPage(0,null,0,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class NoteWritingPage extends JFrame {
 	 * Create the frame.
 	 * @param bid 
 	 */
-	public NoteWritingPage(int bid) {
+	public NoteWritingPage(int bid, String btnvalue, int nid, String oldtext) {
 		setTitle("Note");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -55,6 +55,7 @@ public class NoteWritingPage extends JFrame {
 		contentPane.add(scrollPane);
 		
 		JEditorPane editorPane = new JEditorPane();
+		editorPane.setText(oldtext);
 		scrollPane.setColumnHeaderView(editorPane);
 		
 		JLabel lblNewLabel = new JLabel("<html>The note will be attached to the Brew "+bid+"</httml>");
@@ -67,6 +68,7 @@ public class NoteWritingPage extends JFrame {
 		contentPane.add(btnBack);
 		
 		btnBack.addActionListener(new ActionListener(){
+			
         	public void actionPerformed(ActionEvent e) {
         	dispose();
 
@@ -85,13 +87,21 @@ public class NoteWritingPage extends JFrame {
 
         	});
 		
-		JButton btnFinish = new JButton("Add");
+		JButton btnFinish = new JButton(btnvalue);
 		btnFinish.setForeground(new Color(255, 105, 180));
 		btnFinish.setBounds(6, 214, 75, 36);
 		contentPane.add(btnFinish);
 		btnFinish.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e) {
-        		String content = editorPane.getContentType();
+        		if(btnvalue == "Add") {
+        			if(editorPane.getContentType().trim().equals("")) {
+    					String messege="You must write something!";
+    					JFrame win = new PromptWindow(messege);
+    					win.setLocation(500, 80);
+    					win.setSize(400, 200);
+    					win.setVisible(true);}
+        			else {
+        		String content = editorPane.getText();
         		Note n = new Note();
         		n.addNote(content, bid);
         		dispose();
@@ -113,9 +123,40 @@ public class NoteWritingPage extends JFrame {
 				win.setLocation(500, 80);
 				win.setSize(400, 200);
 				win.setVisible(true);
-        		
+        		}
 
-        	
+        		}
+        		if(btnvalue == "Edit") {
+        			if(editorPane.getContentType().trim().equals("")) {
+    					String messege="You must write something!";
+    					JFrame win = new PromptWindow(messege);
+    					win.setLocation(500, 80);
+    					win.setSize(400, 200);
+    					win.setVisible(true);}
+        			else {
+        		String content = editorPane.getText();
+        		Note.UIedit(content, nid);
+        		dispose();
+        		JFrame main;
+    			
+    				try {
+						main = new NoteMain();
+					
+    			
+            	main.setLocation(100,50);
+            	main.setSize(600, 500);
+            	main.setVisible(true);
+    				} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+        		String messege="Your note have updated.";
+				JFrame win = new PromptWindow(messege);
+				win.setLocation(500, 80);
+				win.setSize(400, 200);
+				win.setVisible(true);
+        		}
+        		}
         	}
 
         	});

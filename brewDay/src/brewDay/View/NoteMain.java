@@ -31,7 +31,6 @@ public class NoteMain extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textField;
-	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -56,7 +55,7 @@ public class NoteMain extends JFrame {
 	public NoteMain() throws SQLException {
 		setTitle("Note");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 526, 496);
+		setBounds(100, 100, 526, 451);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -87,27 +86,33 @@ public class NoteMain extends JFrame {
 		JButton btnAdd = new JButton("Add Note");
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAdd.setForeground(new Color(30, 144, 255));
-		btnAdd.setBounds(225, 343, 88, 29);
+		btnAdd.setBounds(27, 83, 88, 29);
 		contentPane.add(btnAdd);
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					String btnvalue = "Add Note";
 					dispose();
-					/*JFrame addn = new NoteWritingPage(messege);
-					addn.setLocation(500, 80);
-					addn.setSize(400, 200);
-					addn.setVisible(true);*/
+					JFrame addn;
+					try {
+						addn = new NoteAddToBrew();
+					
+					addn.setLocation(400, 80);
+					addn.setSize(500, 500);
+					addn.setVisible(true);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				
 			}
 
 		});
 		
 		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the note record:</html>");
-		lbltheTableBelow.setBounds(28, 77, 340, 16);
+		lbltheTableBelow.setBounds(28, 112, 340, 16);
 		contentPane.add(lbltheTableBelow);
 		
 		JScrollPane scrollPane = new JScrollPane();            
-		scrollPane.setBounds(28, 105, 436, 189);
+		scrollPane.setBounds(28, 140, 436, 189);
 		contentPane.add(scrollPane);
 		
 		Vector<String> columnName = new Vector<String>();//�ֶ���
@@ -135,20 +140,20 @@ public class NoteMain extends JFrame {
 		
 		JLabel lblSelectRecipe = new JLabel("Input NoteId:");
 		lblSelectRecipe.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSelectRecipe.setBounds(98, 390, 100, 16);
+		lblSelectRecipe.setBounds(98, 336, 100, 16);
 		contentPane.add(lblSelectRecipe);
 		
 		textField = new JTextField();
-		textField.setBounds(186, 384, 166, 29);
+		textField.setBounds(186, 330, 166, 29);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		
-		JButton btnedit = new JButton("edit");
+		JButton btnedit = new JButton("Edit");
 		btnedit.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		btnedit.setForeground(new Color(250, 128, 114));
-		btnedit.setBounds(196, 418, 61, 29);
+		btnedit.setBounds(187, 370, 61, 29);
 		contentPane.add(btnedit);
 		
 		btnedit.addActionListener(new ActionListener() {
@@ -161,6 +166,21 @@ public class NoteMain extends JFrame {
 				win.setVisible(true);
 			}else {
 			//edit
+				String nid = textField.getText();
+				int id=Integer.parseInt(nid);
+				String oldtext;
+				try {
+					oldtext = Note.getText(id);
+				
+				dispose();
+				JFrame edn = new NoteWritingPage(0,"Edit",id, oldtext);
+				edn.setLocation(400, 80);
+				edn.setSize(500, 500);
+				edn.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 
@@ -170,18 +190,8 @@ public class NoteMain extends JFrame {
 		btndelete.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		btndelete.setForeground(new Color(250, 128, 114));
-		btndelete.setBounds(261, 418, 91, 29);
+		btndelete.setBounds(261, 370, 91, 29);
 		contentPane.add(btndelete);
-		
-		JLabel lblInputBrewIndex = new JLabel("<html>Input Brew index:</html>");
-		lblInputBrewIndex.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblInputBrewIndex.setBounds(80, 300, 151, 40);
-		contentPane.add(lblInputBrewIndex);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(186, 306, 166, 29);
-		contentPane.add(textField_1);
 		btndelete.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -195,10 +205,21 @@ public class NoteMain extends JFrame {
 				String nid = textField.getText();
 				int id=Integer.parseInt(nid);
 				Note.UIdelete(id);
+				dispose();
+				JFrame note;
+				try {
+					note = new NoteMain();
+				
+				note.setLocation(100, 50);
+				note.setSize(600, 500);
+				note.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				}
 			}
 
 		});
 	}
 }
-

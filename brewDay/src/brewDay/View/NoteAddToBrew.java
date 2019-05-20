@@ -100,7 +100,7 @@ public class NoteAddToBrew extends JFrame {
 		scrollPane.setBounds(28, 140, 436, 189);
 		contentPane.add(scrollPane);
 		
-		Vector<String> columnName = new Vector<String>();//�ֶ���
+		Vector<String> columnName = new Vector<String>();
 		Vector<Vector<Object>> dataVector = new
 		Vector<Vector<Object>>();
 		columnName.add("Brew index");
@@ -149,7 +149,7 @@ public class NoteAddToBrew extends JFrame {
 				dispose();
 
 	        	
-				JFrame write = new NoteWritingPage(bid);
+				JFrame write = new NoteWritingPage(bid,"Add",0,null);
 
 				write.setLocation(100,50);
      	write.setSize(600, 500);
