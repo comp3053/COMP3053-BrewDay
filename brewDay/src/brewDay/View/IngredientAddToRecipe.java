@@ -55,7 +55,7 @@ public class IngredientAddToRecipe extends JFrame {
 	 */
 	public IngredientAddToRecipe(int rid, String name) {
 		setResizable(false);
-		setTitle("Edit and update Recipe");
+		setTitle("Add ingredient to recipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 369);
 		contentPane = new JPanel();
@@ -64,7 +64,7 @@ public class IngredientAddToRecipe extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblpleaseFillIn = new JLabel(
-				"<html>Please edit in the blank with your selected recipe information then press \"Finish\" button to submit it.</html>");
+				"<html>Please fill the new ingredient information then press \"Finish\" button to submit it.</html>");
 		lblpleaseFillIn.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblpleaseFillIn.setBackground(Color.GREEN);
 		lblpleaseFillIn.setBounds(70, 55, 303, 63);
@@ -139,6 +139,7 @@ public class IngredientAddToRecipe extends JFrame {
 				float quantity = Float.parseFloat(quan);
 				String unit = textField_3.getText();
 				RecipeIngredient rein = new RecipeIngredient(ingrename,quantity,unit);
+				
 				try {
 					rein.addIngredientToRecipe(rid, name);
 					dispose();

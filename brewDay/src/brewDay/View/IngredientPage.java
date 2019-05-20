@@ -135,9 +135,18 @@ public class IngredientPage extends JFrame {
 		btnFinish.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				String name = textField.getText();
-				Recipe r = new Recipe(name);
+				
 				try {
+				if(textField.getText().trim().equals("")) {
+					String messege="You must input name!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				}
+				else {
+					String name = textField.getText();
+					Recipe r = new Recipe(name);
 					int rid = r.getRecipeId();
 				
 					
@@ -146,11 +155,12 @@ public class IngredientPage extends JFrame {
 	        	ingreadd.setLocation(100,50);
 	        	ingreadd.setSize(600, 500);
 	        	ingreadd.setVisible(true);
+				
+				}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
 			}
 
 		});
