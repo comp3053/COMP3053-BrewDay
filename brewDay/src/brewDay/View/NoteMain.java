@@ -88,7 +88,18 @@ public class NoteMain extends JFrame {
 		btnAdd.setForeground(new Color(30, 144, 255));
 		btnAdd.setBounds(27, 83, 88, 29);
 		contentPane.add(btnAdd);
-		
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					String btnvalue = "Add Note";
+					dispose();
+					/*JFrame addn = new NoteWritingPage(messege);
+					addn.setLocation(500, 80);
+					addn.setSize(400, 200);
+					addn.setVisible(true);*/
+				
+			}
+
+		});
 		
 		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the note record:</html>");
 		lbltheTableBelow.setBounds(28, 112, 340, 16);
@@ -139,17 +150,41 @@ public class NoteMain extends JFrame {
 		btnedit.setBounds(187, 370, 61, 29);
 		contentPane.add(btnedit);
 		
-		JButton btnFinish = new JButton("delete");
-		btnFinish.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnedit.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			if(textField.getText().trim().equals("")) {
+				String messege="You must input Note id!";
+				JFrame win = new PromptWindow(messege);
+				win.setLocation(500, 80);
+				win.setSize(400, 200);
+				win.setVisible(true);
+			}else {
+			//edit
+			}
+		}
+
+	});
 		
-		btnFinish.setForeground(new Color(250, 128, 114));
-		btnFinish.setBounds(261, 370, 91, 29);
-		contentPane.add(btnFinish);
-		btnFinish.addActionListener(new ActionListener() {
+		JButton btndelete = new JButton("delete");
+		btndelete.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		btndelete.setForeground(new Color(250, 128, 114));
+		btndelete.setBounds(261, 370, 91, 29);
+		contentPane.add(btndelete);
+		btndelete.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				if(textField.getText().trim().equals("")) {
+					String messege="You must input Note id!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				}else {
+				String nid = textField.getText();
+				int id=Integer.parseInt(nid);
+				Note.UIdelete(id);
+				}
 			}
 
 		});

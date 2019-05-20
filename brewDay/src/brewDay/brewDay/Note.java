@@ -52,6 +52,13 @@ public class Note {
 			return true;
 
 	}
+	public static void UIdelete(int id) {
+		String sql = "Delete FROM Note Where NoteID =" +id;
+		Database.Delete(sql);
+		System.out.println("Delete note success!");
+
+
+}
 	//gr
 	public static void showAllNote() throws SQLException {
 		ResultSet getNote = Database.Select("SELECT * FROM Note");
