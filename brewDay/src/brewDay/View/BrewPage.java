@@ -97,11 +97,6 @@ public class BrewPage extends JFrame {
 		textField_1.setBounds(240, 131, 130, 26);
 		contentPane.add(textField_1);
 
-		JLabel lblNewLabel_1 = new JLabel("<html>Sorry, the recipe is not exit.</html>");
-		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(139, 234, 191, 35);
-		contentPane.add(lblNewLabel_1);
-
 		JButton button = new JButton("BREW!");
 		button.setFont(new Font("Lucida Grande", Font.BOLD, 25));
 		button.setBounds(116, 177, 188, 57);
@@ -117,7 +112,11 @@ public class BrewPage extends JFrame {
 				String size = textField_1.getText();
 				int getSize = Integer.parseInt(size);
 				if (getSize < 0) {
-					System.out.println("You must brew more than 0");
+					String messege="You must brew more than 0!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
 				} else {
 					mark1 = 1;
 				}
@@ -127,8 +126,11 @@ public class BrewPage extends JFrame {
 
 					// System.out.println(getCapacity);
 					if (getSize > getCapacity) {
-						System.out.println(
-								"The current capacity is not enough, " + getCapacity + " is less than " + getSize);
+						String messege="Equipment capacity is not enough!";
+						JFrame win = new PromptWindow(messege);
+						win.setLocation(500, 80);
+						win.setSize(400, 200);
+						win.setVisible(true);	
 					} else {
 						mark2 = 1;
 					}
@@ -139,9 +141,13 @@ public class BrewPage extends JFrame {
 
 				Recipe r = new Recipe(name);
 				if (r.whetherInDB() == false) {
-					System.out.println("No such recipe fount in database.");
+					String messege="No such recipe in database!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 300);
+					win.setSize(400, 200);
+					win.setVisible(true);
 				} else {
-					System.out.println("Recipe " + name + " is found in database.");
+					
 					mark3 = 1;
 
 				}
