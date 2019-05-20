@@ -160,10 +160,17 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
-				JFrame note = new NoteWritingPage();
+				JFrame note;
+				try {
+					note = new NoteMain();
+				
 				note.setLocation(100, 50);
 				note.setSize(600, 500);
 				note.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 

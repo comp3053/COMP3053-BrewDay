@@ -149,7 +149,7 @@ public class NoteAddToBrew extends JFrame {
 				dispose();
 
 	        	
-				NoteWritingPage write = new NoteWritingPage(bid);
+				JFrame write = new NoteWritingPage(bid);
 
 				write.setLocation(100,50);
      	write.setSize(600, 500);

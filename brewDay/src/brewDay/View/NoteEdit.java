@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class NoteWritingPage extends JFrame {
+public class NoteEdit extends JFrame {
 
 	private JPanel contentPane;
 
@@ -28,7 +28,7 @@ public class NoteWritingPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NoteWritingPage frame = new NoteWritingPage(0);
+					NoteEdit frame = new NoteEdit(null,0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class NoteWritingPage extends JFrame {
 	 * Create the frame.
 	 * @param bid 
 	 */
-	public NoteWritingPage(int bid) {
+	public NoteEdit(String content, int bid) {
 		setTitle("Note");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
