@@ -137,6 +137,15 @@ public class NoteMain extends JFrame {
 		}
 
 		table = new JTable(dataVector, columnName);
+		
+		table.getColumnModel().getColumn(0).setPreferredWidth(85);
+
+		table.getColumnModel().getColumn(1).setPreferredWidth(120);
+
+		table.getColumnModel().getColumn(2).setPreferredWidth(260);
+
+		table.getColumnModel().getColumn(3).setPreferredWidth(80);
+		
 		scrollPane.add(table.getTableHeader());
 		scrollPane.add(table);
 		scrollPane.setViewportView(table);
