@@ -59,14 +59,14 @@ public class UpdateRecipePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("<html>Please choose one recipe that you want to delete, and press \"Finish\" button to submit it.</html>");
-		lblNewLabel.setBounds(28, 6, 340, 40);
+		JLabel lblNewLabel = new JLabel("<html>Please choose one recipe that you want to update, and press \"Next\" button.</html>");
+		lblNewLabel.setBounds(136, 23, 297, 29);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBack.setForeground(new Color(30, 144, 255));
-		btnBack.setBounds(27, 46, 68, 29);
+		btnBack.setBounds(30, 23, 68, 29);
 		contentPane.add(btnBack);
 		
 		btnBack.addActionListener(new ActionListener(){
@@ -83,12 +83,12 @@ public class UpdateRecipePage extends JFrame {
 		
 		
 		
-		JLabel lbltheTableBelow = new JLabel("<html>The table below shows your recipe:</html>");
-		lbltheTableBelow.setBounds(28, 112, 340, 16);
+		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the recipes:</html>");
+		lbltheTableBelow.setBounds(30, 77, 340, 16);
 		contentPane.add(lbltheTableBelow);
 		
 		JScrollPane scrollPane = new JScrollPane();            
-		scrollPane.setBounds(28, 140, 436, 189);
+		scrollPane.setBounds(28, 105, 436, 224);
 		contentPane.add(scrollPane);
 		
 		Vector<String> columnName = new Vector<String>();
@@ -115,20 +115,20 @@ public class UpdateRecipePage extends JFrame {
 		
 		JLabel lblSelectRecipe = new JLabel("Select recipe:");
 		lblSelectRecipe.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSelectRecipe.setBounds(73, 335, 91, 16);
+		lblSelectRecipe.setBounds(76, 351, 91, 16);
 		contentPane.add(lblSelectRecipe);
 		
 		textField = new JTextField();
-		textField.setBounds(176, 330, 166, 29);
+		textField.setBounds(158, 345, 166, 29);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		
-		JButton btnFinish = new JButton("Finish");
+		JButton btnFinish = new JButton("Next");
 		btnFinish.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		btnFinish.setForeground(new Color(250, 128, 114));
-		btnFinish.setBounds(28, 360, 91, 40);
+		btnFinish.setBounds(342, 341, 91, 40);
 		contentPane.add(btnFinish);
 		btnFinish.addActionListener(new ActionListener() {
 
