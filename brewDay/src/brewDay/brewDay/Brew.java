@@ -22,6 +22,7 @@ public class Brew {
 	private Note note;//useless variables
 	private Recipe recipe;
 	private StorageIngredient ingredient;
+	private int brewid;
 	//gr
 	public float temp = 0;
 
@@ -32,6 +33,9 @@ public class Brew {
 			this.batchSize = batchSize;
 			this.recipe = recipe; 
 		}
+	}
+	public Brew(int bid) {
+		this.brewid=bid;
 	}
 
 	public void implement(Recipe recipe) throws SQLException { //implement the recipe that use select
@@ -315,6 +319,26 @@ public class Brew {
 			dataVector.add(vec);
 	}
 	return dataVector;
+	}
+	
+	public boolean whetherInDB(int bid) throws SQLException {
+		ResultSet getRecord = Database.Select("SELECT * FROM Brew");
+		int i = 0;
+		while (getRecord.next()) { 
+			int getID = getRecord.getInt("BrewID");
+			if(getID == bid) {
+				i = 1;
+				break;
+			}
+			else {
+				continue;
+			}
+	}
+		if(i==1) {
+		return true;}
+		else {
+			return false;
+		}
 	}
 	
 	public int getNewestBrewID(Brew b) throws SQLException {

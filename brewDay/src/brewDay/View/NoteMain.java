@@ -20,6 +20,8 @@ import javax.swing.JTable;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -61,7 +63,7 @@ public class NoteMain extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("<html>Please choose one recipe that you want to delete, and press \"Finish\" button to submit it.</html>");
+		JLabel lblNewLabel = new JLabel("<html>Note mainpage</html>");
 		lblNewLabel.setBounds(28, 6, 340, 40);
 		contentPane.add(lblNewLabel);
 		
@@ -147,6 +149,16 @@ public class NoteMain extends JFrame {
 		textField.setBounds(186, 330, 166, 29);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		textField.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char keyChar = e.getKeyChar();
+				if (keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9) {
+
+				} else {
+					e.consume();
+				}
+			}
+		});
 		
 		
 		JButton btnedit = new JButton("Edit");
@@ -160,7 +172,7 @@ public class NoteMain extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			String nid = textField.getText();
 			int id=Integer.parseInt(nid);
-			if(textField.getText().trim().equals("")||id<=0) {
+			if(textField.getText().trim().equals("")) {
 				String messege="You must input Note id!";
 				JFrame win = new PromptWindow(messege);
 				win.setLocation(500, 80);

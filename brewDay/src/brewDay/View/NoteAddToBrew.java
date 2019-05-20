@@ -20,6 +20,8 @@ import javax.swing.JTable;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -61,7 +63,7 @@ public class NoteAddToBrew extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("<html>Please choose one recipe that you want to delete, and press \"Finish\" button to submit it.</html>");
+		JLabel lblNewLabel = new JLabel("<html>Please see the brew history.</html>");
 		lblNewLabel.setBounds(28, 6, 340, 40);
 		contentPane.add(lblNewLabel);
 		
@@ -132,6 +134,16 @@ public class NoteAddToBrew extends JFrame {
 		textField.setBounds(176, 330, 166, 29);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		textField.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char keyChar = e.getKeyChar();
+				if (keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9) {
+
+				} else {
+					e.consume();
+				}
+			}
+		});
 		
 		
 		JButton btnFinish = new JButton("Finish");
@@ -144,16 +156,40 @@ public class NoteAddToBrew extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				
-				String idid = textField.getText();
-				int bid = Integer.parseInt(idid);
-				dispose();
+				
+				if (textField.getText().trim().equals("")) {
+					String messege = "Empty input!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				} 
+				try {
+					String idid = textField.getText();
+					int bid = Integer.parseInt(idid);
+					Brew b = new Brew(bid);
+					if(b.whetherInDB(bid)==false) {
+						String messege = "No this brew record!";
+						JFrame win = new PromptWindow(messege);
+						win.setLocation(500, 80);
+						win.setSize(400, 200);
+						win.setVisible(true);
+					}
+					else {
+						
+					
+					dispose();
 
-	        	
-				JFrame write = new NoteWritingPage(bid,"Add",0,null);
+					
+					JFrame write = new NoteWritingPage(bid,"Add",0,null);
 
-				write.setLocation(100,50);
-     	write.setSize(600, 500);
-     	write.setVisible(true);
+					write.setLocation(100,50);
+   	write.setSize(600, 500);
+   	write.setVisible(true);}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	        	}
 
 	        	});

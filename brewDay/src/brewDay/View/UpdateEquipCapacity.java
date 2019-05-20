@@ -84,7 +84,7 @@ public class UpdateEquipCapacity extends JFrame {
 		});
 
 		JLabel lblNewLabel = new JLabel("Enter the new Capacity:");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN,17));
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		lblNewLabel.setBounds(62, 100, 200, 20);
 		contentPane.add(lblNewLabel);
 
@@ -112,30 +112,35 @@ public class UpdateEquipCapacity extends JFrame {
 		button.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
-				String cap = textField.getText();
-				int capacity = Integer.parseInt(cap);
-
-				try {
-					Equipment equip = new Equipment();
-					equip.updateCapacity(capacity);
-					dispose();
-					JFrame home;
-					home = new MaintainEquipmentInfoPage();
-					home.setLocation(100, 50);
-					home.setSize(600, 500);
-					home.setVisible(true);
-					String messege = "Your new Capacity is " + capacity + ".";
+				if (textField.getText().trim().equals("")) {
+					String messege = "Empty input!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} else {
+					try {
+						String cap = textField.getText();
+						int capacity = Integer.parseInt(cap);
+						Equipment equip = new Equipment();
+						equip.updateCapacity(capacity);
+						dispose();
+						JFrame home;
+						home = new MaintainEquipmentInfoPage();
+						home.setLocation(100, 50);
+						home.setSize(600, 500);
+						home.setVisible(true);
+						String messege = "Your new Capacity is " + capacity + ".";
+						JFrame win = new PromptWindow(messege);
+						win.setLocation(500, 80);
+						win.setSize(400, 200);
+						win.setVisible(true);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 
+					}
 				}
-
 			}
 
 		});
