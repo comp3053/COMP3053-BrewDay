@@ -17,6 +17,27 @@ public class Note {
 		this.content = null;	
 		this.createdDate = null;
 	}
+	
+	public boolean whetherInDB(int nid) throws SQLException {
+		ResultSet getRecord = Database.Select("SELECT * FROM Note");
+		int i = 0;
+		while (getRecord.next()) { 
+			int getID = getRecord.getInt("NoteID");
+			if(getID == nid) {
+				i = 1;
+				break;
+			}
+			else {
+				continue;
+			}
+	}
+		if(i==1) {
+		return true;}
+		else {
+			return false;
+		}
+	}
+	
 	public boolean addNote(String content, int BrewID) {
 		if(content == null)
 			return false;
