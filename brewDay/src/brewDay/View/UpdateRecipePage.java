@@ -135,6 +135,7 @@ public class UpdateRecipePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String name = textField.getText();
 				Recipe r = new Recipe(name);
+				float num = r.getQuantityOfRecipe();
 				if(textField.getText().trim().equals("")) {
 					String messege="You must input name!";
 					JFrame win = new PromptWindow(messege);
@@ -154,7 +155,7 @@ public class UpdateRecipePage extends JFrame {
 				
 					
 				dispose();
-				JFrame edit = new UpdateEditPage(name);
+				JFrame edit = new UpdateEditPage(name,num);
 	        	edit.setLocation(100,50);
 	        	edit.setSize(600, 500);
 	        	edit.setVisible(true);

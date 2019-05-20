@@ -153,16 +153,17 @@ public class DeleteRecipePage extends JFrame {
 				
 				
 				r.deleteRecipe(name);
-					String messege="Recipe " + name + " has been successfully removed from the database.";
-					JFrame win = new PromptWindow(messege);
-					win.setLocation(500, 80);
-					win.setSize(400, 200);
-					win.setVisible(true);
+					
 				dispose();
 				JFrame MaintainR = new MaintainRecipePage();
 	        	MaintainR.setLocation(100,50);
 	        	MaintainR.setSize(600, 500);
 	        	MaintainR.setVisible(true);
+	        	String messege="Recipe " + name + " has been successfully removed from the database.";
+				JFrame win = new PromptWindow(messege);
+				win.setLocation(500, 80);
+				win.setSize(400, 200);
+				win.setVisible(true);
 				
 				}
 			}

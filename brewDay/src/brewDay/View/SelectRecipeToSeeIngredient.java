@@ -60,7 +60,7 @@ public class SelectRecipeToSeeIngredient extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("<html>Please choose one recipe that you want to delete, and press \"Finish\" button to submit it.</html>");
+		JLabel lblNewLabel = new JLabel("<html>Please choose one recipe you want to check</html>");
 		lblNewLabel.setBounds(28, 6, 340, 40);
 		contentPane.add(lblNewLabel);
 		

@@ -17,6 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
@@ -48,8 +50,10 @@ public class UpdateEditPage extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param num
 	 */
-	public UpdateEditPage(String name) {
+	public UpdateEditPage(String name, float num) {
 		setResizable(false);
 		setTitle("Edit and update Recipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,41 +76,52 @@ public class UpdateEditPage extends JFrame {
 		button.setBounds(18, 7, 75, 36);
 		contentPane.add(button);
 
-		button.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent e) {
-        	dispose();
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 
-        	JFrame upmain;
-			try {
-				upmain = new UpdateRecipePage();
-			
-        	upmain.setLocation(100,50);
-        	upmain.setSize(600, 500);
-        	upmain.setVisible(true);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				JFrame upmain;
+				try {
+					upmain = new UpdateRecipePage();
+
+					upmain.setLocation(100, 50);
+					upmain.setSize(600, 500);
+					upmain.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
-        	}
 
-        	});
-		
+		});
+
 		JLabel nameme = new JLabel(name);
 		nameme.setFont(new Font("Dialog", Font.BOLD, 14));
 		nameme.setBounds(194, 133, 165, 26);
 		contentPane.add(nameme);
 
+		String number = Float.toString(num);
 		textField_2 = new JTextField();
+		textField_2.setText(number);
 		textField_2.setColumns(10);
 		textField_2.setBounds(194, 163, 165, 26);
 		contentPane.add(textField_2);
+		textField_2.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent e) {
+				char keyChar = e.getKeyChar();				
+				if((keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)|| (keyChar == '.')){
+					
+				}else{
+					e.consume();
+				}
+			}
+		});
 
 		JLabel ququ = new JLabel("L");
 		ququ.setFont(new Font("Dialog", Font.BOLD, 14));
 		ququ.setBounds(194, 193, 165, 26);
 		contentPane.add(ququ);
 
-		
 		JLabel label_1 = new JLabel("Recipe name:");
 		label_1.setFont(new Font("Dialog", Font.BOLD, 14));
 		label_1.setBounds(81, 136, 109, 16);
@@ -116,6 +131,7 @@ public class UpdateEditPage extends JFrame {
 		label_2.setFont(new Font("Dialog", Font.BOLD, 14));
 		label_2.setBounds(81, 166, 83, 16);
 		contentPane.add(label_2);
+		
 
 		JLabel label_3 = new JLabel("Unit:");
 		label_3.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -133,32 +149,37 @@ public class UpdateEditPage extends JFrame {
 				String quan = textField_2.getText();
 				float quantity = Float.parseFloat(quan);
 				Recipe r = new Recipe(name);
-				if(quantity > 0) {
-					try {
-					r.updateQuantity(quantity, name);
-					dispose();
-					
-					String messege="Success.";
+				if(textField_2.getText().trim().equals("")) {
+					String messege="You must input new value!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
-					dispose();
+				}
+				if (quantity > 0) {
+					try {
+						r.updateQuantity(quantity, name);
+						dispose();
+						JFrame upRE = new UpdateRecipePage();
 
-					JFrame upRE = new UpdateRecipePage();
-					
-					
-					upRE.setLocation(100, 50);
-					upRE.setSize(600, 500);
-					upRE.setVisible(true);
+						upRE.setLocation(100, 50);
+						upRE.setSize(600, 500);
+						upRE.setVisible(true);
+						String messege = "Success.";
+						JFrame win = new PromptWindow(messege);
+						win.setLocation(500, 80);
+						win.setSize(400, 200);
+						win.setVisible(true);
+
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
-				}
+
+				} 
+				
 				else {
-					String messege="You must input a positive number.";
+					String messege = "You must input a positive number.";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
