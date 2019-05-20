@@ -22,6 +22,7 @@ import java.util.Scanner;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class PromptWindow extends JFrame {
 
@@ -56,10 +57,13 @@ public class PromptWindow extends JFrame {
 /*		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));*/
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(88, 71, 274, 95);
+		contentPane.add(scrollPane);
 
 		JLabel lblNewLabel = new JLabel(i);
-		lblNewLabel.setBounds(88, 71, 245, 29);
-		contentPane.add(lblNewLabel);
+		scrollPane.setViewportView(lblNewLabel);
 
 
 		JButton button = new JButton("Back");
