@@ -59,6 +59,18 @@ public class MaintainRecipePage extends JFrame {
 		btnNewButton_2.setForeground(new Color(255, 0, 0));
 		btnNewButton_2.setBounds(148, 185, 133, 45);
 		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("All Recipe");
+		btnNewButton_3.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnNewButton_3.setForeground(new Color(255, 0, 0));
+		btnNewButton_3.setBounds(148, 245, 133, 45);
+		contentPane.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("Recipe's Ingredient");
+		btnNewButton_4.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnNewButton_4.setForeground(new Color(255, 0, 0));
+		btnNewButton_4.setBounds(98, 305, 248, 45);
+		contentPane.add(btnNewButton_4);
 
 		JLabel lblNewLabel = new JLabel("*press the buttons!*");
 		lblNewLabel.setBounds(148, 39, 133, 16);
@@ -136,6 +148,42 @@ public class MaintainRecipePage extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+			}
+
+		});
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+				JFrame allRE;
+				try {
+					allRE = new ViewAllRecipe();
+				
+				allRE.setLocation(100, 50);
+				allRE.setSize(600, 500);
+				allRE.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+		});
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+				JFrame reingre;
+				try {
+					reingre = new SelectRecipeToSeeIngredient();
+				
+					reingre.setLocation(100, 50);
+					reingre.setSize(600, 500);
+					reingre.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 
 		});

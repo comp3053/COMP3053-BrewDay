@@ -85,7 +85,7 @@ public class IngredientPage extends JFrame {
 		
 		
 		
-		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the ingredient of your recipe:</html>");
+		JLabel lbltheTableBelow = new JLabel("<html>The table below shows recipe:</html>");
 		lbltheTableBelow.setBounds(28, 112, 340, 16);
 		contentPane.add(lbltheTableBelow);
 		

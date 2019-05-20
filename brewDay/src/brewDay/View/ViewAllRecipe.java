@@ -91,7 +91,7 @@ public class ViewAllRecipe extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	dispose();
 
-        	JFrame home = new HomePage();
+        	JFrame home = new MaintainRecipePage();
         	home.setLocation(100,50);
         	home.setSize(600, 500);
         	home.setVisible(true);

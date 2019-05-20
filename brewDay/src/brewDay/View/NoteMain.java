@@ -158,16 +158,19 @@ public class NoteMain extends JFrame {
 		
 		btnedit.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			if(textField.getText().trim().equals("")) {
+			String nid = textField.getText();
+			int id=Integer.parseInt(nid);
+			if(textField.getText().trim().equals("")||id<=0) {
 				String messege="You must input Note id!";
 				JFrame win = new PromptWindow(messege);
 				win.setLocation(500, 80);
 				win.setSize(400, 200);
 				win.setVisible(true);
-			}else {
+			}
+			
+			else {
 			//edit
-				String nid = textField.getText();
-				int id=Integer.parseInt(nid);
+				
 				String oldtext;
 				try {
 					oldtext = Note.getText(id);
@@ -195,15 +198,16 @@ public class NoteMain extends JFrame {
 		btndelete.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().trim().equals("")) {
+				String nid = textField.getText();
+				int id=Integer.parseInt(nid);
+				if(textField.getText().trim().equals("")||id<=0) {
 					String messege="You must input Note id!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
 				}else {
-				String nid = textField.getText();
-				int id=Integer.parseInt(nid);
+				
 				Note.UIdelete(id);
 				dispose();
 				JFrame note;

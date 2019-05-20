@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Vector;
 
 public class Recipe {
 	private String nameOfRecipe;
@@ -135,6 +136,30 @@ public class Recipe {
 			System.out.println(ri.getNameOfIngredient()+ " " + ri.getAmountOfIngredient()+ " " + ri.getUnitOfIngredient());
 		}
 		System.out.println();
+		
+	}
+	public static ResultSet IngredientSet(String name) throws SQLException {
+		String sql_0 = "SELECT * FROM Recipe WHERE Name = '" + name+"'";
+		ResultSet rs = Database.Select(sql_0);
+		String text;
+		Vector<Vector<Object>> dataVector = new
+				Vector<Vector<Object>>();
+		while(rs.next()){
+			Vector<Object> vec = new Vector<Object>();//single for big Vector
+			
+			vec.add(rs.getObject(1));
+			
+			dataVector.add(vec);
+		
+		}
+		text = dataVector.toString();
+		text = text.replace("[", "");
+		text = text.replace("]", "");
+		int id =Integer.parseInt(text);
+		
+		String sql = "SELECT Name, Amount, Unit FROM RecipeIngredient WHERE RecipeID = " + id;
+		ResultSet rs_1 = Database.Select(sql);
+		return rs_1;
 	}
 	//function 7
 	public boolean whetherInDB() {

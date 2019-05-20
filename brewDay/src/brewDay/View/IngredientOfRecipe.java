@@ -33,7 +33,7 @@ public class IngredientOfRecipe extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IngredientOfRecipe frame = new IngredientOfRecipe();
+					IngredientOfRecipe frame = new IngredientOfRecipe(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,9 +44,10 @@ public class IngredientOfRecipe extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param name 
 	 * @throws SQLException 
 	 */
-	public IngredientOfRecipe() throws SQLException {
+	public IngredientOfRecipe(String name) throws SQLException {
 		setTitle("IngredientOfRecipe");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -66,11 +67,10 @@ public class IngredientOfRecipe extends JFrame {
 		columnName.add("amount");
 		columnName.add("unit");
 		
-		ResultSet rs= Recipe.allRecipe();
-		
+		ResultSet rs= Recipe.IngredientSet(name);
 		while(rs.next()){
 		Vector<Object> vec = new Vector<Object>();//single for big Vector
-		for(int i=2;i<=4;i++){
+		for(int i=1;i<=3;i++){
 		vec.add(rs.getObject(i));
 		}
 		dataVector.add(vec);
@@ -80,7 +80,6 @@ public class IngredientOfRecipe extends JFrame {
 		scrollPane.add(table.getTableHeader());
 		scrollPane.add(table);	
 		scrollPane.setViewportView(table);
-		//DataBase.free(conn, stmt, rs);
 		
 		JButton button = new JButton("Back");
 		button.setForeground(new Color(30, 144, 255));
@@ -92,10 +91,17 @@ public class IngredientOfRecipe extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	dispose();
 
-        	JFrame home = new HomePage();
-        	home.setLocation(100,50);
-        	home.setSize(600, 500);
-        	home.setVisible(true);
+        	JFrame sel;
+			try {
+				sel = new SelectRecipeToSeeIngredient();
+			
+        	sel.setLocation(100,50);
+        	sel.setSize(600, 500);
+        	sel.setVisible(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         	}
 
         	});

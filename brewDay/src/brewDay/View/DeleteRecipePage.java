@@ -133,15 +133,25 @@ public class DeleteRecipePage extends JFrame {
 		btnFinish.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				String name = textField.getText();
+				Recipe r = new Recipe(name);
 				if(textField.getText().trim().equals("")) {
 					String messege="You must input name!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
-				}else {
-				String name = textField.getText();
-				Recipe r = new Recipe(name);
+				}
+				if(r.whetherInDB()==true) {
+					String messege="No such recipe!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				}
+				else {
+				
+				
 				r.deleteRecipe(name);
 					String messege="Recipe " + name + " has been successfully removed from the database.";
 					JFrame win = new PromptWindow(messege);

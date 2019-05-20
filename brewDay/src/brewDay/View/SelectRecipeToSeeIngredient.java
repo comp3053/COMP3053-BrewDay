@@ -1,34 +1,35 @@
+
 package View;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import brewDay.Database;
 import brewDay.Recipe;
 
-import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.Color;
-import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
 
-public class UpdateRecipePage extends JFrame {
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+public class SelectRecipeToSeeIngredient extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textField;
+
 
 	/**
 	 * Launch the application.
@@ -37,7 +38,7 @@ public class UpdateRecipePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UpdateRecipePage frame = new UpdateRecipePage();
+					SelectRecipeToSeeIngredient frame = new SelectRecipeToSeeIngredient();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,8 +51,8 @@ public class UpdateRecipePage extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public UpdateRecipePage() throws SQLException {
-		setTitle("Update Recipe");
+	public SelectRecipeToSeeIngredient() throws SQLException {
+		setTitle("SelectRecipeToSeeIngredient");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 526, 451);
 		contentPane = new JPanel();
@@ -73,17 +74,19 @@ public class UpdateRecipePage extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	dispose();
 
-        	JFrame MaintainR = new MaintainRecipePage();
-        	MaintainR.setLocation(100,50);
-        	MaintainR.setSize(600, 500);
-        	MaintainR.setVisible(true);
+        	JFrame home;
+			home = new MaintainRecipePage();
+
+     	home.setLocation(100,50);
+     	home.setSize(600, 500);
+     	home.setVisible(true);
         	}
 
         	});
 		
 		
 		
-		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the ingredient of your recipe:</html>");
+		JLabel lbltheTableBelow = new JLabel("<html>The table below shows recipe:</html>");
 		lbltheTableBelow.setBounds(28, 112, 340, 16);
 		contentPane.add(lbltheTableBelow);
 		
@@ -135,6 +138,7 @@ public class UpdateRecipePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String name = textField.getText();
 				Recipe r = new Recipe(name);
+				try {
 				if(textField.getText().trim().equals("")) {
 					String messege="You must input name!";
 					JFrame win = new PromptWindow(messege);
@@ -142,7 +146,7 @@ public class UpdateRecipePage extends JFrame {
 					win.setSize(400, 200);
 					win.setVisible(true);
 				}
-				if(r.whetherInDB()==true) {
+				if(r.whetherInDB()==false) {
 					String messege="No such recipe!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
@@ -150,16 +154,21 @@ public class UpdateRecipePage extends JFrame {
 					win.setVisible(true);
 				}
 				else {
-				
+					
+					
 				
 					
 				dispose();
-				JFrame edit = new UpdateEditPage(name);
-	        	edit.setLocation(100,50);
-	        	edit.setSize(600, 500);
-	        	edit.setVisible(true);
-				}
+				JFrame ingreofR = new IngredientOfRecipe(name);
+				ingreofR.setLocation(100,50);
+				ingreofR.setSize(600, 500);
+				ingreofR.setVisible(true);
 				
+				}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 
 		});
