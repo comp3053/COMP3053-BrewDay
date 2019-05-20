@@ -24,7 +24,7 @@ public class NoteWritingPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NoteWritingPage frame = new NoteWritingPage();
+					NoteWritingPage frame = new NoteWritingPage(0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,8 +35,9 @@ public class NoteWritingPage extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param bid 
 	 */
-	public NoteWritingPage() {
+	public NoteWritingPage(int bid) {
 		setTitle("Note");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

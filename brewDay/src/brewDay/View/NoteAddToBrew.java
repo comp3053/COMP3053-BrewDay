@@ -39,7 +39,7 @@ public class NoteAddToBrew extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DeleteRecipePage frame = new DeleteRecipePage();
+					NoteAddToBrew frame = new NoteAddToBrew();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -103,15 +103,16 @@ public class NoteAddToBrew extends JFrame {
 		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
 		Vector<Vector<Object>> dataVector = new
 		Vector<Vector<Object>>();
-		columnName.add("name");
-		columnName.add("amount");
-		columnName.add("unit");
+		columnName.add("Brew index");
+		columnName.add("Amount");
+		columnName.add("Date");
+		columnName.add("Recipe id");
 		
 		ResultSet rs= Brew.Record();
 		
 		while(rs.next()){
 		Vector<Object> vec = new Vector<Object>();//single for big Vector
-		for(int i=2;i<=4;i++){
+		for(int i=1;i<=4;i++){
 		vec.add(rs.getObject(i));
 		}
 		dataVector.add(vec);
@@ -143,9 +144,19 @@ public class NoteAddToBrew extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				
-			}
+				String idid = textField.getText();
+				int bid = Integer.parseInt(idid);
+				dispose();
 
-		});
+	        	
+				NoteWritingPage write = new NoteWritingPage(bid);
+
+				write.setLocation(100,50);
+     	write.setSize(600, 500);
+     	write.setVisible(true);
+	        	}
+
+	        	});
 	}
 }
 
