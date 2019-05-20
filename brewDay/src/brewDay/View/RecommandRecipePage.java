@@ -88,9 +88,7 @@ public class RecommandRecipePage extends JFrame {
 					getCapacity = Equipment.Capacity();
 
 					if (batchsize > getCapacity) {
-						System.out.println(
-								"The current capacity is not enough, " + getCapacity + " is less than " + batchsize);
-
+						mark1 = 0;
 					} else {
 						mark1 = 1;
 					}
@@ -114,12 +112,13 @@ public class RecommandRecipePage extends JFrame {
 					}
 				}
 				else {
-					dispose();
+					
 
-					JFrame fail = new RecommendFail();
-					fail.setLocation(100, 50);
-					fail.setSize(600, 500);
-					fail.setVisible(true);
+					String messege="Equipment capacity is not enough!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
 				}
 			}
 

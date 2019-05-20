@@ -134,11 +134,11 @@ public class IngredientAddToRecipe extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				String name = textField_1.getText();
+				String ingrename = textField_1.getText();
 				String quan = textField_2.getText();
 				float quantity = Float.parseFloat(quan);
 				String unit = textField_3.getText();
-				RecipeIngredient rein = new RecipeIngredient(name,quantity,unit);
+				RecipeIngredient rein = new RecipeIngredient(ingrename,quantity,unit);
 				try {
 					rein.addIngredientToRecipe(rid, name);
 					dispose();
