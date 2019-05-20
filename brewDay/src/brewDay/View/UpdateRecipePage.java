@@ -83,7 +83,7 @@ public class UpdateRecipePage extends JFrame {
 		
 		
 		
-		JLabel lbltheTableBelow = new JLabel("<html>The table below shows the ingredient of your recipe:</html>");
+		JLabel lbltheTableBelow = new JLabel("<html>The table below shows your recipe:</html>");
 		lbltheTableBelow.setBounds(28, 112, 340, 16);
 		contentPane.add(lbltheTableBelow);
 		
@@ -91,7 +91,7 @@ public class UpdateRecipePage extends JFrame {
 		scrollPane.setBounds(28, 140, 436, 189);
 		contentPane.add(scrollPane);
 		
-		Vector<String> columnName = new Vector<String>();//×Ö¶ÎÃû
+		Vector<String> columnName = new Vector<String>();
 		Vector<Vector<Object>> dataVector = new
 		Vector<Vector<Object>>();
 		columnName.add("name");
@@ -101,7 +101,7 @@ public class UpdateRecipePage extends JFrame {
 		ResultSet rs= Recipe.allRecipe();
 		
 		while(rs.next()){
-		Vector<Object> vec = new Vector<Object>();//single for big Vector
+		Vector<Object> vec = new Vector<Object>();
 		for(int i=2;i<=4;i++){
 		vec.add(rs.getObject(i));
 		}

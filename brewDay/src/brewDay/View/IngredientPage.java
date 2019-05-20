@@ -51,7 +51,7 @@ public class IngredientPage extends JFrame {
 	 * @throws SQLException 
 	 */
 	public IngredientPage() throws SQLException {
-		setTitle("Ingredient page");
+		setTitle("Choose recipe to add ingredient page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 526, 451);
 		contentPane = new JPanel();
@@ -59,7 +59,7 @@ public class IngredientPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("<html>Please choose one recipe that you want to delete, and press \"Finish\" button to submit it.</html>");
+		JLabel lblNewLabel = new JLabel("<html>Please choose one recipe you want to add ingredient.</html>");
 		lblNewLabel.setBounds(28, 6, 340, 40);
 		contentPane.add(lblNewLabel);
 		
@@ -135,7 +135,8 @@ public class IngredientPage extends JFrame {
 		btnFinish.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
+				String name = textField.getText();
+				Recipe r = new Recipe(name);
 				try {
 				if(textField.getText().trim().equals("")) {
 					String messege="You must input name!";
@@ -144,9 +145,15 @@ public class IngredientPage extends JFrame {
 					win.setSize(400, 200);
 					win.setVisible(true);
 				}
+				if(r.whetherInDB()==false) {
+					String messege="No such recipe!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				}
 				else {
-					String name = textField.getText();
-					Recipe r = new Recipe(name);
+					
 					int rid = r.getRecipeId();
 				
 					

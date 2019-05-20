@@ -50,7 +50,7 @@ public class MaintainRecipePage extends JFrame {
 		JButton btnNewButton_1 = new JButton("Update");
 		btnNewButton_1.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnNewButton_1.setForeground(new Color(50, 205, 50));
-		
+
 		btnNewButton_1.setBounds(148, 128, 133, 45);
 		contentPane.add(btnNewButton_1);
 
@@ -59,13 +59,13 @@ public class MaintainRecipePage extends JFrame {
 		btnNewButton_2.setForeground(new Color(255, 0, 0));
 		btnNewButton_2.setBounds(148, 185, 133, 45);
 		contentPane.add(btnNewButton_2);
-		
+
 		JButton btnNewButton_3 = new JButton("All Recipe");
 		btnNewButton_3.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnNewButton_3.setForeground(new Color(255, 0, 0));
 		btnNewButton_3.setBounds(148, 245, 133, 45);
 		contentPane.add(btnNewButton_3);
-		
+
 		JButton btnNewButton_4 = new JButton("Recipe's Ingredient");
 		btnNewButton_4.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnNewButton_4.setForeground(new Color(255, 0, 0));
@@ -122,10 +122,10 @@ public class MaintainRecipePage extends JFrame {
 				JFrame upRE;
 				try {
 					upRE = new UpdateRecipePage();
-				
-				upRE.setLocation(100, 50);
-				upRE.setSize(600, 500);
-				upRE.setVisible(true);
+
+					upRE.setLocation(100, 50);
+					upRE.setSize(600, 500);
+					upRE.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -140,14 +140,14 @@ public class MaintainRecipePage extends JFrame {
 				JFrame deRE;
 				try {
 					deRE = new DeleteRecipePage();
-				
-				deRE.setLocation(100, 50);
-				deRE.setSize(600, 500);
-				deRE.setVisible(true);}
-				 catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+
+					deRE.setLocation(100, 50);
+					deRE.setSize(600, 500);
+					deRE.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 
 		});
@@ -158,10 +158,10 @@ public class MaintainRecipePage extends JFrame {
 				JFrame allRE;
 				try {
 					allRE = new ViewAllRecipe();
-				
-				allRE.setLocation(100, 50);
-				allRE.setSize(600, 500);
-				allRE.setVisible(true);
+
+					allRE.setLocation(100, 50);
+					allRE.setSize(600, 500);
+					allRE.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -176,7 +176,7 @@ public class MaintainRecipePage extends JFrame {
 				JFrame reingre;
 				try {
 					reingre = new SelectRecipeToSeeIngredient();
-				
+
 					reingre.setLocation(100, 50);
 					reingre.setSize(600, 500);
 					reingre.setVisible(true);

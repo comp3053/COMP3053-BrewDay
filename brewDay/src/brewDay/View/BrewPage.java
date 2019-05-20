@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 
 public class BrewPage extends JFrame {
@@ -99,6 +101,16 @@ public class BrewPage extends JFrame {
 		textField_1.setColumns(10);
 		textField_1.setBounds(240, 131, 130, 26);
 		contentPane.add(textField_1);
+		textField_1.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent e) {
+				char keyChar = e.getKeyChar();				
+				if((keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)|| (keyChar == '.')){
+					
+				}else{
+					e.consume();
+				}
+			}
+		});
 
 		JButton button = new JButton("BREW!");
 		button.setFont(new Font("Lucida Grande", Font.BOLD, 25));
@@ -108,21 +120,11 @@ public class BrewPage extends JFrame {
 		button.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				int mark1 = 0;
 				int mark2 = 0;
 				int mark3 = 0;
 				String name = textField.getText();
 				String size = textField_1.getText();
 				int getSize = Integer.parseInt(size);
-				if (getSize < 0) {
-					String messege="You must brew more than 0!";
-					JFrame win = new PromptWindow(messege);
-					win.setLocation(500, 80);
-					win.setSize(400, 200);
-					win.setVisible(true);
-				} else {
-					mark1 = 1;
-				}
 				float getCapacity;
 				try {
 					getCapacity = Equipment.Capacity();
@@ -156,7 +158,7 @@ public class BrewPage extends JFrame {
 				}
 
 				// Not finish, useless code here.
-				if (mark1 == 1 && mark2 == 1 && mark3 == 1) {
+				if ( mark2 == 1 && mark3 == 1) {
 
 					Brew b = new Brew(getSize, r);
 					try {

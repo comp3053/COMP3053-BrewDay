@@ -54,19 +54,15 @@ public class MaintainEquipmentInfoPage extends JFrame {
 		Equipment e = new Equipment();
 		float cap = e.getCapacity();
 		
-		JLabel lblNewLabel = new JLabel("*The Capacity of your equipment is "+cap+" L.");
-		lblNewLabel.setBounds(148, 39, 400, 16);
+		JLabel lblNewLabel = new JLabel("The Capacity of your equipment is "+cap+" L.");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		lblNewLabel.setBounds(18, 60, 500, 27);
 		contentPane.add(lblNewLabel);
-
-		JLabel lblHelloWhatWould = new JLabel("Hello! What would you like to do today?");
-		lblHelloWhatWould.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
-		lblHelloWhatWould.setBounds(83, 8, 341, 21);
-		contentPane.add(lblHelloWhatWould);
 
 		JButton btnAdd = new JButton("Update");
 		btnAdd.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnAdd.setForeground(new Color(30, 144, 255));
-		btnAdd.setBounds(148, 71, 133, 45);
+		btnAdd.setBounds(158, 150, 133, 45);
 		contentPane.add(btnAdd);
 		
 		JButton button = new JButton("Back");
@@ -91,7 +87,7 @@ public class MaintainEquipmentInfoPage extends JFrame {
 				dispose();
 				JFrame upe = new UpdateEquipCapacity();
 				upe.setLocation(100, 50);
-				upe.setSize(600, 500);
+				upe.setSize(550, 400);
 				upe.setVisible(true);
 			}
 

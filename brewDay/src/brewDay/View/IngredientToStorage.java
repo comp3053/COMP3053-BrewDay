@@ -21,6 +21,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -131,6 +133,16 @@ public class IngredientToStorage extends JFrame {
 		textField_1.setColumns(10);
 		textField_1.setBounds(210, 300, 120, 26);
 		contentPane.add(textField_1);
+		textField_1.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent e) {
+				char keyChar = e.getKeyChar();				
+				if((keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)|| (keyChar == '.')){
+					
+				}else{
+					e.consume();
+				}
+			}
+		});
 		
 		JLabel lblingredientUnit = new JLabel("<html>Ingredient unit:</html>");
 		lblingredientUnit.setBounds(92, 326, 121, 33);
@@ -140,7 +152,16 @@ public class IngredientToStorage extends JFrame {
 		textField_2.setColumns(10);
 		textField_2.setBounds(200, 329, 130, 26);
 		contentPane.add(textField_2);
-		
+		textField_2.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent e) {
+				char keyChar = e.getKeyChar();				
+				if((keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)|| (keyChar == '.')){
+					e.consume();
+				}else{
+					
+				}
+			}
+		});
 		JButton btnSubmit = new JButton("Add");
 		btnSubmit.setForeground(new Color(50, 205, 50));
 		btnSubmit.setBackground(new Color(255, 255, 255));
@@ -149,11 +170,53 @@ public class IngredientToStorage extends JFrame {
 		
 		btnSubmit.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e) {
+        		int mark1 = 0;
+				int mark2 =0;
+				int mark3=0;
         		String name = textField.getText();
 				String quan = textField_1.getText();
 				float quantity = Float.parseFloat(quan);
 				String unit = textField_2.getText();
 				StorageIngredient stin = new StorageIngredient(name,quantity,unit);
+				if (textField.getText().trim().equals("")) {
+					String messege = "You must input name!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+					mark1 = 1;
+				}
+				if (textField_1.getText().trim().equals("")) {
+					String messege = "You must input quantity!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+					mark2 = 1;
+				}
+				if (textField_2.getText().trim().equals("")) {
+					String messege = "You must input unit!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+					mark3 = 1;
+				}
+				if ((mark1 == 1 && mark2 == 1)||(mark1==1&&mark3==1)||(mark2 == 1&&mark3==1)) {
+					String messege = "Not finish yet";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				}
+				if (mark1 == 1 && mark2 == 1&&mark3==1) {
+					String messege = "Please write something to add!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				}
+				if(mark1 ==0 && mark2 == 0&&mark3==0) {
 				try {
 					stin.addIngredient(name, quantity, unit);
 					dispose();
@@ -173,6 +236,7 @@ public class IngredientToStorage extends JFrame {
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
 				}
         	}
 

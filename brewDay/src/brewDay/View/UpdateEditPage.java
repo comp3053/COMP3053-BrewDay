@@ -64,7 +64,7 @@ public class UpdateEditPage extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblpleaseFillIn = new JLabel(
-				"<html>Please edit in the blank with your selected recipe information then press \"Finish\" button to submit it.</html>");
+				"<html>Please edit with your selected recipe information then press \"Finish\" button to submit it.</html>");
 		lblpleaseFillIn.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblpleaseFillIn.setBackground(Color.GREEN);
 		lblpleaseFillIn.setBounds(70, 55, 303, 63);

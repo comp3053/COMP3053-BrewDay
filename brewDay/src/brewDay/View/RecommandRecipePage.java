@@ -16,6 +16,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -70,6 +72,16 @@ public class RecommandRecipePage extends JFrame {
 		textField.setBounds(134, 105, 116, 29);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		textField.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent e) {
+				char keyChar = e.getKeyChar();				
+				if((keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)|| (keyChar == '.')){
+					
+				}else{
+					e.consume();
+				}
+			}
+		});
 
 		JButton btnNewButton = new JButton("Recommend!");
 		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));

@@ -17,6 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
@@ -113,18 +115,38 @@ public class IngredientAddToRecipe extends JFrame {
 		
 		JLabel label_1 = new JLabel("Ingredient name:");
 		label_1.setFont(new Font("Dialog", Font.BOLD, 14));
-		label_1.setBounds(81, 136, 109, 16);
+		label_1.setBounds(51, 136, 149, 16);
 		contentPane.add(label_1);
 
 		JLabel label_2 = new JLabel("Quantity:");
 		label_2.setFont(new Font("Dialog", Font.BOLD, 14));
 		label_2.setBounds(81, 166, 83, 16);
 		contentPane.add(label_2);
+		textField_2.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent e) {
+				char keyChar = e.getKeyChar();				
+				if((keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)|| (keyChar == '.')){
+					
+				}else{
+					e.consume();
+				}
+			}
+		});
 
 		JLabel label_3 = new JLabel("Unit:");
 		label_3.setFont(new Font("Dialog", Font.BOLD, 14));
 		label_3.setBounds(81, 196, 83, 16);
 		contentPane.add(label_3);
+		textField_3.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent e) {
+				char keyChar = e.getKeyChar();				
+				if((keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)|| (keyChar == '.')){
+					e.consume();
+				}else{
+					
+				}
+			}
+		});
 
 		JButton btnNewButton_1 = new JButton("Add");
 		btnNewButton_1.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -134,33 +156,75 @@ public class IngredientAddToRecipe extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				int mark1 = 0;
+				int mark2 =0;
+				int mark3=0;
 				String ingrename = textField_1.getText();
 				String quan = textField_2.getText();
 				float quantity = Float.parseFloat(quan);
 				String unit = textField_3.getText();
 				RecipeIngredient rein = new RecipeIngredient(ingrename,quantity,unit);
-				
-				try {
-					rein.addIngredientToRecipe(rid, name);
-					dispose();
-					String messege="Success.";
+				if (textField_1.getText().trim().equals("")) {
+					String messege = "You must input name!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
+					mark1 = 1;
+				}
+				if (textField_2.getText().trim().equals("")) {
+					String messege = "You must input quantity!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+					mark2 = 1;
+				}
+				if (textField_3.getText().trim().equals("")) {
+					String messege = "You must input unit!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+					mark3 = 1;
+				}
+				if ((mark1 == 1 && mark2 == 1)||(mark1==1&&mark3==1)||(mark2 == 1&&mark3==1)) {
+					String messege = "Not finish yet";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				}
+				if (mark1 == 1 && mark2 == 1&&mark3==1) {
+					String messege = "Please write something to add!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+				}
+				if(mark1 ==0 && mark2 == 0&&mark3==0){
+				try {
+					rein.addIngredientToRecipe(rid, name);
+					dispose();
 					JFrame main;
 					
-						main = new MainIngredient();
+					main = new MainIngredient();
+				
+	        	main.setLocation(100,50);
+	        	main.setSize(600, 500);
+	        	main.setVisible(true);
+					String messege="Success add new ingredient.";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
 					
-		        	main.setLocation(100,50);
-		        	main.setSize(600, 500);
-		        	main.setVisible(true);
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+				}
 			}
 
 		});

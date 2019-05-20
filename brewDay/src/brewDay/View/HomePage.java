@@ -101,7 +101,7 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
-				JFrame bre = new BrewPage(null,0);
+				JFrame bre = new BrewPage(null, 0);
 				bre.setLocation(100, 50);
 				bre.setSize(600, 500);
 				bre.setVisible(true);
@@ -119,10 +119,10 @@ public class HomePage extends JFrame {
 				JFrame equip;
 				try {
 					equip = new MaintainEquipmentInfoPage();
-				
-				equip.setLocation(100, 50);
-				equip.setSize(600, 500);
-				equip.setVisible(true);
+
+					equip.setLocation(100, 50);
+					equip.setSize(600, 300);
+					equip.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -141,10 +141,10 @@ public class HomePage extends JFrame {
 				JFrame stor;
 				try {
 					stor = new ViewAllStorageIngredient();
-				
-				stor.setLocation(100, 50);
-				stor.setSize(600, 500);
-				stor.setVisible(true);
+
+					stor.setLocation(100, 50);
+					stor.setSize(600, 500);
+					stor.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -163,10 +163,10 @@ public class HomePage extends JFrame {
 				JFrame note;
 				try {
 					note = new NoteMain();
-				
-				note.setLocation(100, 50);
-				note.setSize(600, 500);
-				note.setVisible(true);
+
+					note.setLocation(100, 50);
+					note.setSize(600, 500);
+					note.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -186,15 +186,15 @@ public class HomePage extends JFrame {
 				JFrame logg;
 				try {
 					logg = new Log();
-				
-				logg.setLocation(100, 50);
-				logg.setSize(600, 500);
-				logg.setVisible(true);
+
+					logg.setLocation(100, 50);
+					logg.setSize(600, 500);
+					logg.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				}
+			}
 		});
 
 		JLabel label = new JLabel("Hello! What would you like to do today?");

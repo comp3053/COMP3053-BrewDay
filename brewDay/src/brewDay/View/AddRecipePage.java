@@ -69,18 +69,18 @@ public class AddRecipePage extends JFrame {
 		button.setBounds(18, 7, 75, 36);
 		contentPane.add(button);
 
-		button.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent e) {
-        	dispose();
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 
-        	JFrame MaintainR = new MaintainRecipePage();
-        	MaintainR.setLocation(100,50);
-        	MaintainR.setSize(600, 500);
-        	MaintainR.setVisible(true);
-        	}
+				JFrame MaintainR = new MaintainRecipePage();
+				MaintainR.setLocation(100, 50);
+				MaintainR.setSize(600, 500);
+				MaintainR.setVisible(true);
+			}
 
-        	});
-		
+		});
+
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(194, 133, 165, 26);
@@ -119,64 +119,63 @@ public class AddRecipePage extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				int mark1 =0;
-				int mark2 =0;
-				int mark3 =0;
+				int mark1 = 0;
+				int mark2 = 0;
+				int mark3 = 0;
 				String name = textField_1.getText();
 				String quan = textField_2.getText();
 				float quantity = Float.parseFloat(quan);
 				String unit = ququ.getText();
 				Recipe rtemp = new Recipe(name);
-				if(rtemp.whetherInDB() == true) {
-					String messege="Your recipe name is already EXIST!";
+				if (rtemp.whetherInDB() == true) {
+					String messege = "Your recipe name is already EXIST!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
-					
+
 				}
-				if(textField_1.getText().trim().equals("")) {
-					String messege="You must input name!";
+				if (textField_1.getText().trim().equals("")) {
+					String messege = "You must input name!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
-					mark1=1;
+					mark1 = 1;
 				}
-				if(textField_2.getText().trim().equals("")) {
-					String messege="You must input quantity!";
+				if (textField_2.getText().trim().equals("")) {
+					String messege = "You must input quantity!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
-					mark2=1;
+					mark2 = 1;
 				}
-				if(mark1==1&&mark2==1) {
-					String messege="Please write something to add!";
+				if (mark1 == 1 && mark2 == 1) {
+					String messege = "Please write something to add!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
-					mark2=1;
+					mark2 = 1;
 				}
-				if(quantity<=0) {
-					String messege="Quantity should be positive number!";
+				if (quantity <= 0) {
+					String messege = "Quantity should be positive number!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
-					mark3=1;
+					mark3 = 1;
 				}
-				if(mark1==0&&mark2==0&&mark3==0) {
+				if (mark1 == 0 && mark2 == 0 && mark3 == 0) {
 					Recipe r = new Recipe(name, quantity, unit);
-					String messege="Recipe " + name + "has already been added.";
+					String messege = "Recipe " + name + "has already been added.";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
 					r.addRecipeToDB();
-				
-				
+
 				}
 			}
 

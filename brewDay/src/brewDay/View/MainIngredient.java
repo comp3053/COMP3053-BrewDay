@@ -50,7 +50,7 @@ public class MainIngredient extends JFrame {
 		JButton btnNewButton_1 = new JButton("Add to Storage");
 		btnNewButton_1.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnNewButton_1.setForeground(new Color(50, 205, 50));
-		btnNewButton_1.setBounds(148, 128, 133, 45);
+		btnNewButton_1.setBounds(148, 200, 200, 45);
 		contentPane.add(btnNewButton_1);
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -84,7 +84,7 @@ public class MainIngredient extends JFrame {
 		JButton btnAdd = new JButton("Add to Recipe");
 		btnAdd.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnAdd.setForeground(new Color(30, 144, 255));
-		btnAdd.setBounds(148, 71, 133, 45);
+		btnAdd.setBounds(148, 90, 200, 45);
 		
 		contentPane.add(btnAdd);
 		btnAdd.addActionListener(new ActionListener() {
