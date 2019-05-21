@@ -17,6 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import brewDay.Recipe;
 import java.awt.Font;
@@ -90,6 +92,16 @@ public class AddRecipePage extends JFrame {
 		textField_2.setColumns(10);
 		textField_2.setBounds(194, 163, 165, 26);
 		contentPane.add(textField_2);
+		textField_2.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent e) {
+				char keyChar = e.getKeyChar();				
+				if((keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)|| (keyChar == '.')){
+					
+				}else{
+					e.consume();
+				}
+			}
+		});
 
 		JLabel ququ = new JLabel("L");
 		ququ.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -122,7 +134,6 @@ public class AddRecipePage extends JFrame {
 				int mark1 = 0;
 				int mark2 = 0;
 				int mark3 = 0;
-				int mark4 = 0;
 				String name = textField_1.getText();
 				String quan = textField_2.getText();
 				float quantity = Float.parseFloat(quan);
@@ -134,11 +145,10 @@ public class AddRecipePage extends JFrame {
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
+					mark3=1;
 
 				}
-				else {
-					mark4 =1;
-				}
+				else
 				if (textField_1.getText().trim().equals("")) {
 					String messege = "You must input name!";
 					JFrame win = new PromptWindow(messege);
@@ -147,6 +157,7 @@ public class AddRecipePage extends JFrame {
 					win.setVisible(true);
 					mark1 = 1;
 				}
+				else
 				if (textField_2.getText().trim().equals("")) {
 					String messege = "You must input quantity!";
 					JFrame win = new PromptWindow(messege);
@@ -154,24 +165,8 @@ public class AddRecipePage extends JFrame {
 					win.setSize(400, 200);
 					win.setVisible(true);
 					mark2 = 1;
-				}
-				if (mark1 == 1 && mark2 == 1) {
-					String messege = "Please write something to add!";
-					JFrame win = new PromptWindow(messege);
-					win.setLocation(500, 80);
-					win.setSize(400, 200);
-					win.setVisible(true);
-					mark2 = 1;
-				}
-				if (quantity <= 0) {
-					String messege = "Quantity should be positive number!";
-					JFrame win = new PromptWindow(messege);
-					win.setLocation(500, 80);
-					win.setSize(400, 200);
-					win.setVisible(true);
-					mark3 = 1;
-				}
-				if (mark1 == 0 && mark2 == 0 && mark3 == 0&&mark4==0) {
+				}			
+				if (mark1 == 0 && mark2 == 0 && mark3 == 0) {
 					Recipe r = new Recipe(name, quantity, unit);
 					String messege = "Recipe " + name + "has already been added.";
 					JFrame win = new PromptWindow(messege);
