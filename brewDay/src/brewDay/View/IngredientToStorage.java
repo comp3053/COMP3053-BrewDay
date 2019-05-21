@@ -173,6 +173,7 @@ public class IngredientToStorage extends JFrame {
         		int mark1 = 0;
 				int mark2 =0;
 				int mark3=0;
+				int mark4=1;
         		
 				if (textField.getText().trim().equals("")) {
 					String messege = "You must input name!";
@@ -198,7 +199,19 @@ public class IngredientToStorage extends JFrame {
 					win.setVisible(true);
 					mark3 = 1;
 				}
-				else if(mark1 ==0 && mark2 == 0&&mark3==0) {
+				else if(textField.getText().trim().equals("water")||textField.getText().trim().equals("malts")||textField.getText().trim().equals("hops")||textField.getText().trim().equals("yeasts")||textField.getText().trim().equals("sugars")||textField.getText().trim().equals("additives"))
+				{
+					mark4 = 0;
+				}
+				else if(mark4==1) {
+					String messege = "Ingredient not exit!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+					mark3 = 1;
+				}
+					else if(mark1 ==0 && mark2 == 0&&mark3==0&&mark4==0) {
 					String name = textField.getText();
 					String quan = textField_1.getText();
 					float quantity = Float.parseFloat(quan);

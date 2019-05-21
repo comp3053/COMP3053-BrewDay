@@ -159,6 +159,7 @@ public class IngredientAddToRecipe extends JFrame {
 				int mark1 = 0;
 				int mark2 =0;
 				int mark3=0;
+				int mark4=1;
 				
 				if (textField_1.getText().trim().equals("")) {
 					String messege = "You must input name!";
@@ -178,6 +179,18 @@ public class IngredientAddToRecipe extends JFrame {
 				}
 				else if (textField_3.getText().trim().equals("")) {
 					String messege = "You must input unit!";
+					JFrame win = new PromptWindow(messege);
+					win.setLocation(500, 80);
+					win.setSize(400, 200);
+					win.setVisible(true);
+					mark3 = 1;
+				}
+				else if(textField_1.getText().trim().equals("water")||textField_1.getText().trim().equals("malts")||textField_1.getText().trim().equals("hops")||textField_1.getText().trim().equals("yeasts")||textField_1.getText().trim().equals("sugars")||textField_1.getText().trim().equals("additives"))
+				{
+					mark4 = 0;
+				}
+				else if(mark4==1) {
+					String messege = "Ingredient not exit!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
