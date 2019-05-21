@@ -143,8 +143,8 @@ public class IngredientAddToRecipe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int mark1 = 0;
 				int mark2 =0;
-				int mark3=0;
 				int mark4=1;
+				String ingrename = textField_1.getText();
 				
 				if (textField_1.getText().trim().equals("")) {
 					String messege = "You must input name!";
@@ -162,14 +162,6 @@ public class IngredientAddToRecipe extends JFrame {
 					win.setVisible(true);
 					mark2 = 1;
 				}
-				else if (textField_3.getText().trim().equals("")) {
-					String messege = "You must input unit!";
-					JFrame win = new PromptWindow(messege);
-					win.setLocation(500, 80);
-					win.setSize(400, 200);
-					win.setVisible(true);
-					mark3 = 1;
-				}
 				else if(textField_1.getText().trim().equals("water")||textField_1.getText().trim().equals("malts")||textField_1.getText().trim().equals("hops")||textField_1.getText().trim().equals("yeasts")||textField_1.getText().trim().equals("sugars")||textField_1.getText().trim().equals("additives"))
 				{
 					mark4 = 0;
@@ -180,14 +172,18 @@ public class IngredientAddToRecipe extends JFrame {
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
-					mark3 = 1;
+					
 				}
-				else
-				if(mark1 ==0 && mark2 == 0&&mark3==0){
-					String ingrename = textField_1.getText();
+				if(mark1 ==0 && mark2 == 0&&mark4==0){
+					
 					String quan = textField_2.getText();
 					float quantity = Float.parseFloat(quan);
-					String unit = textField_3.getText();
+					String unit ;
+					if(name == "water") {
+						unit = "L";
+					}
+					else
+						unit = "g";
 					RecipeIngredient rein = new RecipeIngredient(ingrename,quantity,unit);
 				try {
 					rein.addIngredientToRecipe(rid, name);

@@ -171,14 +171,6 @@ public class IngredientToStorage extends JFrame {
 					win.setVisible(true);
 					mark2 = 1;
 				}
-				else if (textField_2.getText().trim().equals("")) {
-					String messege = "You must input unit!";
-					JFrame win = new PromptWindow(messege);
-					win.setLocation(500, 80);
-					win.setSize(400, 200);
-					win.setVisible(true);
-					mark3 = 1;
-				}
 				else if(textField.getText().trim().equals("water")||textField.getText().trim().equals("malts")||textField.getText().trim().equals("hops")||textField.getText().trim().equals("yeasts")||textField.getText().trim().equals("sugars")||textField.getText().trim().equals("additives"))
 				{
 					mark4 = 0;
@@ -191,11 +183,16 @@ public class IngredientToStorage extends JFrame {
 					win.setVisible(true);
 					mark3 = 1;
 				}
-					else if(mark1 ==0 && mark2 == 0&&mark3==0&&mark4==0) {
+					if(mark1 ==0 && mark2 == 0&&mark3==0&&mark4==0) {
 					String name = textField.getText();
 					String quan = textField_1.getText();
 					float quantity = Float.parseFloat(quan);
-					String unit = textField_2.getText();
+					String unit;
+					if(name == "water") {
+						unit = "L";
+					}
+					else
+						unit = "g";
 					StorageIngredient stin = new StorageIngredient(name,quantity,unit);
 				try {
 					stin.addIngredient(name, quantity, unit);
