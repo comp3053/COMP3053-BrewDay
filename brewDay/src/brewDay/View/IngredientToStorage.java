@@ -37,7 +37,6 @@ public class IngredientToStorage extends JFrame {
 	private JLabel lblNewLabel;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -63,7 +62,7 @@ public class IngredientToStorage extends JFrame {
 		
 		setTitle("Storage Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 428);
+		setBounds(100, 100, 450, 484);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -143,29 +142,10 @@ public class IngredientToStorage extends JFrame {
 				}
 			}
 		});
-		
-		JLabel lblingredientUnit = new JLabel("<html>Ingredient unit:</html>");
-		lblingredientUnit.setBounds(92, 326, 121, 33);
-		contentPane.add(lblingredientUnit);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(200, 329, 130, 26);
-		contentPane.add(textField_2);
-		textField_2.addKeyListener(new KeyAdapter(){
-			public void keyTyped(KeyEvent e) {
-				char keyChar = e.getKeyChar();				
-				if((keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)|| (keyChar == '.')){
-					e.consume();
-				}else{
-					
-				}
-			}
-		});
 		JButton btnSubmit = new JButton("Add");
 		btnSubmit.setForeground(new Color(50, 205, 50));
 		btnSubmit.setBackground(new Color(255, 255, 255));
-		btnSubmit.setBounds(170, 371, 117, 29);
+		btnSubmit.setBounds(159, 423, 117, 29);
 		contentPane.add(btnSubmit);
 		
 		btnSubmit.addActionListener(new ActionListener(){
@@ -246,6 +226,12 @@ public class IngredientToStorage extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("<html>Fill in the blank for the ingredient that you want to add</html>");
 		lblNewLabel_1.setBounds(64, 243, 335, 29);
 		contentPane.add(lblNewLabel_1);
+		
+		JLabel label = new JLabel("<html>When you add ingredient, the system will automatically add units. \n\t\tL for water, \n\t\tg for malts, \n\t\tg for hops, \n\t\tg for yeasts, \n\t\tg for sugars, \n\t\tg for additives</html>");
+		label.setFont(new Font("Dialog", Font.BOLD, 14));
+		label.setBackground(Color.GREEN);
+		label.setBounds(64, 328, 303, 83);
+		contentPane.add(label);
 		
 	}
 }

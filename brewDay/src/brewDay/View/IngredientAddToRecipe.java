@@ -33,7 +33,6 @@ public class IngredientAddToRecipe extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -107,11 +106,6 @@ public class IngredientAddToRecipe extends JFrame {
 		textField_2.setBounds(194, 163, 165, 26);
 		contentPane.add(textField_2);
 
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(194, 193, 165, 26);
-		contentPane.add(textField_3);
-
 		
 		JLabel label_1 = new JLabel("Ingredient name:");
 		label_1.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -133,26 +127,17 @@ public class IngredientAddToRecipe extends JFrame {
 			}
 		});
 
-		JLabel label_3 = new JLabel("Unit:");
-		label_3.setFont(new Font("Dialog", Font.BOLD, 14));
-		label_3.setBounds(81, 196, 83, 16);
-		contentPane.add(label_3);
-		textField_3.addKeyListener(new KeyAdapter(){
-			public void keyTyped(KeyEvent e) {
-				char keyChar = e.getKeyChar();				
-				if((keyChar >= KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)|| (keyChar == '.')){
-					e.consume();
-				}else{
-					
-				}
-			}
-		});
-
 		JButton btnNewButton_1 = new JButton("Add");
 		btnNewButton_1.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnNewButton_1.setForeground(new Color(255, 105, 180));
-		btnNewButton_1.setBounds(164, 253, 81, 36);
+		btnNewButton_1.setBounds(168, 289, 81, 36);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblwhenYouAdd = new JLabel("<html>When you add ingredient, the system will automatically add units. \n\t\tL for water, \n\t\tg for malts, \n\t\tg for hops, \n\t\tg for yeasts, \n\t\tg for sugars, \n\t\tg for additives</html>");
+		lblwhenYouAdd.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblwhenYouAdd.setBackground(Color.GREEN);
+		lblwhenYouAdd.setBounds(51, 194, 303, 83);
+		contentPane.add(lblwhenYouAdd);
 		btnNewButton_1.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
