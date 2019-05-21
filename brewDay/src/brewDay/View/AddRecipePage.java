@@ -122,6 +122,7 @@ public class AddRecipePage extends JFrame {
 				int mark1 = 0;
 				int mark2 = 0;
 				int mark3 = 0;
+				int mark4 = 0;
 				String name = textField_1.getText();
 				String quan = textField_2.getText();
 				float quantity = Float.parseFloat(quan);
@@ -134,6 +135,9 @@ public class AddRecipePage extends JFrame {
 					win.setSize(400, 200);
 					win.setVisible(true);
 
+				}
+				else {
+					mark4 =1;
 				}
 				if (textField_1.getText().trim().equals("")) {
 					String messege = "You must input name!";
@@ -167,7 +171,7 @@ public class AddRecipePage extends JFrame {
 					win.setVisible(true);
 					mark3 = 1;
 				}
-				if (mark1 == 0 && mark2 == 0 && mark3 == 0) {
+				if (mark1 == 0 && mark2 == 0 && mark3 == 0&&mark4==0) {
 					Recipe r = new Recipe(name, quantity, unit);
 					String messege = "Recipe " + name + "has already been added.";
 					JFrame win = new PromptWindow(messege);
