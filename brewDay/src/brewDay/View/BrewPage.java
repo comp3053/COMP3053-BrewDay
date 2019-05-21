@@ -120,6 +120,7 @@ public class BrewPage extends JFrame {
 		button.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				int mark1 = 0;
 				int mark2 = 0;
 				int mark3 = 0;
 				String name = textField.getText();
@@ -156,11 +157,26 @@ public class BrewPage extends JFrame {
 					mark3 = 1;
 
 				}
-
+				Brew b = new Brew(getSize, r);
+				try {
+					if(b.enoughIngredient(r) == false) {
+						String messege="No enough ingredient for this recipe!";
+						JFrame win = new PromptWindow(messege);
+						win.setLocation(500, 300);
+						win.setSize(400, 200);
+						win.setVisible(true);
+					}
+					else {
+						mark1 = 1;
+					}
+				} catch (SQLException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 				// Not finish, useless code here.
-				if ( mark2 == 1 && mark3 == 1) {
+				if (mark1 == 1&& mark2 == 1 && mark3 == 1) {
 
-					Brew b = new Brew(getSize, r);
+					
 					try {
 						b.implement(r);
 					} catch (SQLException e1) {
