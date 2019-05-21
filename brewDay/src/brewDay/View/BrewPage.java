@@ -183,6 +183,19 @@ public class BrewPage extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					dispose();
+					JFrame write;
+					try {
+						write = new NoteWritingPage(b.getNewestBrewID(b),"Add",0,null);
+					
+
+					write.setLocation(100,50);
+   	write.setSize(600, 500);
+   	write.setVisible(true);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					String messege="You brew success.";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
