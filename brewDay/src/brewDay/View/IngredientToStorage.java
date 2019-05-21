@@ -173,11 +173,7 @@ public class IngredientToStorage extends JFrame {
         		int mark1 = 0;
 				int mark2 =0;
 				int mark3=0;
-        		String name = textField.getText();
-				String quan = textField_1.getText();
-				float quantity = Float.parseFloat(quan);
-				String unit = textField_2.getText();
-				StorageIngredient stin = new StorageIngredient(name,quantity,unit);
+        		
 				if (textField.getText().trim().equals("")) {
 					String messege = "You must input name!";
 					JFrame win = new PromptWindow(messege);
@@ -186,7 +182,7 @@ public class IngredientToStorage extends JFrame {
 					win.setVisible(true);
 					mark1 = 1;
 				}
-				if (textField_1.getText().trim().equals("")) {
+				else if (textField_1.getText().trim().equals("")) {
 					String messege = "You must input quantity!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
@@ -194,7 +190,7 @@ public class IngredientToStorage extends JFrame {
 					win.setVisible(true);
 					mark2 = 1;
 				}
-				if (textField_2.getText().trim().equals("")) {
+				else if (textField_2.getText().trim().equals("")) {
 					String messege = "You must input unit!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
@@ -202,21 +198,12 @@ public class IngredientToStorage extends JFrame {
 					win.setVisible(true);
 					mark3 = 1;
 				}
-				if ((mark1 == 1 && mark2 == 1)||(mark1==1&&mark3==1)||(mark2 == 1&&mark3==1)) {
-					String messege = "Not finish yet";
-					JFrame win = new PromptWindow(messege);
-					win.setLocation(500, 80);
-					win.setSize(400, 200);
-					win.setVisible(true);
-				}
-				if (mark1 == 1 && mark2 == 1&&mark3==1) {
-					String messege = "Please write something to add!";
-					JFrame win = new PromptWindow(messege);
-					win.setLocation(500, 80);
-					win.setSize(400, 200);
-					win.setVisible(true);
-				}
-				if(mark1 ==0 && mark2 == 0&&mark3==0) {
+				else if(mark1 ==0 && mark2 == 0&&mark3==0) {
+					String name = textField.getText();
+					String quan = textField_1.getText();
+					float quantity = Float.parseFloat(quan);
+					String unit = textField_2.getText();
+					StorageIngredient stin = new StorageIngredient(name,quantity,unit);
 				try {
 					stin.addIngredient(name, quantity, unit);
 					dispose();
