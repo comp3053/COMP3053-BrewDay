@@ -58,12 +58,10 @@ public class PromptWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(88, 71, 274, 95);
-		contentPane.add(scrollPane);
 
 		JLabel lblNewLabel = new JLabel(i);
-		scrollPane.setViewportView(lblNewLabel);
+		lblNewLabel.setBounds(88, 71, 245, 29);
+		contentPane.add(lblNewLabel);
 
 
 		JButton button = new JButton("Back");
