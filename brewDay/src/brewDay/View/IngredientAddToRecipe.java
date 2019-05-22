@@ -179,11 +179,12 @@ public class IngredientAddToRecipe extends JFrame {
 					String quan = textField_2.getText();
 					float quantity = Float.parseFloat(quan);
 					String unit ;
-					if(name == "water") {
+					if(textField_1.getText().trim().equals("water")) {
 						unit = "L";
 					}
-					else
+					else {
 						unit = "g";
+					}
 					RecipeIngredient rein = new RecipeIngredient(ingrename,quantity,unit);
 				try {
 					rein.addIngredientToRecipe(rid, name);

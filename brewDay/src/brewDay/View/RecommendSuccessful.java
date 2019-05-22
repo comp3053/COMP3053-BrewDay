@@ -130,9 +130,11 @@ public class RecommendSuccessful extends JFrame {
 		btnBrew.setBounds(251, 366, 92, 25);
 		contentPane.add(btnBrew);
 		btnBrew.addActionListener(new ActionListener() {
-			String name = textField.getText();
-			Recipe r = new Recipe(name);
 			public void actionPerformed(ActionEvent e) {
+				String name = textField.getText();
+				
+				int mark = 0;
+				Recipe r = new Recipe(name);
 				if(textField.getText().trim().equals("")) {
 					String messege="You must input name!";
 					JFrame win = new PromptWindow(messege);
@@ -140,18 +142,21 @@ public class RecommendSuccessful extends JFrame {
 					win.setSize(400, 200);
 					win.setVisible(true);
 				}
-				if(r.whetherInDB()==false) {
+				else if(r.whetherInDB()==false) {
 					String messege="No such recipe!";
 					JFrame win = new PromptWindow(messege);
 					win.setLocation(500, 80);
 					win.setSize(400, 200);
 					win.setVisible(true);
+					mark = 1;
 				}
+				if(mark == 0) {
 				dispose();
 				JFrame brews = new BrewPage(name, batchsize);
 				brews.setLocation(100, 50);
 				brews.setSize(600, 500);
 				brews.setVisible(true);
+				}
 			}
 
 		});
