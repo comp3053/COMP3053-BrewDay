@@ -188,11 +188,12 @@ public class IngredientToStorage extends JFrame {
 					String quan = textField_1.getText();
 					float quantity = Float.parseFloat(quan);
 					String unit;
-					if(name == "water") {
+					if(textField.getText().trim().equals("water")) {
 						unit = "L";
 					}
-					else
+					else {
 						unit = "g";
+					}
 					StorageIngredient stin = new StorageIngredient(name,quantity,unit);
 				try {
 					stin.addIngredient(name, quantity, unit);
