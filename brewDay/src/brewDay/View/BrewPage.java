@@ -125,7 +125,7 @@ public class BrewPage extends JFrame {
 				int mark3 = 0;
 				String name = textField.getText();
 				String size = textField_1.getText();
-				int getSize = Integer.parseInt(size);
+				float getSize = Float.parseFloat(size);
 				float getCapacity;
 				try {
 					getCapacity = Equipment.Capacity();
