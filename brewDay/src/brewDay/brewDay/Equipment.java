@@ -63,7 +63,7 @@ public class Equipment {
 		
 		return this.capacity;
 	}
-	//gr
+	//this is get Capacity function
 	public static float Capacity() throws SQLException{
 		ResultSet rs = Database.Select("SELECT Capacity FROM Equipment");
 		float Capacity = 0;

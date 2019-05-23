@@ -144,8 +144,8 @@ public class Brew {
 		List<String> l = new LinkedList<String>(); // l for missing ingredients
 
 		int getline = 0;
-		boolean flag = false;
-		int[] arr = new int[5000];
+		boolean flag = false; // whether have recipe canbe recommend
+		int[] arr = new int[5000];//stroage of id
 		ResultSet getRecipe = Database.Select(
 				"SELECT Recipe.RecipeID, Recipe.Name, Quantity, RecipeIngredient.Name, RecipeIngredient.Amount, StorageIngredient.Amount FROM Recipe INNER JOIN RecipeIngredient INNER JOIN StorageIngredient ON Recipe.RecipeID = RecipeIngredient.RecipeID and RecipeIngredient.Name = StorageIngredient.Name");
 		while (getRecipe.next()) {
@@ -164,7 +164,7 @@ public class Brew {
 				getline = getLine.getInt("count");
 			}
 
-			// **************to be continue
+			// **************algorithm
 			if (getA < tempgetAmount) {
 				float need = (float) getA - (float) tempgetAmount;
 				l.add("Recipe <" + getName + "> Storage of " + getIngredientName + " are not enough"
@@ -176,7 +176,7 @@ public class Brew {
 
 			}
 
-			if (arr[getRID] == getline) {
+			if (arr[getRID] == getline) { // if there are matching
 				flag = true;
 				ResultSet getRecommend = Database.Select("SELECT * FROM Recipe Where RecipeID=" + getRID);
 
