@@ -297,7 +297,6 @@ public class Start {
 
 
 		public static void main(String[] args) throws SQLException {
-			ShoppingList sl = new ShoppingList("Shopping list 1");
 
 			while (true) {
 				System.out.println("You are in start page, input the number to select the option:");
