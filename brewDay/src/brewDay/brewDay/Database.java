@@ -9,9 +9,9 @@ import java.util.Map;
 
 public class Database {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	static final String DB_URL = "jdbc:mysql://cdb-3kg0di5d.gz.tencentcdb.com:10120/database?useSSL=false";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/database";
 	static final String USER = "root";
-	static final String PASS = "Gr19980308"; 
+	static final String PASS = ""; 
 
 	//*************************Select function***********************
 	public static ResultSet Select(String sql) {
