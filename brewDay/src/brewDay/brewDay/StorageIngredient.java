@@ -3,7 +3,7 @@ package brewDay;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StorageIngredient extends Ingredient {
+public class StorageIngredient extends Ingredient {//inherited from parent class Ingredient
 	private Brew brew;
 
 	public StorageIngredient(String nameOfIngredient, float amountOfIngredient,
@@ -13,12 +13,12 @@ public class StorageIngredient extends Ingredient {
 
 	//function 1 add ingredient to the storage	
 	public void addIngredient(String nameOfIngredient, float amountOfIngredient, String unitOfIngredient) throws SQLException {
-		String name = "a";
-		float amount = (float) 0.0;
-		String unit = "a";
-		int id = 0;
+		String name = "a";//default value, in case of error message
+		float amount = (float) 0.0;//default value, in case of error message
+		String unit = "a";//default value, in case of error message
+		int id = 0;//default value, in case of error message
 		String searchInDB = "SELECT Name, Amount, Unit, StorageIngredientID FROM StorageIngredient WHERE Name = '" + nameOfIngredient + "'";
-		ResultSet rs = Database.Select(searchInDB);
+		ResultSet rs = Database.Select(searchInDB);//search in database to find whether it exists in storage
 		while(rs.next())
 		{
 			name = rs.getString("Name");
@@ -26,15 +26,15 @@ public class StorageIngredient extends Ingredient {
 			unit = rs.getString("Unit");
 			id = rs.getInt("StorageIngredientID");
 		}
-		if(nameOfIngredient.equals(name) && unitOfIngredient.equals(unit)) {
-			amount += amountOfIngredient;
+		if(nameOfIngredient.equals(name) && unitOfIngredient.equals(unit)) {//if the name and unit match, that means it is in database
+			amount += amountOfIngredient;//add amount on the original basis
 			String sqlAdd = "UPDATE StorageIngredient SET Amount = " + amount + " WHERE StorageIngredientID = " + id;
 			Database.Update(sqlAdd);
 			System.out.println("Amount of ingredient " + name + " has been added to the original amount.");
 		}
-		else {
+		else {//if it does not exist in database
 			String sql = "Insert Into StorageIngredient Values (NULL,'" + nameOfIngredient + "','" + amountOfIngredient + "','" + unitOfIngredient + "')";
-			Database.Insert(sql);
+			Database.Insert(sql);//insert it into database
 			System.out.println("Ingredient " + nameOfIngredient + " has been successfully added to the storage!");
 		}
 	}
