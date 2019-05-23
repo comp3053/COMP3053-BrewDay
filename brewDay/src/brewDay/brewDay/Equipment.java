@@ -11,7 +11,21 @@ public class Equipment {
 			this.capacity = this.getCapacity();
 		}
 	
-	public boolean addCapacity(float input) {
+	public boolean updateCapacity(float input) {//user are only allowed to update the capacity
+		if(input >= 0) {// if the input value is positive or 0
+			this.capacity = input;
+			String sql = "Update Equipment Set Capacity = " + this.capacity;
+			Database.Update(sql);//update capacity in database
+			System.out.println("Update capacity success!");
+			return true;
+		}
+		else {//if input value is negative
+			System.out.println("Update capacity falied!");
+			return false;
+		}
+	}
+	
+	public boolean addCapacity(float input) {//not used by the system
 		if(input >= 0) {
 			this.capacity = this.capacity + input;
 			String sql = "Update Equipment Set Capacity = " + this.capacity;
@@ -25,7 +39,7 @@ public class Equipment {
 		}
 	}
 	
-	public boolean subtractCapacity(float input) {
+	public boolean subtractCapacity(float input) {//not used by the system
 		if(input >= 0 && input <= this.capacity) {
 			this.capacity = this.capacity - input;
 			String sql = "Update Equipment Set Capacity = " + this.capacity;
@@ -39,19 +53,6 @@ public class Equipment {
 		}
 	}
 	
-	public boolean updateCapacity(float input) {
-		if(input >= 0) {
-			this.capacity = input;
-			String sql = "Update Equipment Set Capacity = " + this.capacity;
-			Database.Update(sql);
-			System.out.println("Update capacity success!");
-			return true;
-		}
-		else {
-			System.out.println("Update capacity falied!");
-			return false;
-		}
-	}
 	
 	public float getCapacity() throws SQLException{
 		ResultSet r = Database.Select("SELECT Capacity FROM Equipment");
